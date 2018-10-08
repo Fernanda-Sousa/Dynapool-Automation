@@ -180,9 +180,9 @@ public class Selenium_Engine {
 		return "";
 	}
 
-	public static boolean verifyTextOnFieldPartial(String clientName) {
+	public static boolean verifyTextOnFieldPartial(String text) {
 		try {
-			if (driver.getPageSource().contains(clientName)) {
+			if (driver.getPageSource().contains(text)) {
 				return true;
 			}
 		} catch (Exception e) {
@@ -191,13 +191,13 @@ public class Selenium_Engine {
 		return false;
 	}
 
-	public static boolean verifyTextOnField(String clientName) {
+	public static boolean verifyTextOnField(String text) {
 		try {
-			String client;
+			String text1;
 
-			client = driver.findElement(By.linkText(clientName)).getText();
-			sysOut(client);
-			if (client.contains(clientName)) {
+			text1 = driver.findElement(By.linkText(text)).getText();
+			sysOut(text1);
+			if (text1.contains(text)) {
 				return true;
 			}
 		} catch (Exception e) {
