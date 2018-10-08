@@ -16,7 +16,7 @@ public class Login_Page{
 
 
 	public void setUserName(String strUserName) {
-		driver.findElement(userName).sendKeys(strUserName);
+		setTextbox(userName, strUserName);
 	}
 
 	public void setUserPassword(String strUserPassword) {

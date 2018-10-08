@@ -19,225 +19,223 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+public class Selenium_Engine {
 
- public class Selenium_Engine {
+	public static final boolean CHROME = true;
+	public static WebDriver driver;
 
-    public static final boolean CHROME = true;
-    public static WebDriver driver;
+	static String parentWindowHandler = null; // Store your parent window
+	static String subWindowHandler = null;
 
-    static String parentWindowHandler = null; // Store your parent window
-    static String subWindowHandler = null;
+	static final boolean DEBUG = true;
 
-    static final boolean DEBUG = true;
+	public static WebDriver driver() {
+		return driver;
+	}
 
-    public static WebDriver driver() {
-        return driver;
-    }
+	public static void sysOut(Object s) {
+		if (DEBUG) {
+			System.out.print("\n" + s.toString());
+		}
+	}
 
-    public static void sysOut(Object s) {
-        if (DEBUG) {
-            System.out.print("\n" + s.toString());
-        }
-    }
+	public static void sleepMinutes(int minutes) {
+		try {
+			TimeUnit.MINUTES.sleep(minutes);
+		} catch (InterruptedException ex) {
+			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
-    public static void sleepMinutes(int minutes) {
-        try {
-            TimeUnit.MINUTES.sleep(minutes);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null,
-                    ex);
-        }
-    }
+	public static void sleepSeconds(int seconds) {
+		try {
+			TimeUnit.SECONDS.sleep(seconds);
+		} catch (InterruptedException ex) {
+			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 
-    public static void sleepSeconds(int seconds) {
-        try {
-            TimeUnit.SECONDS.sleep(seconds);
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null,
-                    ex);
-        }
-    }
+	public static void waitElement(By by) {
+		WebDriverWait wait = new WebDriverWait(driver, 60);
+		wait.pollingEvery(Duration.ofSeconds(2));
+		wait.until(ExpectedConditions.elementToBeClickable(by));
+	}
 
-    public static void waitElement(By by) {
-        WebDriverWait wait = new WebDriverWait(driver, 60);
-        wait.pollingEvery(Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.elementToBeClickable(by));
-    }
+	public static void waitForPageLoad() {
+		Wait<WebDriver> wait = new WebDriverWait(driver, 100);
+		wait.until((WebDriver driver1) -> {
+			sysOut("Current Window State       : "
+					+ String.valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState")));
+			return String.valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState"))
+					.equals("complete");
+		});
+	}
 
-    public static void waitForPageLoad() {
-        Wait<WebDriver> wait = new WebDriverWait(driver, 100);
-        wait.until((WebDriver driver1) -> {
-            sysOut("Current Window State       : " + String.valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState")));
-            return String.valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState")).equals("complete");
-        });
-    }
+	public static void click(By by) {
+		driver.findElement(by).click();
+	}
 
-    public static void click(By by) {
-        driver.findElement(by).click();
-    }
+	public static void createDriver() {
 
-    public static void createDriver() {
+		if (CHROME) {
+			System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+			driver = new ChromeDriver();
+		} else {
+			System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+			driver = new FirefoxDriver();
+		}
 
-        if (CHROME) {
-            System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
-            driver = new ChromeDriver();
-        } else {
-            System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
-            driver = new FirefoxDriver();
-        }
+		driver.manage().window().maximize();
+		driver.manage().deleteAllCookies();
+		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+		parentWindowHandler = driver.getWindowHandle();
+	}
 
-        driver.manage().window().maximize();
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        parentWindowHandler = driver.getWindowHandle();
-    }
+	public static void openURL(String url) {
+		driver.get(url);
+	}
 
-    public static void openURL(String url) {
-        driver.get(url);
-    }
+	public static void manipulatePopUp(boolean manipulate) {
+		try {
+			if (manipulate) {
+				Set<String> handles = driver.getWindowHandles();
+				Iterator<String> iterator = handles.iterator();
+				while (iterator.hasNext()) {
+					subWindowHandler = iterator.next();
+				}
+				driver.switchTo().window(subWindowHandler);
+			} else {
+				driver.switchTo().window(parentWindowHandler);
+			}
+		} catch (Exception e) {
+			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+		}
 
-    public static void manipulatePopUp(boolean manipulate) {
-        try {
-            if (manipulate) {
-                Set<String> handles = driver.getWindowHandles(); 
-                Iterator<String> iterator = handles.iterator();
-                while (iterator.hasNext()) {
-                    subWindowHandler = iterator.next();
-                }
-                driver.switchTo().window(subWindowHandler);
-            } else {
-                driver.switchTo().window(parentWindowHandler);
-            }
-        } catch (Exception e) {
-            Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
-        }
+	}
 
-    }
+	public static void selectCheckBox(By by) {
+		try {
+			if (!driver.findElement(by).isSelected()) {
+				driver.findElement(by).click();
+			}
+		} catch (Exception e) {
+			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+		}
+	}
 
-    public static void selectCheckBox(By by) {
-        try {
-            if (!driver.findElement(by).isSelected()) {
-                driver.findElement(by).click();
-            }
-        } catch (Exception e) {
-            Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
+	public static void selectAutoGeneratedlink(String linkname) {
+		linkname = linkname.trim();
 
-    public static void selectAutoGeneratedlink(String linkname) {
-        linkname = linkname.trim();
+		if (linkname.contains(" ")) {
+			linkname = linkname.split(" ")[0];
+		}
+		driver.findElement(By.partialLinkText(linkname)).click();
+	}
 
-        if (linkname.contains(" ")) {
-            linkname = linkname.split(" ")[0];
-        }
-        driver.findElement(By.partialLinkText(linkname)).click();
-    }
+	public static void selectDropDown(By element, String item) {
+		try {
+			driver.findElement(element).click();
+			sleepSeconds(2);
+			Select selItem = new Select(driver.findElement(element));
+			selItem.selectByVisibleText(item);
+		} catch (Exception e) {
+			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+		}
+	}
 
-    public static void selectDropDown(By element, String item) {
-        try {
-            driver.findElement(element).click();
-            sleepSeconds(2);
-            Select selItem = new Select(driver.findElement(element));
-            selItem.selectByVisibleText(item);
-        } catch (Exception e) {
-            Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
-
-    public static void setTextbox(By element, String text) {
-        try {
-            driver.findElement(element).click();
-            driver.findElement(element).clear();
+	public static void setTextbox(By element, String text) {
+		try {
+			driver.findElement(element).click();
+			driver.findElement(element).clear();
 //        waitElement(element);
-            driver.findElement(element).sendKeys(text);
-        } catch (Exception e) {
-            Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
-        }
-    }
+			driver.findElement(element).sendKeys(text);
+		} catch (Exception e) {
+			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+		}
+	}
 
-    public static void shutdownDriver() {
-        try {
-            sleepSeconds(10);
-            if (driver != null) {
-                driver.quit();
-            }
-        } catch (Exception ee) {
-            sysOut("No Driver to close" + ee);
-        }
-    }
+	public static void shutdownDriver() {
+		try {
+			sleepSeconds(10);
+			if (driver != null) {
+				driver.quit();
+			}
+		} catch (Exception ee) {
+			sysOut("No Driver to close" + ee);
+		}
+	}
 
-    public static String verifyFolder(String dir, boolean logged) {
-        try {
-            File file = new File(dir);
-            File afile[] = file.listFiles();
-            return afile[0].getName();
-        } catch (Exception e) {
-            sysOut("No file on folder\n\n***End of process, stopping robot***\n\n");
-            sleepSeconds(1);
-            if (logged) {
-                shutdownDriver();
-            }
-        }
-        return "";
-    }
+	public static String verifyFolder(String dir, boolean logged) {
+		try {
+			File file = new File(dir);
+			File afile[] = file.listFiles();
+			return afile[0].getName();
+		} catch (Exception e) {
+			sysOut("No file on folder\n\n***End of process, stopping robot***\n\n");
+			sleepSeconds(1);
+			if (logged) {
+				shutdownDriver();
+			}
+		}
+		return "";
+	}
 
-    public static boolean verifyTextOnFieldPartial(String clientName) {
-        try {
-            if (driver.getPageSource().contains(clientName)) {
-                return true;
-            }
-        } catch (Exception e) {
-            Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
-        }
-        return false;
-    }
+	public static boolean verifyTextOnFieldPartial(String clientName) {
+		try {
+			if (driver.getPageSource().contains(clientName)) {
+				return true;
+			}
+		} catch (Exception e) {
+			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+		}
+		return false;
+	}
 
-    public static boolean verifyTextOnField(String clientName) {
-        try {
-            String client;
+	public static boolean verifyTextOnField(String clientName) {
+		try {
+			String client;
 
-            client = driver.findElement(By.linkText(clientName)).getText();
-            sysOut(client);
-            if (client.contains(clientName)) {
-                return true;
-            }
-        } catch (Exception e) {
-            Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null,
-                    e);
-        }
-        return false;
-    }
+			client = driver.findElement(By.linkText(clientName)).getText();
+			sysOut(client);
+			if (client.contains(clientName)) {
+				return true;
+			}
+		} catch (Exception e) {
+			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+		}
+		return false;
+	}
 
-    public static void moveScreen(By by) {
-        JavascriptExecutor jse = (JavascriptExecutor) driver;
-        jse.executeScript("javascript:window.scrollBy(" + driver.findElement(by).getLocation().x + ","
-                + driver.findElement(by).getLocation().y + ")");
-    }
+	public static void moveScreen(By by) {
+		JavascriptExecutor jse = (JavascriptExecutor) driver;
+		jse.executeScript("javascript:window.scrollBy(" + driver.findElement(by).getLocation().x + ","
+				+ driver.findElement(by).getLocation().y + ")");
+	}
 
-    public static void waitElement(By by, int i) {
-        WebDriverWait wait = new WebDriverWait(driver, i);
-        wait.pollingEvery(Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.elementToBeClickable(by));
-    }
+	public static void waitElement(By by, int i) {
+		WebDriverWait wait = new WebDriverWait(driver, i);
+		wait.pollingEvery(Duration.ofSeconds(2));
+		wait.until(ExpectedConditions.elementToBeClickable(by));
+	}
 
-    public static String alertClick() {
-        try {
-            Alert alert = driver.switchTo().alert();
-            String text = alert.getText();
-            alert.accept();
-            return text;
-        } catch (Exception e) {
-            sysOut("No Alert to close");
-        }
-        return "No Alert to close";
-    }
+	public static String alertClick() {
+		try {
+			Alert alert = driver.switchTo().alert();
+			String text = alert.getText();
+			alert.accept();
+			return text;
+		} catch (Exception e) {
+			sysOut("No Alert to close");
+		}
+		return "No Alert to close";
+	}
 
-    List<?> findElements(By by) {
-        return driver.findElements(by);
-    }
+	List<?> findElements(By by) {
+		return driver.findElements(by);
+	}
 
-    String getAttribute(By by, String attribute) {
-        return driver.findElement(by).getAttribute(attribute);
-    }
+	String getAttribute(By by, String attribute) {
+		return driver.findElement(by).getAttribute(attribute);
+	}
 
 }
