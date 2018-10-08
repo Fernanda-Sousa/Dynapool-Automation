@@ -1,6 +1,8 @@
 package br.com.ibm.dynapool.pages.request;
 
-import static br.com.ibm.dynapool.engine.Selenium_Engine.*;
+import static br.com.ibm.dynapool.engine.Selenium_Engine.click;
+import static br.com.ibm.dynapool.engine.Selenium_Engine.selectDropDown;
+import static br.com.ibm.dynapool.engine.Selenium_Engine.setTextbox;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
