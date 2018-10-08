@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 import static br.com.ibm.dynapool.engine.Selenium_Engine.*;
 
 
-public class Login_page{
+public class Login_Page{
 
 	WebDriver driver;
 	By userName = By.name("txtUsername");

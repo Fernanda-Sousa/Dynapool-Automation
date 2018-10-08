@@ -1,5 +1,5 @@
 package br.com.ibm.dynapool.pages.request;
 
-public class MasterTaskRequest_page {
+public class MasterTaskRequest_Page {
 
 }

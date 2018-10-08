@@ -1,5 +1,5 @@
 package br.com.ibm.dynapool.pages.request;
 
-public class TaskRequest_page {
+public class OpportunityRequest_Page {
 
 }
