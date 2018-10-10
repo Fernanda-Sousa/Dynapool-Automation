@@ -74,6 +74,12 @@ public class Selenium_Engine {
 	public static void click(By by) {
 		driver.findElement(by).click();
 	}
+	
+	public static void doubleClick(By by) {
+		driver.findElement(by).click();
+		waitForPageLoad();
+		driver.findElement(by).click();
+	}
 
 	public static void createDriver() {
 
