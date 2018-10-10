@@ -1,7 +1,5 @@
 package br.com.ibm.dynapool.pages.dispatching;
 
-import static br.com.ibm.dynapool.engine.Selenium_Engine.click;
-
 import org.openqa.selenium.By;
 
 import br.com.ibm.dynapool.engine.Selenium_Engine;
@@ -25,75 +23,80 @@ public class MasterTaskList_Page {
 	By statusFlt = By.linkText("status");
 	By createdFlt = By.linkText("created");
 	By exportExcelBtn = By.linkText("export excel");
+	By firstItemLnk = By.xpath("/html/body/div[1]/div[3]/div/div[3]/div[2]/table/tbody/tr[2]");
 
 	public void clickMagnifierFilter() {
-		click(magnifierFlt);
+		Selenium_Engine.click(magnifierFlt);
 	}
 
 	public void clickPreviousButton() {
-		click(previousBtn);
+		Selenium_Engine.click(previousBtn);
 	}
 
 	public void clickCloseButton() {
-		click(closeBtn);
+		Selenium_Engine.click(closeBtn);
 	}
 
 	public void clickNextButton() {
-		click(nextBtn);
+		Selenium_Engine.click(nextBtn);
 	}
 
 	public void clickIdFilter() {
-		click(idFlt);
+		Selenium_Engine.click(idFlt);
 	}
 
 	public void clickContryFilter() {
-		click(contryFlt);
+		Selenium_Engine.click(contryFlt);
 	}
 
 	public void clickAccountFilter() {
-		click(accountFlt);
+		Selenium_Engine.click(accountFlt);
 	}
 
 	public void clickTypeFilter() {
-		click(typeFlt);
+		Selenium_Engine.click(typeFlt);
 	}
 
 	public void clickRequesterFilter() {
-		click(requesterFlt);
+		Selenium_Engine.click(requesterFlt);
 	}
 
 	public void clickAutomataFilter() {
-		click(automataFlt);
+		Selenium_Engine.click(automataFlt);
 	}
 
 	public void clickSummaryFilter() {
-		click(summaryFlt);
+		Selenium_Engine.click(summaryFlt);
 	}
 
 	public void clickComplexityFilter() {
-		click(complexityFlt);
+		Selenium_Engine.click(complexityFlt);
 	}
 
 	public void clickPriorityFilter() {
-		click(priorityFlt);
+		Selenium_Engine.click(priorityFlt);
 	}
 
 	public void clickStageFilter() {
-		click(stageFlt);
+		Selenium_Engine.click(stageFlt);
 	}
 
 	public void clickStatusFilter() {
-		click(statusFlt);
+		Selenium_Engine.click(statusFlt);
 	}
 
 	public void clickCreatedFilter() {
-		click(createdFlt);
+		Selenium_Engine.click(createdFlt);
 	}
 
 	public void clickExportExcelButton() {
-		click(exportExcelBtn);
+		Selenium_Engine.click(exportExcelBtn);
 	}
-	
+
+	public void clickFirstItemLink() {
+		Selenium_Engine.click(firstItemLnk);
+	}
+
 	public void doubleClickIdFilter() {
 		Selenium_Engine.doubleClick(idFlt);
 	}
