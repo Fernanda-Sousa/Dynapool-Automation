@@ -1,14 +1,12 @@
 package br.com.ibm.dynapool.pages.request;
 
-import static br.com.ibm.dynapool.engine.Selenium_Engine.click;
-import static br.com.ibm.dynapool.engine.Selenium_Engine.selectDropDown;
-import static br.com.ibm.dynapool.engine.Selenium_Engine.setTextbox;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import br.com.ibm.dynapool.engine.Selenium_Engine;
+
 public class TaskRequest_Page {
-	
+
 	WebDriver driver;
 	By targetCountryDpx = By.name("selDefcountry");
 	By targetAccountDpx = By.name("selIdaccount");
@@ -24,50 +22,50 @@ public class TaskRequest_Page {
 	By cancelBtn = By.name("btnCancel");
 
 	public void setCountry(String strCountry) {
-		selectDropDown(targetCountryDpx, strCountry);
+		Selenium_Engine.selectDropDown(targetCountryDpx, strCountry);
 	}
 
 	public void setAccount(String strAccount) {
-		selectDropDown(targetAccountDpx, strAccount);
+		Selenium_Engine.selectDropDown(targetAccountDpx, strAccount);
 	}
 
 	public void setEnvironment(String strEnvironment) {
-		selectDropDown(environmentDpx, strEnvironment);
+		Selenium_Engine.selectDropDown(environmentDpx, strEnvironment);
 	}
 
 	public void setClass(String strClass) {
-		selectDropDown(classDpx, strClass);
+		Selenium_Engine.selectDropDown(classDpx, strClass);
 	}
-	
+
 	public void setActivityDpx(String strActivityDpx) {
-		selectDropDown(activityDpx, strActivityDpx);
+		Selenium_Engine.selectDropDown(activityDpx, strActivityDpx);
 	}
 
 	public void setPriority(String strPriority) {
-		selectDropDown(priorityDpx, strPriority);
+		Selenium_Engine.selectDropDown(priorityDpx, strPriority);
 	}
 
 	public void setComplexity(String strComplexity) {
-		selectDropDown(complexityDpx, strComplexity);
+		Selenium_Engine.selectDropDown(complexityDpx, strComplexity);
 	}
 
 	public void setSummary(String strSummary) {
-		setTextbox(summaryTxt, strSummary);
+		Selenium_Engine.setTextbox(summaryTxt, strSummary);
 	}
 
 	public void setDescription(String strDescription) {
-		setTextbox(descriptionTxa, strDescription);
+		Selenium_Engine.setTextbox(descriptionTxa, strDescription);
 	}
 
 	public void clickSaveButton() {
-		click(saveBtn);
+		Selenium_Engine.click(saveBtn);
 	}
 
 	public void clickClearButton() {
-		click(clearBtn);
+		Selenium_Engine.click(clearBtn);
 	}
 
 	public void clickCancelButton() {
-		click(cancelBtn);
+		Selenium_Engine.click(cancelBtn);
 	}
 }
