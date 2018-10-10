@@ -2,10 +2,10 @@ package br.com.ibm.dynapool.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import static br.com.ibm.dynapool.engine.Selenium_Engine.*;
 
+import br.com.ibm.dynapool.engine.Selenium_Engine;
 
-public class Login_Page{
+public class Login_Page {
 
 	WebDriver driver;
 	By userName = By.name("txtUsername");
@@ -13,22 +13,20 @@ public class Login_Page{
 	By GDPRcheckbox = By.name("chkAgreement");
 	By loginBtn = By.name("btnSubmit");
 
-
-
 	public void setUserName(String strUserName) {
-		setTextbox(userName, strUserName);
+		Selenium_Engine.setTextbox(userName, strUserName);
 	}
 
 	public void setUserPassword(String strUserPassword) {
-		setTextbox(userPassword, strUserPassword);
+		Selenium_Engine.setTextbox(userPassword, strUserPassword);
 	}
 
 	public void setGDPRcheckbox(boolean enabled) {
-		selectCheckBox(GDPRcheckbox);
+		Selenium_Engine.selectCheckBox(GDPRcheckbox);
 	}
-	
+
 	public void clickLoginButton() {
-		click(loginBtn);
+		Selenium_Engine.click(loginBtn);
 	}
 
 }
