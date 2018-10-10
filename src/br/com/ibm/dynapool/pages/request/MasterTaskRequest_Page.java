@@ -1,11 +1,9 @@
 package br.com.ibm.dynapool.pages.request;
 
-import static br.com.ibm.dynapool.engine.Selenium_Engine.click;
-import static br.com.ibm.dynapool.engine.Selenium_Engine.selectDropDown;
-import static br.com.ibm.dynapool.engine.Selenium_Engine.setTextbox;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+
+import br.com.ibm.dynapool.engine.Selenium_Engine;
 
 public class MasterTaskRequest_Page {
 
@@ -31,62 +29,62 @@ public class MasterTaskRequest_Page {
 	By cancelBtn = By.name("btnCancel");
 
 	public void setCountry(String strCountry) {
-		selectDropDown(targetCountryDpx, strCountry);
+		Selenium_Engine.selectDropDown(targetCountryDpx, strCountry);
 	}
 
 	public void setAccount(String strAccount) {
-		selectDropDown(targetAccountDpx, strAccount);
+		Selenium_Engine.selectDropDown(targetAccountDpx, strAccount);
 	}
 
 	public void setEnvironment(String strEnvironment) {
-		selectDropDown(environmentDpx, strEnvironment);
+		Selenium_Engine.selectDropDown(environmentDpx, strEnvironment);
 	}
 
 	public void setClass(String strClass) {
-		selectDropDown(classDpx, strClass);
+		Selenium_Engine.selectDropDown(classDpx, strClass);
 	}
 
 	public void setPriority(String strPriority) {
-		selectDropDown(priorityDpx, strPriority);
+		Selenium_Engine.selectDropDown(priorityDpx, strPriority);
 	}
 
 	public void setComplexity(String strComplexity) {
-		selectDropDown(complexityDpx, strComplexity);
+		Selenium_Engine.selectDropDown(complexityDpx, strComplexity);
 	}
 
 	public void setSummary(String strSummary) {
-		setTextbox(summaryTxt, strSummary);
+		Selenium_Engine.setTextbox(summaryTxt, strSummary);
 	}
 
 	public void setDescription(String strDescription) {
-		setTextbox(descriptionTxa, strDescription);
+		Selenium_Engine.setTextbox(descriptionTxa, strDescription);
 	}
 
 	public void setTaskSource(String strTaskSource) {
-		selectDropDown(taskSourceDpx, strTaskSource);
+		Selenium_Engine.selectDropDown(taskSourceDpx, strTaskSource);
 	}
 
 	public void setAutomataCategory(String strAutomataCategory) {
-		selectDropDown(automataCategoryDpx, strAutomataCategory);
+		Selenium_Engine.selectDropDown(automataCategoryDpx, strAutomataCategory);
 	}
 
 	public void setAlert_ServerCount(String strAlert_ServerCount) {
-		setTextbox(alert_ServerCountTxt, strAlert_ServerCount);
+		Selenium_Engine.setTextbox(alert_ServerCountTxt, strAlert_ServerCount);
 	}
 
 	public void setDefectCategory(String strDefectCategory) {
-		selectDropDown(defectCategoryDpx, strDefectCategory);
+		Selenium_Engine.selectDropDown(defectCategoryDpx, strDefectCategory);
 	}
 
 	public void clickSaveButton() {
-		click(saveBtn);
+		Selenium_Engine.click(saveBtn);
 	}
 
 	public void clickClearButton() {
-		click(clearBtn);
+		Selenium_Engine.click(clearBtn);
 	}
 
 	public void clickCancelButton() {
-		click(cancelBtn);
+		Selenium_Engine.click(cancelBtn);
 	}
 }
