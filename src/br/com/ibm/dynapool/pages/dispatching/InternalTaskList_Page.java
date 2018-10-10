@@ -4,6 +4,8 @@ import static br.com.ibm.dynapool.engine.Selenium_Engine.click;
 
 import org.openqa.selenium.By;
 
+import br.com.ibm.dynapool.engine.Selenium_Engine;
+
 public class InternalTaskList_Page {
 
 	By magnifierFlt = By.className("bigCardTitle");
@@ -92,5 +94,53 @@ public class InternalTaskList_Page {
 
 	public void clickExportExcelButton() {
 		click(exportExcelBtn);
+	}
+	
+	public void doubleClickIdFilter() {
+		Selenium_Engine.doubleClick(idFlt);
+	}
+
+	public void doubleClickSummaryFilter() {
+		Selenium_Engine.doubleClick(summaryFlt);
+	}
+
+	public void doubleClickSquadFilter() {
+		Selenium_Engine.doubleClick(squadFlt);
+	}
+
+	public void doubleClickOwnerFilter() {
+		Selenium_Engine.doubleClick(ownerFlt);
+	}
+
+	public void doubleClickContryFilter() {
+		Selenium_Engine.doubleClick(contryFlt);
+	}
+
+	public void doubleClickAccountFilter() {
+		Selenium_Engine.doubleClick(accountFlt);
+	}
+
+	public void doubleClickAreaFilter() {
+		Selenium_Engine.doubleClick(areaFlt);
+	}
+
+	public void doubleClickApprovedFilter() {
+		Selenium_Engine.doubleClick(approvedFlt);
+	}
+
+	public void doubleClickDueDateFilter() {
+		Selenium_Engine.doubleClick(dueDateFlt);
+	}
+
+	public void doubleClickPriorityFilter() {
+		Selenium_Engine.doubleClick(priorityFlt);
+	}
+
+	public void doubleClickLastStatusFilter() {
+		Selenium_Engine.doubleClick(lastStatusFlt);
+	}
+
+	public void doubleClickStatusFilter() {
+		Selenium_Engine.doubleClick(statusFlt);
 	}
 }
