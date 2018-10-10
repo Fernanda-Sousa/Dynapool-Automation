@@ -4,8 +4,10 @@ import static br.com.ibm.dynapool.engine.Selenium_Engine.click;
 
 import org.openqa.selenium.By;
 
+import br.com.ibm.dynapool.engine.Selenium_Engine;
+
 public class OpportunityList_Page {
-	
+
 	By magnifierFlt = By.className("bigCardTitle");
 	By previousBtn = By.name("btnPrevious page");
 	By closeBtn = By.name("btnClose");
@@ -42,7 +44,7 @@ public class OpportunityList_Page {
 	public void clickIdFilter() {
 		click(idFlt);
 	}
-	
+
 	public void clickPriorityFilter() {
 		click(priorityFlt);
 	}
@@ -85,5 +87,49 @@ public class OpportunityList_Page {
 
 	public void clickExportExcelButton() {
 		click(exportExcelBtn);
+	}
+
+	public void doubleClickIdFilter() {
+		Selenium_Engine.doubleClick(idFlt);
+	}
+
+	public void doubleClickPriorityFilter() {
+		Selenium_Engine.doubleClick(priorityFlt);
+	}
+
+	public void doubleClickContryFilter() {
+		Selenium_Engine.doubleClick(contryFlt);
+	}
+
+	public void doubleClickAccountFilter() {
+		Selenium_Engine.doubleClick(accountFlt);
+	}
+
+	public void doubleClickAreaFilter() {
+		Selenium_Engine.doubleClick(areaFlt);
+	}
+
+	public void doubleClickRequesterFilter() {
+		Selenium_Engine.doubleClick(requesterFlt);
+	}
+
+	public void doubleClickSummaryFilter() {
+		Selenium_Engine.doubleClick(summaryFlt);
+	}
+
+	public void doubleClickComplexityFilter() {
+		Selenium_Engine.doubleClick(complexityFlt);
+	}
+
+	public void doubleClickStageFilter() {
+		Selenium_Engine.doubleClick(stageFlt);
+	}
+
+	public void doubleClickStatusFilter() {
+		Selenium_Engine.doubleClick(statusFlt);
+	}
+
+	public void doubleClickApprovedFilter() {
+		Selenium_Engine.doubleClick(approvedFlt);
 	}
 }
