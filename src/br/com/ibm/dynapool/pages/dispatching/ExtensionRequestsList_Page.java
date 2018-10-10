@@ -2,8 +2,6 @@ package br.com.ibm.dynapool.pages.dispatching;
 
 import static br.com.ibm.dynapool.engine.Selenium_Engine.click;
 
-import javax.print.attribute.standard.MediaSize.Engineering;
-
 import org.openqa.selenium.By;
 
 import br.com.ibm.dynapool.engine.Selenium_Engine;
