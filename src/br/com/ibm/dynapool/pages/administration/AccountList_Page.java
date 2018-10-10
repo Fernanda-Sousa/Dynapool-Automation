@@ -7,6 +7,7 @@ import br.com.ibm.dynapool.engine.Selenium_Engine;
 public class AccountList_Page {
 	By magnifierFlt = By.className("bigCardTitle");
 	By previousBtn = By.name("btnPrevious page");
+	By newBtn = By.name("btnNew");
 	By closeBtn = By.name("btnClose");
 	By nextBtn = By.name("btnNext page");
 	By idFlt = By.linkText("id");
@@ -21,6 +22,10 @@ public class AccountList_Page {
 
 	public void clickPreviousButton() {
 		Selenium_Engine.click(previousBtn);
+	}
+
+	public void clickNewButton() {
+		Selenium_Engine.click(newBtn);
 	}
 
 	public void clickCloseButton() {
