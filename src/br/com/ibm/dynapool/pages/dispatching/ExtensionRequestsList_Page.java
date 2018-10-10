@@ -1,13 +1,11 @@
 package br.com.ibm.dynapool.pages.dispatching;
 
-import static br.com.ibm.dynapool.engine.Selenium_Engine.click;
-
 import org.openqa.selenium.By;
 
 import br.com.ibm.dynapool.engine.Selenium_Engine;
 
 public class ExtensionRequestsList_Page {
-	
+
 	By magnifierFlt = By.className("bigCardTitle");
 	By previousBtn = By.name("btnPrevious page");
 	By closeBtn = By.name("btnClose");
@@ -17,41 +15,46 @@ public class ExtensionRequestsList_Page {
 	By reasonFlt = By.linkText("reason");
 	By createdFlt = By.linkText("created");
 	By statusFlt = By.linkText("status");
-	
+	By firstItemLnk = By.xpath("/html/body/div[1]/div[3]/div/div[3]/div[2]/table/tbody/tr[2]");
+
 	public void clickMagnifierFilter() {
-		click(magnifierFlt);
+		Selenium_Engine.click(magnifierFlt);
 	}
 
 	public void clickPreviousButton() {
-		click(previousBtn);
+		Selenium_Engine.click(previousBtn);
 	}
 
 	public void clickCloseButton() {
-		click(closeBtn);
+		Selenium_Engine.click(closeBtn);
 	}
 
 	public void clickNextButton() {
-		click(nextBtn);
+		Selenium_Engine.click(nextBtn);
 	}
 
 	public void clickIdFilter() {
-		click(idFlt);
+		Selenium_Engine.click(idFlt);
 	}
 
 	public void clickTaskFilter() {
-		click(taskFlt);
+		Selenium_Engine.click(taskFlt);
 	}
 
 	public void clickReasonFilter() {
-		click(reasonFlt);
+		Selenium_Engine.click(reasonFlt);
 	}
 
 	public void clickCreatedFilter() {
-		click(createdFlt);
+		Selenium_Engine.click(createdFlt);
 	}
 
 	public void clickStatusFilter() {
-		click(statusFlt);
+		Selenium_Engine.click(statusFlt);
+	}
+
+	public void clickFirstItemLink() {
+		Selenium_Engine.click(firstItemLnk);
 	}
 
 	public void doubleClickIdFilter() {
@@ -73,4 +76,5 @@ public class ExtensionRequestsList_Page {
 	public void doubleClickStatusFilter() {
 		Selenium_Engine.doubleClick(statusFlt);
 	}
+
 }
