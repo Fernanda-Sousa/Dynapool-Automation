@@ -16,10 +16,10 @@ public class MasterTaskRequest_Page {
 	By complexityDpx = By.name("selDefcomplexity");
 	By summaryTxt = By.name("txtSummary");
 	By descriptionTxa = By.name("txaDescription");
-//	By automatasAvailableCrl = By.name("crlAutomataAvailable");
-//	By addAutomataCrl = By.cssSelector("input.crossListButton:nth-child(1)");
-//	By removeAutomataCrl = By.cssSelector("input.crossListButton:nth-child(3)");
-//	By automatasSelectedCrl = By.name("crlAutomataSelected");
+	By automatasAvailableCrl = By.name("crlAutomataAvailable");
+	By addAutomataCrl = By.cssSelector("input.crossListButton:nth-child(1)");
+	By removeAutomataCrl = By.cssSelector("input.crossListButton:nth-child(3)");
+	By automatasSelectedCrl = By.name("crlAutomataSelected");
 	By taskSourceDpx = By.name("selDeftasksource");
 	By automataCategoryDpx = By.name("selDefautomatacategory");
 	By alert_ServerCountTxt = By.name("txtAutomatacount");
@@ -60,6 +60,18 @@ public class MasterTaskRequest_Page {
 		Selenium_Engine.setTextbox(descriptionTxa, strDescription);
 	}
 
+	public void addAutomata(String strAutomata) {
+		Selenium_Engine.click(automatasAvailableCrl);
+		Selenium_Engine.click(By.partialLinkText(strAutomata));
+		Selenium_Engine.click(addAutomataCrl);
+	}
+	
+	public void removeAutomata(String strAutomata) {
+		Selenium_Engine.click(automatasSelectedCrl);
+		Selenium_Engine.click(By.partialLinkText(strAutomata));
+		Selenium_Engine.click(removeAutomataCrl);
+	}
+	
 	public void setTaskSource(String strTaskSource) {
 		Selenium_Engine.selectDropDown(taskSourceDpx, strTaskSource);
 	}
