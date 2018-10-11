@@ -13,6 +13,7 @@ Description:
 package br.com.ibm.dynapool.engine;
 
 import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 import java.util.Iterator;
 import java.util.List;
@@ -33,6 +34,7 @@ public class Selenium_Engine {
 
 	public static final boolean CHROME = true;
 	public static WebDriver driver;
+	static Properties_Engine prop = new Properties_Engine();
 
 	static String parentWindowHandler = null; // Store your parent window (pop up)
 	static String subWindowHandler = null;
@@ -92,12 +94,12 @@ public class Selenium_Engine {
 	}
 
 	/*Necessary driver on system/user path*/
-	public static void createDriver() {
+	public static void createDriver() throws IOException {
 		if (CHROME) {
-			System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
+			System.setProperty("webdriver.chrome.driver", prop.readPropertiesFile("driverpath") + "chromedriver.exe");
 			driver = new ChromeDriver();
 		} else {
-			System.setProperty("webdriver.gecko.driver", "geckodriver.exe");
+			System.setProperty("webdriver.gecko.driver", prop.readPropertiesFile("driverpath") + "geckodriver.exe");
 			driver = new FirefoxDriver();
 		}
 
