@@ -36,7 +36,7 @@ public class Selenium_Engine {
 	public static final boolean CHROME = true;
 	public static WebDriver driver;
 
-	static String parentWindowHandler = null; // Store your parent window
+	static String parentWindowHandler = null; // Store your parent window (pop up)
 	static String subWindowHandler = null;
 
 	static final boolean DEBUG = true;
@@ -55,7 +55,7 @@ public class Selenium_Engine {
 		try {
 			TimeUnit.MINUTES.sleep(minutes);
 		} catch (InterruptedException ex) {
-			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, ex);
+			System.out.println("Error on sleeptime minutes: " + ex);
 		}
 	}
 
@@ -63,7 +63,7 @@ public class Selenium_Engine {
 		try {
 			TimeUnit.SECONDS.sleep(seconds);
 		} catch (InterruptedException ex) {
-			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, ex);
+			System.out.println("Error on sleeptime seconds: " + ex);
 		}
 	}
 
@@ -93,8 +93,8 @@ public class Selenium_Engine {
 		driver.findElement(by).click();
 	}
 
+	/*Necessary driver on system/user path*/
 	public static void createDriver() {
-
 		if (CHROME) {
 			System.setProperty("webdriver.chrome.driver", "chromedriver.exe");
 			driver = new ChromeDriver();
@@ -126,7 +126,7 @@ public class Selenium_Engine {
 				driver.switchTo().window(parentWindowHandler);
 			}
 		} catch (Exception e) {
-			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("Error on get popup, is it open?");
 		}
 
 	}
@@ -137,7 +137,17 @@ public class Selenium_Engine {
 				driver.findElement(by).click();
 			}
 		} catch (Exception e) {
-			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("Checkbox " + by.toString() + "is already selected");
+		}
+	}
+	
+	public static void unselectCheckBox(By by) {
+		try {
+			if (driver.findElement(by).isSelected()) {
+				driver.findElement(by).click();
+			}
+		} catch (Exception e) {
+			System.out.println("Checkbox " + by.toString() + "is already unselected");
 		}
 	}
 
@@ -157,7 +167,7 @@ public class Selenium_Engine {
 			Select selItem = new Select(driver.findElement(element));
 			selItem.selectByVisibleText(item);
 		} catch (Exception e) {
-			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("item " + item + " not found on dropdown");
 		}
 	}
 
@@ -168,7 +178,7 @@ public class Selenium_Engine {
 //        waitElement(element);
 			driver.findElement(element).sendKeys(text);
 		} catch (Exception e) {
-			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("Not able to edit Textbox, is it enabled?");
 		}
 	}
 
@@ -183,17 +193,15 @@ public class Selenium_Engine {
 		}
 	}
 
+	/*This method will return first file on folder*/
 	public static String verifyFolder(String dir, boolean logged) {
 		try {
 			File file = new File(dir);
 			File afile[] = file.listFiles();
 			return afile[0].getName();
 		} catch (Exception e) {
-			sysOut("No file on folder\n\n***End of process, stopping robot***\n\n");
+			sysOut("***No file on folder***\n\n");
 			sleepSeconds(1);
-			if (logged) {
-				shutdownDriver();
-			}
 		}
 		return "";
 	}
@@ -204,7 +212,7 @@ public class Selenium_Engine {
 				return true;
 			}
 		} catch (Exception e) {
-			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("No text found for string: " + text);
 		}
 		return false;
 	}
@@ -219,7 +227,7 @@ public class Selenium_Engine {
 				return true;
 			}
 		} catch (Exception e) {
-			Logger.getLogger(Selenium_Engine.class.getName()).log(Level.SEVERE, null, e);
+			System.out.println("No text found for string: " + text);
 		}
 		return false;
 	}
