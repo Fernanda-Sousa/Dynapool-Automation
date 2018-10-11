@@ -39,7 +39,6 @@ public class Selenium_Engine {
 	String subWindowHandler = null;
 
 	final boolean DEBUG = true;
-	private String text2;
 
 	public WebDriver driver() {
 		return driver;
