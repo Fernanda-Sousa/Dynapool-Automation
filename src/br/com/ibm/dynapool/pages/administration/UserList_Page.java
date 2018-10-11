@@ -89,7 +89,7 @@ public class UserList_Page {
 		Selenium_Engine.doubleClick(statusFlt);
 	}
 
-	public void doubleRoleEmailFilter() {
+	public void doubleClickRoleFilter() {
 		Selenium_Engine.doubleClick(emailFlt);
 	}
 }
