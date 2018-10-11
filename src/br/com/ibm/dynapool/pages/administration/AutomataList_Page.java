@@ -11,6 +11,8 @@ Description:
 
 package br.com.ibm.dynapool.pages.administration;
 
-public class AutomataList_Page {
+import br.com.ibm.dynapool.pages.Home_Page;
+
+public class AutomataList_Page extends Home_Page{
 
 }

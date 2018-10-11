@@ -15,8 +15,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 import br.com.ibm.dynapool.engine.Selenium_Engine;
+import br.com.ibm.dynapool.pages.Home_Page;
 
-public class OpportunityRequest_Page {
+public class OpportunityRequest_Page extends Home_Page{
 	WebDriver driver;
 	By targetCountryDpx = By.name("selDefcountry");
 	By targetAccountDpx = By.name("selIdaccount");

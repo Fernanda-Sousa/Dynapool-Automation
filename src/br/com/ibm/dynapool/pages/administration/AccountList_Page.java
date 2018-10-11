@@ -14,8 +14,9 @@ package br.com.ibm.dynapool.pages.administration;
 import org.openqa.selenium.By;
 
 import br.com.ibm.dynapool.engine.Selenium_Engine;
+import br.com.ibm.dynapool.pages.Home_Page;
 
-public class AccountList_Page {
+public class AccountList_Page extends Home_Page{
 	By magnifierFlt = By.className("bigCardTitle");
 	By previousBtn = By.name("btnPrevious page");
 	By newBtn = By.name("btnNew");
