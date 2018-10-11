@@ -13,9 +13,10 @@ package br.com.ibm.dynapool.pages.dispatching;
 
 import org.openqa.selenium.By;
 
-import br.com.ibm.dynapool.engine.Selenium_Engine;
+import br.com.ibm.dynapool.pages.Home_Page;
 
-public class InternalTaskList_Page {
+
+public class InternalTaskList_Page extends Home_Page{
 
 	By magnifierFlt = By.className("bigCardTitle");
 	By previousBtn = By.name("btnPrevious page");
@@ -39,122 +40,122 @@ public class InternalTaskList_Page {
 	By firstItemLnk = By.xpath("/html/body/div[1]/div[3]/div/div[3]/div[2]/table/tbody/tr[2]");
 
 	public void clickMagnifierFilter() {
-		Selenium_Engine.click(magnifierFlt);
+		selEngine.click(magnifierFlt);
 	}
 
 	public void clickPreviousButton() {
-		Selenium_Engine.click(previousBtn);
+		selEngine.click(previousBtn);
 	}
 
 	public void clickCloseButton() {
-		Selenium_Engine.click(closeBtn);
+		selEngine.click(closeBtn);
 	}
 
 	public void clickNextButton() {
-		Selenium_Engine.click(nextBtn);
+		selEngine.click(nextBtn);
 	}
 
 	public void clickIdFilter() {
-		Selenium_Engine.click(idFlt);
+		selEngine.click(idFlt);
 	}
 
 	public void clickSummaryFilter() {
-		Selenium_Engine.click(summaryFlt);
+		selEngine.click(summaryFlt);
 	}
 
 	public void clickSquadFilter() {
-		Selenium_Engine.click(squadFlt);
+		selEngine.click(squadFlt);
 	}
 
 	public void clickOwnerFilter() {
-		Selenium_Engine.click(ownerFlt);
+		selEngine.click(ownerFlt);
 	}
 
 	public void clickContryFilter() {
-		Selenium_Engine.click(contryFlt);
+		selEngine.click(contryFlt);
 	}
 
 	public void clickAccountFilter() {
-		Selenium_Engine.click(accountFlt);
+		selEngine.click(accountFlt);
 	}
 
 	public void clickAreaFilter() {
-		Selenium_Engine.click(areaFlt);
+		selEngine.click(areaFlt);
 	}
 
 	public void clickApprovedFilter() {
-		Selenium_Engine.click(approvedFlt);
+		selEngine.click(approvedFlt);
 	}
 
 	public void clickDueDateFilter() {
-		Selenium_Engine.click(dueDateFlt);
+		selEngine.click(dueDateFlt);
 	}
 
 	public void clickPriorityFilter() {
-		Selenium_Engine.click(priorityFlt);
+		selEngine.click(priorityFlt);
 	}
 
 	public void clickLastStatusFilter() {
-		Selenium_Engine.click(lastStatusFlt);
+		selEngine.click(lastStatusFlt);
 	}
 
 	public void clickStatusFilter() {
-		Selenium_Engine.click(statusFlt);
+		selEngine.click(statusFlt);
 	}
 
 	public void clickExportExcelButton() {
-		Selenium_Engine.click(exportExcelBtn);
+		selEngine.click(exportExcelBtn);
 	}
 
 	public void clickFirstItemLink() {
-		Selenium_Engine.click(firstItemLnk);
+		selEngine.click(firstItemLnk);
 	}
 
 	public void doubleClickIdFilter() {
-		Selenium_Engine.doubleClick(idFlt);
+		selEngine.doubleClick(idFlt);
 	}
 
 	public void doubleClickSummaryFilter() {
-		Selenium_Engine.doubleClick(summaryFlt);
+		selEngine.doubleClick(summaryFlt);
 	}
 
 	public void doubleClickSquadFilter() {
-		Selenium_Engine.doubleClick(squadFlt);
+		selEngine.doubleClick(squadFlt);
 	}
 
 	public void doubleClickOwnerFilter() {
-		Selenium_Engine.doubleClick(ownerFlt);
+		selEngine.doubleClick(ownerFlt);
 	}
 
 	public void doubleClickContryFilter() {
-		Selenium_Engine.doubleClick(contryFlt);
+		selEngine.doubleClick(contryFlt);
 	}
 
 	public void doubleClickAccountFilter() {
-		Selenium_Engine.doubleClick(accountFlt);
+		selEngine.doubleClick(accountFlt);
 	}
 
 	public void doubleClickAreaFilter() {
-		Selenium_Engine.doubleClick(areaFlt);
+		selEngine.doubleClick(areaFlt);
 	}
 
 	public void doubleClickApprovedFilter() {
-		Selenium_Engine.doubleClick(approvedFlt);
+		selEngine.doubleClick(approvedFlt);
 	}
 
 	public void doubleClickDueDateFilter() {
-		Selenium_Engine.doubleClick(dueDateFlt);
+		selEngine.doubleClick(dueDateFlt);
 	}
 
 	public void doubleClickPriorityFilter() {
-		Selenium_Engine.doubleClick(priorityFlt);
+		selEngine.doubleClick(priorityFlt);
 	}
 
 	public void doubleClickLastStatusFilter() {
-		Selenium_Engine.doubleClick(lastStatusFlt);
+		selEngine.doubleClick(lastStatusFlt);
 	}
 
 	public void doubleClickStatusFilter() {
-		Selenium_Engine.doubleClick(statusFlt);
+		selEngine.doubleClick(statusFlt);
 	}
 }

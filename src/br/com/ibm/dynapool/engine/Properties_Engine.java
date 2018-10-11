@@ -26,17 +26,18 @@ public class Properties_Engine {
 
 		try {
 
-			output = new FileOutputStream("config.properties");
+			output = new FileOutputStream("resources\\config.properties");
 
 			// set the properties value
 			prop.setProperty("environment", "test");
 			prop.setProperty("testwebsite", "xxxxx");
 			prop.setProperty("prodwebsite", "xxxxx");
+			prop.setProperty("driverpath", "C:\\DeveloperTools\\WebDriver\\");
 
 			/* Add more fields if necessary */
 
 			prop.store(output, null);
-			System.out.println("Done!");
+			System.out.println("Done!\n\n");
 
 		} catch (IOException io) {
 			io.printStackTrace();
@@ -52,29 +53,27 @@ public class Properties_Engine {
 		}
 	}
 
-	public String readPropertiesFile(String property) {
+	public String readPropertiesFile(String property) throws IOException{
 		Properties prop = new Properties();
 		InputStream input = null;
 
 		try {
 
 			String filename = "config.properties";
-			input = Properties_Engine.class.getClassLoader().getResourceAsStream(filename);
+			input = getClass().getClassLoader().getResourceAsStream(filename);
 			if (input == null) {
 				System.out.println("Sorry, unable to find " + filename);
 				System.out.println("Creating a new propertiesfile: " + filename);
 				createNewProperties();
-				System.out.println("You need to insert real values there before start using.");
-				
+				System.out.println("You need to insert real values there before start using.\n\n");
+				System.out.println("The test will break now, please, update your project and verify if config.properties exists");
 			}
 
 			// load a properties file from class path, inside static method
 			prop.load(input);
 
-			// get the property value and print it out
-			System.out.println(prop.getProperty("environment"));
-			
-			return prop.getProperty("environment");
+			// get the property value and print it out			
+			return prop.getProperty(property);
 			
 		} catch (IOException ex) {
 			ex.printStackTrace();

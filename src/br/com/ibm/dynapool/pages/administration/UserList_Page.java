@@ -13,9 +13,9 @@ package br.com.ibm.dynapool.pages.administration;
 
 import org.openqa.selenium.By;
 
-import br.com.ibm.dynapool.engine.Selenium_Engine;
+import br.com.ibm.dynapool.pages.Home_Page;
 
-public class UserList_Page {
+public class UserList_Page extends Home_Page{
 
 	By magnifierFlt = By.className("bigCardTitle");
 	By previousBtn = By.name("btnPrevious page");
@@ -30,66 +30,66 @@ public class UserList_Page {
 	By firstItemLnk = By.xpath("/html/body/div[1]/div[3]/div/div[3]/div[2]/table/tbody/tr[2]");
 
 	public void clickMagnifierFilter() {
-		Selenium_Engine.click(magnifierFlt);
+		selEngine.click(magnifierFlt);
 	}
 
 	public void clickPreviousButton() {
-		Selenium_Engine.click(previousBtn);
+		selEngine.click(previousBtn);
 	}
 
 	public void clickNewButton() {
-		Selenium_Engine.click(newBtn);
+		selEngine.click(newBtn);
 	}
 
 	public void clickCloseButton() {
-		Selenium_Engine.click(closeBtn);
+		selEngine.click(closeBtn);
 	}
 
 	public void clickNextButton() {
-		Selenium_Engine.click(nextBtn);
+		selEngine.click(nextBtn);
 	}
 
 	public void clickIdFilter() {
-		Selenium_Engine.click(idFlt);
+		selEngine.click(idFlt);
 	}
 
 	public void clickNameFilter() {
-		Selenium_Engine.click(nameFlt);
+		selEngine.click(nameFlt);
 	}
 
 	public void clickEmailFilter() {
-		Selenium_Engine.click(emailFlt);
+		selEngine.click(emailFlt);
 	}
 
 	public void clickStatusFilter() {
-		Selenium_Engine.click(statusFlt);
+		selEngine.click(statusFlt);
 	}
 
 	public void clickRoleFilter() {
-		Selenium_Engine.click(roleFlt);
+		selEngine.click(roleFlt);
 	}
 
 	public void clickFirstItemLink() {
-		Selenium_Engine.click(firstItemLnk);
+		selEngine.click(firstItemLnk);
 	}
 
 	public void doubleClickIdFilter() {
-		Selenium_Engine.doubleClick(idFlt);
+		selEngine.doubleClick(idFlt);
 	}
 
 	public void doubleClickNameFilter() {
-		Selenium_Engine.doubleClick(nameFlt);
+		selEngine.doubleClick(nameFlt);
 	}
 
 	public void doubleClickEmailFilter() {
-		Selenium_Engine.doubleClick(emailFlt);
+		selEngine.doubleClick(emailFlt);
 	}
 
 	public void doubleClickStatusFilter() {
-		Selenium_Engine.doubleClick(statusFlt);
+		selEngine.doubleClick(statusFlt);
 	}
 
 	public void doubleClickRoleFilter() {
-		Selenium_Engine.doubleClick(emailFlt);
+		selEngine.doubleClick(emailFlt);
 	}
 }
