@@ -39,6 +39,7 @@ public class Selenium_Engine {
 	String subWindowHandler = null;
 
 	final boolean DEBUG = true;
+	private String text2;
 
 	public WebDriver driver() {
 		return driver;
@@ -263,4 +264,7 @@ public class Selenium_Engine {
 		return driver.findElement(by).getAttribute(attribute);
 	}
 
+	public boolean compareText (By by, String text) {		
+		return driver.findElement(by).getText().equals(text);
+	}
 }
