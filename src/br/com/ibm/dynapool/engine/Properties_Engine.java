@@ -64,7 +64,7 @@ public class Properties_Engine {
 				System.out.println("Sorry, unable to find " + filename);
 				System.out.println("Creating a new propertiesfile: " + filename);
 				createNewProperties();
-				System.out.println("You need to insert real values there before use.");
+				System.out.println("You need to insert real values there before start using.");
 				
 			}
 
