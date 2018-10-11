@@ -73,7 +73,70 @@ public class MasterTaskView_Page extends Home_Page{
 	}
 	
 	public void compareId(String strId) {
-		selEngine.compareText(targetCountryDpx, strId);
+		selEngine.compareText(idTxt, strId);
 	}
 	
+	public void compareRequester(String strRequester) {
+		selEngine.compareText(requesterDpx, strRequester);
+	}
+	
+	public void compareSquad(String strSquad) {
+		selEngine.compareText(squadDpx, strSquad);
+	}
+	
+	public void compareOwner(String strOwner) {
+		selEngine.compareText(ownerDpx, strOwner);
+	}
+	
+	public void compareCountry(String strCountry) {
+		selEngine.compareText(targetCountryDpx, strCountry);
+	}
+
+	public void compareAccount(String strAccount) {
+		selEngine.compareText(targetAccountDpx, strAccount);
+	}
+
+	public void compareEnvironment(String strEnvironment) {
+		selEngine.compareText(environmentDpx, strEnvironment);
+	}
+
+	public void compareClass(String strClass) {
+		selEngine.compareText(classDpx, strClass);
+	}
+
+	public void comparePriority(String strPriority) {
+		selEngine.compareText(priorityDpx, strPriority);
+	}
+
+	public void compareComplexity(String strComplexity) {
+		selEngine.compareText(complexityDpx, strComplexity);
+	}
+	
+	public void compareAutomata(String strAutomata) {
+		selEngine.compareText(automataDpx, strAutomata);
+	}
+	
+	public void compareSummary(String strSummary) {
+		selEngine.compareText(summaryTxt, strSummary);
+	}
+
+	public void compareDescription(String strDescription) {
+		selEngine.compareText(descriptionTxa, strDescription);
+	}
+	
+	public void compareTaskSource(String strTaskSource) {
+		selEngine.compareText(taskSourceDpx, strTaskSource);
+	}
+
+	public void compareAutomataCategory(String strAutomataCategory) {
+		selEngine.compareText(automataCategoryDpx, strAutomataCategory);
+	}
+
+	public void compareAlert_ServerCount(String strAlert_ServerCount) {
+		selEngine.compareText(alert_ServerCountTxt, strAlert_ServerCount);
+	}
+
+	public void compareDefectCategory(String strDefectCategory) {
+		selEngine.compareText(defectCategoryDpx, strDefectCategory);
+	}
 }
