@@ -72,9 +72,7 @@ public class Properties_Engine {
 			// load a properties file from class path, inside static method
 			prop.load(input);
 
-			// get the property value and print it out
-			System.out.println(prop.getProperty("environment"));
-			
+			// get the property value and print it out			
 			return prop.getProperty(property);
 			
 		} catch (IOException ex) {
