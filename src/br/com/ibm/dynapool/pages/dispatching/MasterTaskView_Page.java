@@ -14,7 +14,9 @@ package br.com.ibm.dynapool.pages.dispatching;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class MasterTaskView_Page {
+import br.com.ibm.dynapool.pages.Home_Page;
+
+public class MasterTaskView_Page extends Home_Page{
 	
 	WebDriver driver;
 	
@@ -61,5 +63,17 @@ public class MasterTaskView_Page {
 	By thirdLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[4]");
 	By fourthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
 	By fifthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
+	
+	public void clickEditTab() {
+		selEngine.click(editLnk);
+	}
+	
+	public int getIntegerId(By by) {
+		return Integer.parseInt(driver.findElement(by).getText());
+	}
+	
+	public void compareId(String strId) {
+		selEngine.compareText(targetCountryDpx, strId);
+	}
 	
 }
