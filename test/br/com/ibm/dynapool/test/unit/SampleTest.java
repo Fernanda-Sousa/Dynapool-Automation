@@ -10,7 +10,7 @@ import com.relevantcodes.extentreports.LogStatus;
 import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.test.Test_Constructor;
 
-public class testTest extends Test_Constructor{
+public class SampleTest extends Test_Constructor{
 	
 	Selenium_Engine selengine = new Selenium_Engine();
 	
