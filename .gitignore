@@ -4,3 +4,12 @@
 .settings/org.eclipse.jdt.core.prefs
 .settings/org.eclipse.m2e.core.prefs
 .project
+test-output/collapseall.gif
+test-output/bullet_point.png
+test-output/Default suite/Default test.html
+test-output/Default suite/Default test.xml
+test-output/emailable-report.html
+test-output/failed.png
+test-output/index.html
+test-output/jquery-1.7.1.min.js
+test-output/navigator-bullet.png
