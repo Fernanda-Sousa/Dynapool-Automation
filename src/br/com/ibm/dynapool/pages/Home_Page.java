@@ -11,8 +11,11 @@ Description:
 
 package br.com.ibm.dynapool.pages;
 
+import br.com.ibm.dynapool.engine.Selenium_Engine;
+
 public class Home_Page {
 
+	protected Selenium_Engine selEngine = new Selenium_Engine();
 	
 	
 }

@@ -13,9 +13,11 @@ package br.com.ibm.dynapool.pages.administration;
 
 import org.openqa.selenium.By;
 
-import br.com.ibm.dynapool.engine.Selenium_Engine;
+import br.com.ibm.dynapool.pages.Home_Page;
 
-public class RoleList_Page {
+
+
+public class RoleList_Page extends Home_Page{
 
 	By magnifierFlt = By.className("bigCardTitle");
 	By previousBtn = By.name("btnPrevious page");
@@ -28,50 +30,50 @@ public class RoleList_Page {
 	By firstItemLnk = By.xpath("/html/body/div[1]/div[3]/div/div[3]/div[2]/table/tbody/tr[2]");
 
 	public void clickMagnifierFilter() {
-		Selenium_Engine.click(magnifierFlt);
+		selEngine.click(magnifierFlt);
 	}
 
 	public void clickPreviousButton() {
-		Selenium_Engine.click(previousBtn);
+		selEngine.click(previousBtn);
 	}
 
 	public void clickNewButton() {
-		Selenium_Engine.click(newBtn);
+		selEngine.click(newBtn);
 	}
 
 	public void clickCloseButton() {
-		Selenium_Engine.click(closeBtn);
+		selEngine.click(closeBtn);
 	}
 
 	public void clickNextButton() {
-		Selenium_Engine.click(nextBtn);
+		selEngine.click(nextBtn);
 	}
 
 	public void clickIdFilter() {
-		Selenium_Engine.click(idFlt);
+		selEngine.click(idFlt);
 	}
 
 	public void clickTitleFilter() {
-		Selenium_Engine.click(titleFlt);
+		selEngine.click(titleFlt);
 	}
 
 	public void clickDescriptionFilter() {
-		Selenium_Engine.click(descriptionFlt);
+		selEngine.click(descriptionFlt);
 	}
 
 	public void clickFirstItemLink() {
-		Selenium_Engine.click(firstItemLnk);
+		selEngine.click(firstItemLnk);
 	}
 
 	public void doubleClickIdFilter() {
-		Selenium_Engine.doubleClick(idFlt);
+		selEngine.doubleClick(idFlt);
 	}
 
 	public void doubleClickTitleFilter() {
-		Selenium_Engine.doubleClick(titleFlt);
+		selEngine.doubleClick(titleFlt);
 	}
 
 	public void doubleClickDescriptionFilter() {
-		Selenium_Engine.doubleClick(descriptionFlt);
+		selEngine.doubleClick(descriptionFlt);
 	}
 }

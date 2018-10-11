@@ -12,13 +12,11 @@ Description:
 package br.com.ibm.dynapool.pages.request;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
-import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
 
 public class OpportunityRequest_Page extends Home_Page{
-	WebDriver driver;
+	
 	By targetCountryDpx = By.name("selDefcountry");
 	By targetAccountDpx = By.name("selIdaccount");
 	By environmentDpx = By.name("selDefenvironment");
@@ -36,62 +34,62 @@ public class OpportunityRequest_Page extends Home_Page{
 	By cancelBtn = By.name("btnCancel");
 
 	public void setCountry(String strCountry) {
-		Selenium_Engine.selectDropDown(targetCountryDpx, strCountry);
+		selEngine.selectDropDown(targetCountryDpx, strCountry);
 	}
 
 	public void setAccount(String strAccount) {
-		Selenium_Engine.selectDropDown(targetAccountDpx, strAccount);
+		selEngine.selectDropDown(targetAccountDpx, strAccount);
 	}
 
 	public void setEnvironment(String strEnvironment) {
-		Selenium_Engine.selectDropDown(environmentDpx, strEnvironment);
+		selEngine.selectDropDown(environmentDpx, strEnvironment);
 	}
 
 	public void setClass(String strClass) {
-		Selenium_Engine.selectDropDown(classDpx, strClass);
+		selEngine.selectDropDown(classDpx, strClass);
 	}
 
 	public void setPriority(String strPriority) {
-		Selenium_Engine.selectDropDown(priorityDpx, strPriority);
+		selEngine.selectDropDown(priorityDpx, strPriority);
 	}
 
 	public void setSummary(String strSummary) {
-		Selenium_Engine.setTextbox(summaryTxt, strSummary);
+		selEngine.setTextbox(summaryTxt, strSummary);
 	}
 
 	public void setDescription(String strDescription) {
-		Selenium_Engine.setTextbox(descriptionTxa, strDescription);
+		selEngine.setTextbox(descriptionTxa, strDescription);
 	}
 
 	public void setSME_ClientContact(String strSME_ClientContact) {
-		Selenium_Engine.setTextbox(SME_ClientContactTxt, strSME_ClientContact);
+		selEngine.setTextbox(SME_ClientContactTxt, strSME_ClientContact);
 	}
 
 	public void setAutomataCategory(String strAutomataCategory) {
-		Selenium_Engine.selectDropDown(automataCategoryDpx, strAutomataCategory);
+		selEngine.selectDropDown(automataCategoryDpx, strAutomataCategory);
 	}
 
 	public void setAlert_ServerCount(String strAlert_ServerCount) {
-		Selenium_Engine.setTextbox(alert_ServerCountTxt, strAlert_ServerCount);
+		selEngine.setTextbox(alert_ServerCountTxt, strAlert_ServerCount);
 	}
 
 	public void setExpectedSavings(String strExpectedSavings) {
-		Selenium_Engine.setTextbox(expectedSavingsTxt, strExpectedSavings);
+		selEngine.setTextbox(expectedSavingsTxt, strExpectedSavings);
 	}
 
 	public void setcostsAvoidedTxt(String strcostsAvoidedTxt) {
-		Selenium_Engine.setTextbox(costsAvoidedTxt, strcostsAvoidedTxt);
+		selEngine.setTextbox(costsAvoidedTxt, strcostsAvoidedTxt);
 	}
 
 	public void clickSaveButton() {
-		Selenium_Engine.click(saveBtn);
+		selEngine.click(saveBtn);
 	}
 
 	public void clickClearButton() {
-		Selenium_Engine.click(clearBtn);
+		selEngine.click(clearBtn);
 	}
 
 	public void clickCancelButton() {
-		Selenium_Engine.click(cancelBtn);
+		selEngine.click(cancelBtn);
 	}
 }

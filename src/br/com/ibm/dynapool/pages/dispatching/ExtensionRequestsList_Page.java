@@ -13,9 +13,10 @@ package br.com.ibm.dynapool.pages.dispatching;
 
 import org.openqa.selenium.By;
 
-import br.com.ibm.dynapool.engine.Selenium_Engine;
+import br.com.ibm.dynapool.pages.Home_Page;
 
-public class ExtensionRequestsList_Page {
+
+public class ExtensionRequestsList_Page extends Home_Page {
 
 	By magnifierFlt = By.className("bigCardTitle");
 	By previousBtn = By.name("btnPrevious page");
@@ -29,63 +30,63 @@ public class ExtensionRequestsList_Page {
 	By firstItemLnk = By.xpath("/html/body/div[1]/div[3]/div/div[3]/div[2]/table/tbody/tr[2]");
 
 	public void clickMagnifierFilter() {
-		Selenium_Engine.click(magnifierFlt);
+		selEngine.click(magnifierFlt);
 	}
 
 	public void clickPreviousButton() {
-		Selenium_Engine.click(previousBtn);
+		selEngine.click(previousBtn);
 	}
 
 	public void clickCloseButton() {
-		Selenium_Engine.click(closeBtn);
+		selEngine.click(closeBtn);
 	}
 
 	public void clickNextButton() {
-		Selenium_Engine.click(nextBtn);
+		selEngine.click(nextBtn);
 	}
 
 	public void clickIdFilter() {
-		Selenium_Engine.click(idFlt);
+		selEngine.click(idFlt);
 	}
 
 	public void clickTaskFilter() {
-		Selenium_Engine.click(taskFlt);
+		selEngine.click(taskFlt);
 	}
 
 	public void clickReasonFilter() {
-		Selenium_Engine.click(reasonFlt);
+		selEngine.click(reasonFlt);
 	}
 
 	public void clickCreatedFilter() {
-		Selenium_Engine.click(createdFlt);
+		selEngine.click(createdFlt);
 	}
 
 	public void clickStatusFilter() {
-		Selenium_Engine.click(statusFlt);
+		selEngine.click(statusFlt);
 	}
 
 	public void clickFirstItemLink() {
-		Selenium_Engine.click(firstItemLnk);
+		selEngine.click(firstItemLnk);
 	}
 
 	public void doubleClickIdFilter() {
-		Selenium_Engine.doubleClick(idFlt);
+		selEngine.doubleClick(idFlt);
 	}
 
 	public void doubleClickTaskFilter() {
-		Selenium_Engine.doubleClick(taskFlt);
+		selEngine.doubleClick(taskFlt);
 	}
 
 	public void doubleClickReasonFilter() {
-		Selenium_Engine.doubleClick(reasonFlt);
+		selEngine.doubleClick(reasonFlt);
 	}
 
 	public void doubleClickCreatedFilter() {
-		Selenium_Engine.doubleClick(createdFlt);
+		selEngine.doubleClick(createdFlt);
 	}
 
 	public void doubleClickStatusFilter() {
-		Selenium_Engine.doubleClick(statusFlt);
+		selEngine.doubleClick(statusFlt);
 	}
 
 }

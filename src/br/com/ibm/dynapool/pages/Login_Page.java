@@ -13,30 +13,28 @@ package br.com.ibm.dynapool.pages;
 
 import org.openqa.selenium.By;
 
-import br.com.ibm.dynapool.engine.Selenium_Engine;
-
-public class Login_Page {
+public class Login_Page extends Home_Page{
 	
-	Selenium_Engine selengine = new Selenium_Engine();
+	
 	By userName = By.name("txtUsername");
 	By userPassword = By.name("txtPassword");
 	By GDPRcheckbox = By.name("chkAgreement");
 	By loginBtn = By.name("btnSubmit");
 
 	public void setUserName(String strUserName) {
-		selengine.setTextbox(userName, strUserName);
+		selEngine.setTextbox(userName, strUserName);
 	}
 
 	public void setUserPassword(String strUserPassword) {
-		selengine.setTextbox(userPassword, strUserPassword);
+		selEngine.setTextbox(userPassword, strUserPassword);
 	}
 
 	public void setGDPRcheckbox(boolean enabled) {
-		selengine.selectCheckBox(GDPRcheckbox);
+		selEngine.selectCheckBox(GDPRcheckbox);
 	}
 
 	public void clickLoginButton() {
-		selengine.click(loginBtn);
+		selEngine.click(loginBtn);
 	}
 
 }
