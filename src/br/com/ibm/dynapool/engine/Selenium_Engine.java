@@ -266,4 +266,8 @@ public class Selenium_Engine {
 	public boolean compareText (By by, String text) {		
 		return driver.findElement(by).getText().equals(text);
 	}
+	
+	public boolean compareAttribute (By by, String attribute, String text) {		
+		return driver.findElement(by).getAttribute(attribute).equals(text);
+	}
 }
