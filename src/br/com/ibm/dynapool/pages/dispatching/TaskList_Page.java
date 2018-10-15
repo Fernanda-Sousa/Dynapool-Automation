@@ -16,7 +16,7 @@ import org.openqa.selenium.By;
 import br.com.ibm.dynapool.pages.Home_Page;
 
 
-public class InternalTaskList_Page extends Home_Page{
+public class TaskList_Page extends Home_Page{
 
 	By magnifierFlt = By.className("bigCardTitle");
 	By previousBtn = By.name("btnPrevious page");
