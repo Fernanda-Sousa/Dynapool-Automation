@@ -59,8 +59,8 @@ public class MasterTaskView_Page extends Home_Page{
 	By deleteBtn = By.name("btnDelete");
 
 	By firstChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[2]");
-	By secondLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[3]");
-	By thirdLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[4]");
+	By secondChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[3]");
+	By thirdChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[4]");
 	By fourthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
 	By fifthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
 	
@@ -72,71 +72,129 @@ public class MasterTaskView_Page extends Home_Page{
 		return Integer.parseInt(driver.findElement(by).getText());
 	}
 	
-	public void compareId(String strId) {
-		selEngine.compareText(idTxt, strId);
+	public boolean compareId(String strId) {
+		return selEngine.compareText(idTxt, strId);
 	}
 	
-	public void compareRequester(String strRequester) {
-		selEngine.compareText(requesterDpx, strRequester);
+	public boolean compareRequester(String strRequester) {
+		return selEngine.compareText(requesterDpx, strRequester);
 	}
 	
-	public void compareSquad(String strSquad) {
-		selEngine.compareText(squadDpx, strSquad);
+	public boolean compareSquad(String strSquad) {
+		return selEngine.compareText(squadDpx, strSquad);
 	}
 	
-	public void compareOwner(String strOwner) {
-		selEngine.compareText(ownerDpx, strOwner);
+	public boolean compareOwner(String strOwner) {
+		return selEngine.compareText(ownerDpx, strOwner);
 	}
 	
-	public void compareCountry(String strCountry) {
-		selEngine.compareText(targetCountryDpx, strCountry);
+	public boolean compareCountry(String strCountry) {
+		return selEngine.compareText(targetCountryDpx, strCountry);
 	}
 
-	public void compareAccount(String strAccount) {
-		selEngine.compareText(targetAccountDpx, strAccount);
+	public boolean compareAccount(String strAccount) {
+		return selEngine.compareText(targetAccountDpx, strAccount);
 	}
 
-	public void compareEnvironment(String strEnvironment) {
-		selEngine.compareText(environmentDpx, strEnvironment);
+	public boolean compareEnvironment(String strEnvironment) {
+		return selEngine.compareText(environmentDpx, strEnvironment);
 	}
 
-	public void compareClass(String strClass) {
-		selEngine.compareText(classDpx, strClass);
+	public boolean compareClass(String strClass) {
+		return selEngine.compareText(classDpx, strClass);
 	}
 
-	public void comparePriority(String strPriority) {
-		selEngine.compareText(priorityDpx, strPriority);
+	public boolean comparePriority(String strPriority) {
+		return selEngine.compareText(priorityDpx, strPriority);
 	}
 
-	public void compareComplexity(String strComplexity) {
-		selEngine.compareText(complexityDpx, strComplexity);
+	public boolean compareComplexity(String strComplexity) {
+		return selEngine.compareText(complexityDpx, strComplexity);
 	}
 	
-	public void compareAutomata(String strAutomata) {
-		selEngine.compareText(automataDpx, strAutomata);
+	public boolean compareAutomata(String strAutomata) {
+		return selEngine.compareText(automataDpx, strAutomata);
 	}
 	
-	public void compareSummary(String strSummary) {
-		selEngine.compareText(summaryTxt, strSummary);
+	public boolean compareSummary(String strSummary) {
+		return selEngine.compareText(summaryTxt, strSummary);
 	}
 
-	public void compareDescription(String strDescription) {
-		selEngine.compareText(descriptionTxa, strDescription);
+	public boolean compareDescription(String strDescription) {
+		return selEngine.compareText(descriptionTxa, strDescription);
 	}
 	
-	public void compareTaskSource(String strTaskSource) {
-		selEngine.compareText(taskSourceDpx, strTaskSource);
+	public boolean compareTaskSource(String strTaskSource) {
+		return selEngine.compareText(taskSourceDpx, strTaskSource);
 	}
 
-	public void compareAutomataCategory(String strAutomataCategory) {
-		selEngine.compareText(automataCategoryDpx, strAutomataCategory);
+	public boolean compareAutomataCategory(String strAutomataCategory) {
+		return selEngine.compareText(automataCategoryDpx, strAutomataCategory);
 	}
 
-	public void compareAlert_ServerCount(String strAlert_ServerCount) {
-		selEngine.compareText(alert_ServerCountTxt, strAlert_ServerCount);
+	public boolean compareAlert_ServerCount(String strAlert_ServerCount) {
+		return selEngine.compareText(alert_ServerCountTxt, strAlert_ServerCount);
 	}
 
-	public void compareDefectCategory(String strDefectCategory) {
-		selEngine.compareText(defectCategoryDpx, strDefectCategory);
+	public boolean compareDefectCategory(String strDefectCategory) {
+		return selEngine.compareText(defectCategoryDpx, strDefectCategory);
 	}
+	
+//	TODO
+//	public boolean compareApproved(String strAttribute, String strValue) {
+//		return selEngine.compareAttribute(approvedDft, strAttribute, strValue);
+//	}
+	
+	public boolean compareCurrentStage(String strCurrentStage) {
+		return selEngine.compareText(currentStageDpx, strCurrentStage);
+	}
+	
+	public boolean compareStatus(String strStatus) {
+		return selEngine.compareText(statusDpx, strStatus);
+	}
+	
+	public boolean compareCreatedDate(String strCreatedDate) {// MM/dd/yyyy hh:mm:ss
+		return selEngine.compareText(createdDtf, strCreatedDate);
+	}
+	
+	public boolean compareApprovedDate(String strApprovedDate) {// MM/dd/yyyy hh:mm:ss
+		return selEngine.compareText(approvedDft, strApprovedDate);
+	}
+	
+	public boolean comparePlannedStartDate(String strPlannedStartDate) {// MM/dd/yyyy
+		return selEngine.compareText(plannedStartDateDtf, strPlannedStartDate);
+	}
+	
+	public boolean compareStartedDate(String strStartedDate) {// MM/dd/yyyy hh:mm:ss
+		return selEngine.compareText(startedDtf, strStartedDate);
+	}
+	
+	public boolean compareJustification(String strJustification) {
+		return selEngine.compareText(justificationTxa, strJustification);
+	}
+	
+	public void clickCloseButton() {
+		selEngine.click(closeBtn);
+	}
+
+	public void clickDeleteButton() {
+		selEngine.click(deleteBtn);
+	}
+
+	public void clickFirstChildLink() {
+		selEngine.click(firstChildLnk);
+	}
+	
+	public void clickSecondChildLink() {
+		selEngine.click(secondChildLnk);
+	}
+	
+	public void clickThirdChildLink() {
+		selEngine.click(thirdChildLnk);
+	}
+	
+	public void clickFifthChildLink() {
+		selEngine.click(fifthChildLnk);
+	}
+
 }
