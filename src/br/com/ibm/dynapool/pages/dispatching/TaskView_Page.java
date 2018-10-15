@@ -60,7 +60,7 @@ public class TaskView_Page extends Home_Page {
 	By skipBtn = By.name("btnSkip");
 	By startBtn = By.name("btnStart");
 	By extensionBtn = By.name("btnExtension");
-	By closetBtn = By.name("btnClose");
+	By closeBtn = By.name("btnClose");
 	By onHoldBtn = By.name("btnHold");
 	By resumeOnHoldBtn = By.name("btnHold");
 
@@ -210,7 +210,7 @@ public class TaskView_Page extends Home_Page {
 	}
 	
 	public void clickCloseButton() {
-		selEngine.click(closetBtn);
+		selEngine.click(closeBtn);
 	}
 	
 	public void clickOnHoldButton() {
