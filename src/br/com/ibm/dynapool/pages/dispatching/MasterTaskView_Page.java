@@ -56,6 +56,7 @@ public class MasterTaskView_Page extends Home_Page {
 	By justificationTxa = By.name("txaJustification");
 
 	By closeBtn = By.name("btnClose");
+	By invalidateBtn = By.name("btnInvalidate");
 	By deleteBtn = By.name("btnDelete");
 
 	By firstChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[2]");
@@ -175,6 +176,10 @@ public class MasterTaskView_Page extends Home_Page {
 
 	public void clickCloseButton() {
 		selEngine.click(closeBtn);
+	}
+	
+	public void clickInvalidateButton() {
+		selEngine.click(invalidateBtn);
 	}
 
 	public void clickDeleteButton() {
