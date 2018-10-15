@@ -69,8 +69,8 @@ public class MasterTaskView_Page extends Home_Page {
 		selEngine.click(editLnk);
 	}
 
-	public int getIntegerId(By by) {
-		return Integer.parseInt(driver.findElement(by).getText());
+	public int getIntegerId(By idTxt) {
+		return Integer.parseInt(driver.findElement(idTxt).getText());
 	}
 
 	public boolean compareId(String strId) {
