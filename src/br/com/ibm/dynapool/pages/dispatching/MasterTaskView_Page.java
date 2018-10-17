@@ -3,7 +3,7 @@ Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 11-oct-2018
 
 Last update date: 15-oct-2018
-Last updated by: Fernanda pereira (ferps@br.ibm.com)
+Last updated by: Fernanda Pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
 Description: 
@@ -59,11 +59,11 @@ public class MasterTaskView_Page extends Home_Page {
 	By invalidateBtn = By.name("btnInvalidate");
 	By deleteBtn = By.name("btnDelete");
 
-	By firstChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[2]");
-	By secondChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[3]");
-	By thirdChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[4]");
-	By fourthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
-	By fifthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
+	By firstChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[2]");
+	By secondChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[3]");
+	By thirdChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[4]");
+	By fourthChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
+	By fifthChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
 
 	public void clickEditTab() {
 		selEngine.click(editLnk);
