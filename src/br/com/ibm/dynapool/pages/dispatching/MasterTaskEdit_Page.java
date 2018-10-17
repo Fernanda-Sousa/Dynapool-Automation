@@ -41,7 +41,9 @@ public class MasterTaskEdit_Page extends Home_Page {
 	By alert_ServerCountTxt = By.name("txtAutomatacount");
 //	By defectCategoryDpx = By.name("selDefdefectcategory");
 
-	By approvedRdb = By.name("rdoYnapproved");
+	By approvedNoRdb = By
+			.cssSelector(".frmLayout > tbody:nth-child(1) > tr:nth-child(22) > td:nth-child(2) > input:nth-child(1)");
+	By approvedYesRdb = By.cssSelector("input.disabled:nth-child(2)");
 	By currentStageDpx = By.name("selDefstage");
 
 	By statusDpx = By.name("selDefstatus");
@@ -54,27 +56,27 @@ public class MasterTaskEdit_Page extends Home_Page {
 	By saveBtn = By.name("btnSubmit");
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
-	
+
 	public boolean compareId(String strId) {
 		return selEngine.compareText(idTxt, strId);
 	}
-	
+
 	public boolean compareRequester(String strRequester) {
 		return selEngine.compareText(requesterDpx, strRequester);
 	}
-	
+
 	public void setSquad(String strSquad) {
 		selEngine.selectDropDown(squadDpx, strSquad);
 	}
-	
+
 	public void setOwner(String strOwner) {
 		selEngine.selectDropDown(ownerDpx, strOwner);
 	}
-	
+
 	public boolean compareClass(String strClass) {
 		return selEngine.compareText(classDpx, strClass);
 	}
-	
+
 	public void setCountry(String strCountry) {
 		selEngine.selectDropDown(targetCountryDpx, strCountry);
 	}
@@ -94,11 +96,11 @@ public class MasterTaskEdit_Page extends Home_Page {
 	public void setComplexity(String strComplexity) {
 		selEngine.selectDropDown(complexityDpx, strComplexity);
 	}
-	
+
 	public boolean compareAutomata(String strAutomata) {
 		return selEngine.compareText(automataDpx, strAutomata);
 	}
-	
+
 	public void setSummary(String strSummary) {
 		selEngine.setTextbox(summaryTxt, strSummary);
 	}
@@ -106,7 +108,7 @@ public class MasterTaskEdit_Page extends Home_Page {
 	public void setDescription(String strDescription) {
 		selEngine.setTextbox(descriptionTxa, strDescription);
 	}
-	
+
 	public void setTaskSource(String strTaskSource) {
 		selEngine.selectDropDown(taskSourceDpx, strTaskSource);
 	}
@@ -119,9 +121,51 @@ public class MasterTaskEdit_Page extends Home_Page {
 		selEngine.setTextbox(alert_ServerCountTxt, strAlert_ServerCount);
 	}
 
+	public void clickApproveNo() {
+		selEngine.click(approvedNoRdb);
+	}
+
+	public void clickApproveYes() {
+		selEngine.click(approvedYesRdb);
+	}
 	
-	///////////////////////////////save the css selector of each option
-	public void setApproved(String strApproved) {
-		selEngine.(approvedRdb, strApproved);
+	public boolean compareCurrentStage(String strCurrentStage) {
+		return selEngine.compareText(currentStageDpx, strCurrentStage);
+	}
+
+	public boolean compareStatus(String strStatus) {
+		return selEngine.compareText(statusDpx, strStatus);
+	}
+	
+	public boolean compareCreatedDate(String strCreatedDate) {
+		return selEngine.compareText(createdDtf, strCreatedDate);
+	}
+	
+	public boolean compareApprovedDate(String strApprovedDate) {
+		return selEngine.compareText(approvedDft, strApprovedDate);
+	}
+
+	public boolean compareDateCreation(String strDateCreation) {
+		return selEngine.compareText(creationDateDtf, strDateCreation);
+	}
+	
+	public void setPlannedStartDate(String strPlannedStartDate) {
+		selEngine.setTextbox(plannedStartDateDtf, strPlannedStartDate);
+	}
+	
+	public boolean compareStartedDate(String strStartedDate) {
+		return selEngine.compareText(startedDtf, strStartedDate);
+	}
+	
+	public void clickSaveButton() {
+		selEngine.click(saveBtn);
+	}
+	
+	public void clickClearButton() {
+		selEngine.click(clearBtn);
+	}
+	
+	public void clickCancelButton() {
+		selEngine.click(cancelBtn);
 	}
 }
