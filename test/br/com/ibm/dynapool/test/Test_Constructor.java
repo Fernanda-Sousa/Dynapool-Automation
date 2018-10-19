@@ -70,7 +70,7 @@ public class Test_Constructor {
 		extent.flush();
 //		extent.close();
 
-//		selEngine.shutdownDriver();
+		selEngine.shutdownDriver();
 	}
 
 	public String getScreenshot(String screenshotName) throws Exception {
