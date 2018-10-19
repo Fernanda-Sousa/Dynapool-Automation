@@ -12,6 +12,8 @@ Description:
 package br.com.ibm.dynapool.pages.request;
 
 import org.openqa.selenium.By;
+
+import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
 
 public class TaskRequest_Page extends Home_Page{
@@ -29,6 +31,12 @@ public class TaskRequest_Page extends Home_Page{
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
 
+Selenium_Engine selEngine;
+	
+	public void setSelEngine(Selenium_Engine selEngine) {
+		this.selEngine = selEngine;
+	}
+	
 	public void setCountry(String strCountry) {
 		selEngine.selectDropDown(targetCountryDpx, strCountry);
 	}

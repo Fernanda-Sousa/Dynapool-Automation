@@ -11,7 +11,14 @@ Description:
 
 package br.com.ibm.dynapool.pages;
 
-public class Home_Page {
+import br.com.ibm.dynapool.engine.Selenium_Engine;
 
+public class Home_Page {
+	
+Selenium_Engine selEngine;
+	
+	public void setSelEngine(Selenium_Engine selEngine) {
+		this.selEngine = selEngine;
+	}
 		
 }

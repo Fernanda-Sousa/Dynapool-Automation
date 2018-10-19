@@ -14,6 +14,7 @@ package br.com.ibm.dynapool.pages.dispatching;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
 
 public class TaskView_Page extends Home_Page {
@@ -64,6 +65,12 @@ public class TaskView_Page extends Home_Page {
 	By onHoldBtn = By.name("btnHold");
 	By resumeOnHoldBtn = By.name("btnHold");
 
+Selenium_Engine selEngine;
+	
+	public void setSelEngine(Selenium_Engine selEngine) {
+		this.selEngine = selEngine;
+	}
+	
 	public void clickEditTab() {
 		selEngine.click(editLnk);
 	}

@@ -13,6 +13,7 @@ package br.com.ibm.dynapool.pages.administration;
 
 import org.openqa.selenium.By;
 
+import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
 
 public class UserList_Page extends Home_Page{
@@ -29,6 +30,13 @@ public class UserList_Page extends Home_Page{
 	By roleFlt = By.linkText("role");
 	By firstItemLnk = By.xpath("/html/body/div[1]/div[3]/div/div[3]/div[2]/table/tbody/tr[2]");
 
+Selenium_Engine selEngine;
+	
+	public void setSelEngine(Selenium_Engine selEngine) {
+		this.selEngine = selEngine;
+	}
+	
+	
 	public void clickMagnifierFilter() {
 		selEngine.click(magnifierFlt);
 	}

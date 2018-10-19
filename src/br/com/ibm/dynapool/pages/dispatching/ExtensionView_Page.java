@@ -12,13 +12,12 @@ Description:
 package br.com.ibm.dynapool.pages.dispatching;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebselEngine;
 
+import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
 
 public class ExtensionView_Page extends Home_Page {
-
-	WebDriver driver;
 
 	By editLnk = By.name("tabEdit");
 
@@ -45,16 +44,22 @@ public class ExtensionView_Page extends Home_Page {
 	By closeBtn = By.name("btnClose");
 	By deleteBtn = By.name("btnDelete");
 
+Selenium_Engine selEngine;
+	
+	public void setSelEngine(Selenium_Engine selEngine) {
+		this.selEngine = selEngine;
+	}
+	
 	public void clickEditTab() {
 		selEngine.click(editLnk);
 	}
 
 	public int getIntegerTaskId(By idTxt) {
-		return Integer.parseInt(driver.findElement(idTxt).getText());
+		return Integer.parseInt(selEngine.findElement(idTxt).getText());
 	}
 
 	public int getIntegerId(By opportunityId) {
-		return Integer.parseInt(driver.findElement(opportunityId).getText());
+		return Integer.parseInt(selEngine.findElement(opportunityId).getText());
 	}
 
 	public boolean compareTaskId(String strTaskId) {

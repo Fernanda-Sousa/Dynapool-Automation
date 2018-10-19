@@ -13,6 +13,7 @@ package br.com.ibm.dynapool.pages.dispatching;
 
 import org.openqa.selenium.By;
 
+import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
 
 public class MasterTaskEdit_Page extends Home_Page {
@@ -57,6 +58,13 @@ public class MasterTaskEdit_Page extends Home_Page {
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
 
+Selenium_Engine selEngine;
+	
+	public void setSelEngine(Selenium_Engine selEngine) {
+		this.selEngine = selEngine;
+	}
+	
+	
 	public boolean compareId(String strId) {
 		return selEngine.compareText(idTxt, strId);
 	}
