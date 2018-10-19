@@ -31,9 +31,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class Selenium_Engine {
 
-	public final boolean CHROME = true;
 	public WebDriver driver;
 	Properties_Engine prop = new Properties_Engine();
+	public final boolean CHROME = true;
 
 	String parentWindowHandler = null; // Store your parent window (pop up)
 	String subWindowHandler = null;
