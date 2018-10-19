@@ -32,7 +32,7 @@ public class FullFlowOpportunity extends Test_Constructor {
 		login.clickLoginButton();
 		
 		Assert.assertTrue(true);
-		logger.log(LogStatus.PASS, "Test Case Passed is:" + this.getClass().getName());
+		logger.log(LogStatus.PASS, "Test Case Passed is:" );
 	}
  
 }
