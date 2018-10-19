@@ -2,16 +2,31 @@
 <testng-results skipped="1" failed="1" ignored="0" total="3" passed="1">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="8435" started-at="2018-10-11T17:52:58Z" finished-at="2018-10-11T17:53:06Z">
+  <suite name="Default suite" duration-ms="16045" started-at="2018-10-19T00:03:36Z" finished-at="2018-10-19T00:03:52Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="8435" started-at="2018-10-11T17:52:58Z" finished-at="2018-10-11T17:53:06Z">
-      <class name="br.com.ibm.dynapool.test.unit.testTest">
-        <test-method status="PASS" signature="startReport()[pri:0, instance:br.com.ibm.dynapool.test.unit.testTest@5e3a8624]" name="startReport" is-config="true" duration-ms="222" started-at="2018-10-11T17:52:58Z" finished-at="2018-10-11T17:52:58Z">
+    <test name="Default test" duration-ms="16045" started-at="2018-10-19T00:03:36Z" finished-at="2018-10-19T00:03:52Z">
+      <class name="br.com.ibm.dynapool.test.regretion.SampleTest">
+        <test-method status="PASS" signature="startReport()[pri:0, instance:br.com.ibm.dynapool.test.regretion.SampleTest@53b32d7]" name="startReport" is-config="true" duration-ms="5506" started-at="2018-10-19T00:03:36Z" finished-at="2018-10-19T00:03:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- startReport -->
-        <test-method status="FAIL" signature="failTest()[pri:0, instance:br.com.ibm.dynapool.test.unit.testTest@5e3a8624]" name="failTest" duration-ms="10" started-at="2018-10-11T17:52:58Z" finished-at="2018-10-11T17:52:58Z">
+        <test-method status="PASS" signature="passTest()[pri:1, instance:br.com.ibm.dynapool.test.regretion.SampleTest@53b32d7]" name="passTest" duration-ms="5097" started-at="2018-10-19T00:03:42Z" finished-at="2018-10-19T00:03:47Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- passTest -->
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:br.com.ibm.dynapool.test.regretion.SampleTest@53b32d7]" name="getResult" is-config="true" duration-ms="1" started-at="2018-10-19T00:03:47Z" finished-at="2018-10-19T00:03:47Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[[TestResult name=passTest status=SUCCESS method=SampleTest.passTest()[pri:1, instance:br.com.ibm.dynapool.test.regretion.SampleTest@53b32d7] output={null}]]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- getResult -->
+        <test-method status="FAIL" signature="failTest()[pri:2, instance:br.com.ibm.dynapool.test.regretion.SampleTest@53b32d7]" name="failTest" duration-ms="2" started-at="2018-10-19T00:03:47Z" finished-at="2018-10-19T00:03:47Z">
           <exception class="java.lang.AssertionError">
             <message>
               <![CDATA[expected [true] but found [false]]]>
@@ -22,7 +37,7 @@ at org.testng.Assert.fail(Assert.java:96)
 at org.testng.Assert.failNotEquals(Assert.java:776)
 at org.testng.Assert.assertTrue(Assert.java:44)
 at org.testng.Assert.assertTrue(Assert.java:54)
-at br.com.ibm.dynapool.test.unit.testTest.failTest(testTest.java:35)
+at br.com.ibm.dynapool.test.regretion.SampleTest.failTest(SampleTest.java:27)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -54,40 +69,25 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- failTest -->
-        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:br.com.ibm.dynapool.test.unit.testTest@5e3a8624]" name="getResult" is-config="true" duration-ms="5" started-at="2018-10-11T17:52:58Z" finished-at="2018-10-11T17:52:58Z">
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:br.com.ibm.dynapool.test.regretion.SampleTest@53b32d7]" name="getResult" is-config="true" duration-ms="575" started-at="2018-10-19T00:03:47Z" finished-at="2018-10-19T00:03:47Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=failTest status=FAILURE method=testTest.failTest()[pri:0, instance:br.com.ibm.dynapool.test.unit.testTest@5e3a8624] output={null}]]]>
+                <![CDATA[[TestResult name=failTest status=FAILURE method=SampleTest.failTest()[pri:2, instance:br.com.ibm.dynapool.test.regretion.SampleTest@53b32d7] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method status="PASS" signature="passTest()[pri:0, instance:br.com.ibm.dynapool.test.unit.testTest@5e3a8624]" name="passTest" duration-ms="7798" started-at="2018-10-11T17:52:58Z" finished-at="2018-10-11T17:53:06Z">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- passTest -->
-        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:br.com.ibm.dynapool.test.unit.testTest@5e3a8624]" name="getResult" is-config="true" duration-ms="1" started-at="2018-10-11T17:53:06Z" finished-at="2018-10-11T17:53:06Z">
-          <params>
-            <param index="0">
-              <value>
-                <![CDATA[[TestResult name=passTest status=SUCCESS method=testTest.passTest()[pri:0, instance:br.com.ibm.dynapool.test.unit.testTest@5e3a8624] output={null}]]]>
-              </value>
-            </param>
-          </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- getResult -->
-        <test-method status="SKIP" signature="skipTest()[pri:0, instance:br.com.ibm.dynapool.test.unit.testTest@5e3a8624]" name="skipTest" duration-ms="5" started-at="2018-10-11T17:53:06Z" finished-at="2018-10-11T17:53:06Z">
+        <test-method status="SKIP" signature="skipTest()[pri:3, instance:br.com.ibm.dynapool.test.regretion.SampleTest@53b32d7]" name="skipTest" duration-ms="9" started-at="2018-10-19T00:03:47Z" finished-at="2018-10-19T00:03:47Z">
           <exception class="org.testng.SkipException">
             <message>
               <![CDATA[Skipping - This is not ready for testing ]]>
             </message>
             <full-stacktrace>
               <![CDATA[org.testng.SkipException: Skipping - This is not ready for testing 
-at br.com.ibm.dynapool.test.unit.testTest.skipTest(testTest.java:42)
+at br.com.ibm.dynapool.test.regretion.SampleTest.skipTest(SampleTest.java:35)
 at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -119,22 +119,22 @@ at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
           <reporter-output>
           </reporter-output>
         </test-method> <!-- skipTest -->
-        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:br.com.ibm.dynapool.test.unit.testTest@5e3a8624]" name="getResult" is-config="true" duration-ms="1" started-at="2018-10-11T17:53:06Z" finished-at="2018-10-11T17:53:06Z">
+        <test-method status="PASS" signature="getResult(org.testng.ITestResult)[pri:0, instance:br.com.ibm.dynapool.test.regretion.SampleTest@53b32d7]" name="getResult" is-config="true" duration-ms="4" started-at="2018-10-19T00:03:47Z" finished-at="2018-10-19T00:03:47Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[[TestResult name=skipTest status=SKIP method=testTest.skipTest()[pri:0, instance:br.com.ibm.dynapool.test.unit.testTest@5e3a8624] output={null}]]]>
+                <![CDATA[[TestResult name=skipTest status=SKIP method=SampleTest.skipTest()[pri:3, instance:br.com.ibm.dynapool.test.regretion.SampleTest@53b32d7] output={null}]]]>
               </value>
             </param>
           </params>
           <reporter-output>
           </reporter-output>
         </test-method> <!-- getResult -->
-        <test-method status="PASS" signature="endReport()[pri:0, instance:br.com.ibm.dynapool.test.unit.testTest@5e3a8624]" name="endReport" is-config="true" duration-ms="360" started-at="2018-10-11T17:53:06Z" finished-at="2018-10-11T17:53:06Z">
+        <test-method status="PASS" signature="endReport()[pri:0, instance:br.com.ibm.dynapool.test.regretion.SampleTest@53b32d7]" name="endReport" is-config="true" duration-ms="4799" started-at="2018-10-19T00:03:47Z" finished-at="2018-10-19T00:03:52Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- endReport -->
-      </class> <!-- br.com.ibm.dynapool.test.unit.testTest -->
+      </class> <!-- br.com.ibm.dynapool.test.regretion.SampleTest -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
