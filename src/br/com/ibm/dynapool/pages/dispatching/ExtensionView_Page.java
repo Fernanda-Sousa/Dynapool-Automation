@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 15-oct-2018
 
-Last update date: 16-oct-2018
+Last update date: 19-oct-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -12,7 +12,6 @@ Description:
 package br.com.ibm.dynapool.pages.dispatching;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebselEngine;
 
 import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
@@ -55,11 +54,11 @@ Selenium_Engine selEngine;
 	}
 
 	public int getIntegerTaskId(By idTxt) {
-		return Integer.parseInt(selEngine.findElement(idTxt).getText());
+		return selEngine.getIntegerContent(idTxt);
 	}
 
 	public int getIntegerId(By opportunityId) {
-		return Integer.parseInt(selEngine.findElement(opportunityId).getText());
+		return selEngine.getIntegerContent(opportunityId);
 	}
 
 	public boolean compareTaskId(String strTaskId) {
