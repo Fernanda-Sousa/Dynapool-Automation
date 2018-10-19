@@ -13,7 +13,10 @@ package br.com.ibm.dynapool.pages;
 
 import org.openqa.selenium.By;
 
+import br.com.ibm.dynapool.engine.Selenium_Engine;
+
 public class Login_Page extends Home_Page{
+	
 	
 	
 	By userName = By.name("txtUsername");
@@ -21,6 +24,12 @@ public class Login_Page extends Home_Page{
 	By GDPRcheckbox = By.name("chkAgreement");
 	By loginBtn = By.name("btnSubmit");
 
+	Selenium_Engine selEngine;
+	
+	public void setSelEngine(Selenium_Engine selEngine) {
+		this.selEngine = selEngine;
+	}
+	
 	public void setUserName(String strUserName) {
 		selEngine.setTextbox(userName, strUserName);
 	}

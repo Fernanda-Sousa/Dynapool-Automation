@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -11,6 +12,7 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
+
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -22,12 +24,12 @@ public class Test_Constructor {
 	protected ExtentReports extent;
 	protected ExtentTest logger;
 	protected Properties_Engine prop = new Properties_Engine();
-	protected Selenium_Engine selengine = new Selenium_Engine();
-
+	protected Selenium_Engine selEngine = new Selenium_Engine();
+	
 	@BeforeTest
 	public void startReport() throws IOException {
-
-		selengine.createDriver();
+		
+		selEngine.createDriver();
 		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/STMExtentReport.html", true);
 
 		extent.addSystemInfo("Host Name", prop.readPropertiesFile("host"))
@@ -56,7 +58,7 @@ public class Test_Constructor {
 				logger.log(LogStatus.FAIL, logger.addScreenCapture(screenshotPath));
 			} catch (Exception e) {
 
-				selengine.sysOut("Error on get screenshot: " + e);
+				selEngine.sysOut("Error on get screenshot: " + e);
 			}	
 		} else if (result.getStatus() == ITestResult.SKIP) {
 			logger.log(LogStatus.SKIP, "Test Case Skipped is " + result.getName());
@@ -67,18 +69,13 @@ public class Test_Constructor {
 	public void endReport() {
 		extent.flush();
 //		extent.close();
-		try {
-			Thread.sleep(2000);
-		} catch (InterruptedException e) {
-			e.printStackTrace();
-		}
-	
-		selengine.driver().close();
+
+		selEngine.shutdownDriver();
 	}
 
 	public String getScreenshot(String screenshotName) throws Exception {
 		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		TakesScreenshot ts = (TakesScreenshot) selengine.driver;
+		TakesScreenshot ts = (TakesScreenshot) selEngine.driver;
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		String destination = System.getProperty("user.dir") + "/FailedTestsScreenshots/" + screenshotName + dateName
 				+ ".png";

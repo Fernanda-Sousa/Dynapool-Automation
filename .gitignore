@@ -1,30 +1,8 @@
 /bin/
 /target/
-/test-output/
+test-output/
+FailedTestsScreenshots/
 .classpath
 .settings/org.eclipse.jdt.core.prefs
 .settings/org.eclipse.m2e.core.prefs
 .project
-test-output/collapseall.gif
-test-output/bullet_point.png
-test-output/Default suite/Default test.html
-test-output/Default suite/Default test.xml
-test-output/emailable-report.html
-test-output/failed.png
-test-output/index.html
-test-output/jquery-1.7.1.min.js
-test-output/navigator-bullet.png
-test-output/Default suite/testng-failed.xml
-test-output/junitreports/TEST-br.com.ibm.dynapool.test.ExtentReports.xml
-test-output/old/index.html
-test-output/testng-reports.js
-test-output/testng-reports.css
-test-output/testng-failed.xml
-test-output/old/index.html
-test-output/testng-reports.js
-test-output/testng-reports.css
-test-output/testng-results.xml
-test-output/old/index.html
-test-output/old/Default suite/classes.html
-test-output/old/Default suite/methods-alphabetical.html
-test-output/old/Default suite/methods.html
