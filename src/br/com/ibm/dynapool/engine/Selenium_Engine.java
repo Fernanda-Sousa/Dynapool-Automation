@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 10-oct-2018
 
-Last update date: 15-oct-2018
+Last update date: 19-oct-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -271,5 +271,9 @@ public class Selenium_Engine {
 	
 	public boolean compareAttribute (By by, String attribute, String text) {		
 		return driver.findElement(by).getAttribute(attribute).equals(text);
+	}
+
+	public int getIntegerContent(By by) {		
+		return Integer.parseInt(driver.findElement(by).getText());
 	}
 }
