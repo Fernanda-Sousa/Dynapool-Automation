@@ -6,3 +6,10 @@ FailedTestsScreenshots/
 .settings/org.eclipse.jdt.core.prefs
 .settings/org.eclipse.m2e.core.prefs
 .project
+test-output/old/Default suite/classes.html
+test-output/old/Default suite/methods-alphabetical.html
+test-output/old/Default suite/methods.html
+test-output/old/Default suite/testng.xml.html
+test-output/old/Default suite/toc.html
+test-output/old/index.html
+test-output/testng-results.xml
