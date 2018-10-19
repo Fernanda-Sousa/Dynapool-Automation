@@ -11,8 +11,17 @@ Description:
 
 package br.com.ibm.dynapool.pages;
 
+import org.openqa.selenium.By;
 
 public class Home_Page {
 	
-			
+	By menuRequest = By.id("mnuRequest"); // Main Menu
+	By mnuRequestInternal = By.id("mnuRequestInternal");
+	By mnuRequestMaster = By.id("mnuRequestMaster");
+	By mnuRequestOpportunity = By.id("mnuRequestOpportunity");
+	
+	By mnuAdmin = By.id("mnuAdmin"); // Main Menu
+	By mnuAdminAccount = By.id("mnuAdminAccount");
+	
+		
 }
