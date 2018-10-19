@@ -13,11 +13,10 @@ import br.com.ibm.dynapool.test.Test_Constructor;
 public class FullFlowOpportunity extends Test_Constructor {
 	
 	Login_Page login = new Login_Page();
-	
 		
 	@Test(priority=1)
-	public void executeLogin() throws IOException {
-
+	public void executeLogin() throws IOException{
+		
 		login.setSelEngine(selEngine);
 		
 		logger = extent.startTest("Execute login");
@@ -26,13 +25,14 @@ public class FullFlowOpportunity extends Test_Constructor {
 		selEngine.openURL(prop.readPropertiesFile("testwebsite"));
 		selEngine.waitForPageLoad();
 		
-		login.setUserName(prop.readPropertiesFile("devuser"));
-		login.setUserPassword(prop.readPropertiesFile("devpass"));
+		login.setUserName(prop.readPropertiesFile("adminuser"));
+		login.setUserPassword(prop.readPropertiesFile("adminpass"));
 		login.setGDPRcheckbox(true);
 		login.clickLoginButton();
+		selEngine.waitForPageLoad();
 		
-		Assert.assertTrue(true);
-		logger.log(LogStatus.PASS, "Test Case Passed is:" );
+		Assert.assertTrue(selEngine.verifyTextOnFieldPartial("IBM Latin America - Dynamic Automation Team"));
+		logger.log(LogStatus.PASS, "Test Case Passed. Home Page loaded");
 	}
  
 }

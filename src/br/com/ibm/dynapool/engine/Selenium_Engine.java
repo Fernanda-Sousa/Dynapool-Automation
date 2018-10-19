@@ -73,7 +73,7 @@ public class Selenium_Engine {
 	}
 
 	public void waitForPageLoad() {
-		Wait<WebDriver> wait = new WebDriverWait(driver, 100);
+		Wait<WebDriver> wait = new WebDriverWait(driver, 60);
 		wait.until((WebDriver driver1) -> {
 			sysOut("Current Window State       : "
 					+ String.valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState")));
@@ -207,6 +207,7 @@ public class Selenium_Engine {
 
 	public boolean verifyTextOnFieldPartial(String text) {
 		try {
+			waitForPageLoad();
 			if (driver.getPageSource().contains(text)) {
 				return true;
 			}
@@ -218,6 +219,7 @@ public class Selenium_Engine {
 
 	public boolean verifyTextOnField(String text) {
 		try {
+			waitForPageLoad();
 			String text1;
 
 			text1 = driver.findElement(By.linkText(text)).getText();
