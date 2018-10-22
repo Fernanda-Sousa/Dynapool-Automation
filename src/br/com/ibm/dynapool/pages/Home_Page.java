@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 10-oct-2018
 
-Last update date: 19-oct-2018
+Last update date: 22-oct-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -56,5 +56,98 @@ public class Home_Page {
 		selEngine.click(requestMnu);
 		selEngine.click(requestInternalMnu);
 	}
-	
+
+	public void clickRequestMaster() {
+		selEngine.click(requestMnu);
+		selEngine.click(requestMasterMnu);
+	}
+
+	public void clickRequestOpportunity() {
+		selEngine.click(requestMnu);
+		selEngine.click(requestOpportunityMnu);
+	}
+
+	public void clickAdministrationAccount() {
+		selEngine.click(adminMnu);
+		selEngine.click(adminAccountMnu);
+	}
+
+	public void clickAdministrationNonCompliance() {
+		selEngine.click(adminMnu);
+		selEngine.click(adminNoncomplianceMnu);
+	}
+
+	public void clickAdministrationAutomata() {
+		selEngine.click(adminMnu);
+		selEngine.click(adminAutomataMnu);
+	}
+
+	public void clickAdministrationHoldCategory() {
+		selEngine.click(adminMnu);
+		selEngine.click(adminHoldCategoryMnu);
+	}
+
+	public void clickAdministrationRole() {
+		selEngine.click(adminMnu);
+		selEngine.click(adminRoleMnu);
+	}
+
+	public void clickAdministrationUser() {
+		selEngine.click(adminMnu);
+		selEngine.click(adminUserMnu);
+	}
+
+	public void clickDispatchExtension() {
+		selEngine.click(dispatchMnu);
+		selEngine.click(dispatchExtensionMnu);
+	}
+
+	public void clickDispatchTask() {
+		selEngine.click(dispatchMnu);
+		selEngine.click(dispatchTaskMnu);
+	}
+
+	public void clickDispatchMaster() {
+		selEngine.click(dispatchMnu);
+		selEngine.click(dispatchMasterMnu);
+	}
+
+	public void clickDispatchOpportunity() {
+		selEngine.click(dispatchMnu);
+		selEngine.click(dispatchOpportunityMnu);
+	}
+
+	public void clickDispatchSquad() {
+		selEngine.click(dispatchMnu);
+		selEngine.click(dispatchSquadMnu);
+	}
+
+	public void clickPortalNews() {
+		selEngine.click(portalMnu);
+		selEngine.click(portalNewsMnu);
+	}
+
+	public void clickPortalSuggestion() {
+		selEngine.click(portalMnu);
+		selEngine.click(portalSuggestionMnu);
+	}
+
+	public void clickReport() {
+		selEngine.click(reportMnu);
+	}
+
+	public void clickResearchBacklog() {
+		selEngine.click(researchMnu);
+		selEngine.click(researchBacklogMnu);
+	}
+
+	public void clickLinksKanban() {
+		selEngine.click(linksMnu);
+		selEngine.click(linksKanbanMnu);
+	}
+
+	public void clickLinksGAMP() {
+		selEngine.click(linksMnu);
+		selEngine.click(linksGAMPMnu);
+	}
 }
