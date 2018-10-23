@@ -13,6 +13,21 @@ public class Csv_Constructor {
     private String environment;
     @CsvBindByName(column = "Priority")
     private String priority;
+    @CsvBindByName(column = "Summary")
+    private String summary;
+    @CsvBindByName(column = "Description")
+    private String description;
+    @CsvBindByName(column = "SME/Client Contact")
+    private String SME_ClientContact;
+    @CsvBindByName(column = "Automata Category")
+    private String automataCategory;
+    @CsvBindByName(column = "Alert/Server Count")
+    private String alert_ServerCount;
+    @CsvBindByName(column = "Expected Savings")
+    private String expectedSavings;
+    @CsvBindByName(column = "costsAvoided")
+    private String costsAvoided;
+    
     @CsvBindByName(column = "Class")
     private String classField;
     @CsvBindByName(column = "Complexity")
