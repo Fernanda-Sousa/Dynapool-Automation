@@ -56,23 +56,29 @@ public class FullFlowOpportunity extends Test_Constructor {
 		
 
 	}
- 
+ ///////////////////////////////////////////////////////////////////////////////////do not work/////////////////////////////////////////
 	@Test(priority=1)
 	public void requestOpportunity() throws IOException {
-		logger = extent.startTest("Request Opportunity");
+//		logger = extent.startTest("Request Opportunity");
 		
-		
-		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("filetotest"));
-		Csv_Engine csEng = new Csv_Engine();
+		selEngine.waitForPageLoad();
+		home.clickRequestOpportunity();
+			
+		// 
+//		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_requestOpportunity"));
+		Csv_Engine csvEng = new Csv_Engine();
 		List<Csv_Constructor> Req = new LinkedList<>();
-		logger.log(LogStatus.INFO, "Test found: " + Req.size() + "into file test");
+		logger.log(LogStatus.INFO, "Test found: " + Req.size() + "rows into file test");
 		
-		
-		Req = csEng.readSpreadsheetCSV(prop.readPropertiesFile("filetotest"));
+		Req = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_requestOpportunity"));
 		
 		for(Csv_Constructor csv : Req) {
-			logger.log(LogStatus.INFO, "Executing Priority number: " + csv.getPriority());
-			System.out.println("Priority: " + csv.getPriority());
+//			logger.log(LogStatus.INFO, "Executing Priority number: " + csv.getPriority());
+//			System.out.println("Priority: " + csv.getPriority());
+			
+			request.setCountry(csv.getTargetCountry());
+			request.setAccount(csv.getTargetAccount());
+			
 		}
 		Assert.assertTrue(true);
 		logger.log(LogStatus.PASS, "Test Case Passed. Printed all Priorities");
