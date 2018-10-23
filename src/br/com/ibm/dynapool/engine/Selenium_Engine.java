@@ -83,6 +83,7 @@ public class Selenium_Engine {
 	}
 
 	public void click(By by) {
+		waitElement(by);
 		driver.findElement(by).click();
 	}
 
