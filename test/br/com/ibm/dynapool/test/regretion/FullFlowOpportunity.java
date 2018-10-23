@@ -12,12 +12,16 @@ Description:
 package br.com.ibm.dynapool.test.regretion;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.LogStatus;
 
+import br.com.ibm.dynapool.csv.Csv_Constructor;
+import br.com.ibm.dynapool.engine.Csv_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
 import br.com.ibm.dynapool.pages.Login_Page;
 import br.com.ibm.dynapool.pages.request.OpportunityRequest_Page;
@@ -49,14 +53,29 @@ public class FullFlowOpportunity extends Test_Constructor {
 		
 		Assert.assertTrue(selEngine.verifyTextOnFieldPartial("IBM Latin America - Dynamic Automation Team"));
 		logger.log(LogStatus.PASS, "Test Case Passed. Home Page loaded");
+		
+
 	}
  
 	@Test(priority=1)
-	public void requestOpportunity() {
-		home.clickRequestOpportunity();
+	public void requestOpportunity() throws IOException {
+		logger = extent.startTest("Request Opportunity");
 		
-//		request.setCountry(coluna2 linha 2);
-//		request.setAccount(colona1 linha1);
-//		
+		
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("filetotest"));
+		Csv_Engine csEng = new Csv_Engine();
+		List<Csv_Constructor> Req = new LinkedList<>();
+		logger.log(LogStatus.INFO, "Test found: " + Req.size() + "into file test");
+		
+		
+		Req = csEng.readSpreadsheetCSV(prop.readPropertiesFile("filetotest"));
+		
+		for(Csv_Constructor csv : Req) {
+			logger.log(LogStatus.INFO, "Executing Priority number: " + csv.getPriority());
+			System.out.println("Priority: " + csv.getPriority());
+		}
+		Assert.assertTrue(true);
+		logger.log(LogStatus.PASS, "Test Case Passed. Printed all Priorities");
+	
 	}
 }
