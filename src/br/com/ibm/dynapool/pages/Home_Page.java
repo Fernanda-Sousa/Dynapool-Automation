@@ -50,7 +50,7 @@ public class Home_Page {
 	By linksKanbanMnu = By.id("mnuLinksKanban");
 	By linksGAMPMnu = By.id("mnuLinksGAMP");
 
-	Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 
 	public void clickRequestInternal() {
 		selEngine.click(requestMnu);
