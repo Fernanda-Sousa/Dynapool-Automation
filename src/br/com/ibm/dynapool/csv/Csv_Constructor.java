@@ -38,10 +38,21 @@ public class Csv_Constructor {
 	@CsvBindByName(column = "Costs Avoided")
 	private String costsAvoided;
 
-	@CsvBindByName(column = "Class")
-	private String classField;
+	@CsvBindByName(column = "Squad")
+	private String squad;
+	@CsvBindByName(column = "Owner")
+	private String owner;
 	@CsvBindByName(column = "Complexity")
 	private String complexity;
+	@CsvBindByName(column = "Form App. Notes")
+	private String formAppNotes;
+	@CsvBindByName(column = "Business App. Notes")
+	private String businessAppNotes;
+	@CsvBindByName(column = "Technical App. Notes")
+	private String technicalAppNotes;
+	@CsvBindByName(column = "Class")
+	private String classField;
+	
 
 	
 	public String getTargetCountry() {
@@ -120,19 +131,54 @@ public class Csv_Constructor {
 	public void setCostsAvoided(String costsAvoided) {
 		this.costsAvoided = costsAvoided;
 	}
+		
+	public String getSquad() {
+		return squad;
+	}
+	public void setSquad(String squad) {
+		this.squad = squad;
+	}
+	
+	public String getOwner() {
+		return owner;
+	}
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+	
+	public String getComplexity() {
+		return complexity;
+	}
+	public void setComplexity(String complexity) {
+		this.complexity = complexity;
+	}
+	
+	public String getFormAppNotes() {
+		return formAppNotes;
+	}
+	public void setFormAppNotes(String formAppNotes) {
+		this.formAppNotes = formAppNotes;
+	}
+	
+	public String getBusinessAppNotes() {
+		return businessAppNotes;
+	}
+	public void setBusinessAppNotes(String businessAppNotes) {
+		this.businessAppNotes = businessAppNotes;
+	}
+	
+	public String getTechnicalAppNotes() {
+		return technicalAppNotes;
+	}
+	public void setTechnicalAppNotes(String technicalAppNotes) {
+		this.technicalAppNotes = technicalAppNotes;
+	}
 	
 	public String getClassField() {
 		return classField;
 	}
 	public void setClassField(String classField) {
 		this.classField = classField;
-	}
-
-	public String getComplexity() {
-		return complexity;
-	}
-	public void setComplexity(String complexity) {
-		this.complexity = complexity;
 	}
 
 }
