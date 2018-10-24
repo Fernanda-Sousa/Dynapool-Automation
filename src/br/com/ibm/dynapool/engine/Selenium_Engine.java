@@ -13,7 +13,11 @@ package br.com.ibm.dynapool.engine;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -269,19 +273,31 @@ public class Selenium_Engine {
 		return driver.findElement(by).getAttribute(attribute);
 	}
 
-	public boolean compareText (By by, String text) {		
+	public boolean compareText(By by, String text) {
 		return driver.findElement(by).getText().equals(text);
 	}
-	
-	public boolean compareAttribute (By by, String attribute, String text) {		
+
+	public boolean compareAttribute(By by, String attribute, String text) {
 		return driver.findElement(by).getAttribute(attribute).equals(text);
 	}
 
-	public int getIntegerContent(By by) {		
+	public int getIntegerContent(By by) {
 		return Integer.parseInt(driver.findElement(by).getText());
 	}
 
-	public boolean compareTextPartial (By by, String text) {		
+	public boolean compareTextPartial(By by, String text) {
 		return driver.findElement(by).getText().contains(text);
+	}
+
+	public void addDays(By by, int numDays) {
+		// Get current day and add more x days for planned start date
+		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+		Date date = new Date();
+		Calendar c = Calendar.getInstance();
+		c.setTime(date);
+		c.add(Calendar.DATE, numDays);
+		date = c.getTime();
+		String startDate = dateFormat.format(date);
+		setTextbox(by, startDate);
 	}
 }
