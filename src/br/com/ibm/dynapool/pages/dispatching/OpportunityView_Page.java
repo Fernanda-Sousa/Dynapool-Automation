@@ -73,8 +73,8 @@ Selenium_Engine selEngine;
 		selEngine.click(editLnk);
 	}
 
-	public int getIntegerId(By by) {
-		return Integer.parseInt(driver.findElement(by).getText());
+	public int getIntegerId() {
+		return Integer.parseInt(driver.findElement(idTxt).getText());
 	}
 
 	public boolean compareId(String strId) {
