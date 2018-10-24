@@ -84,6 +84,7 @@ public class Selenium_Engine {
 
 	public void click(By by) {
 		waitElement(by);
+		moveScreen(by);
 		driver.findElement(by).click();
 	}
 
@@ -162,6 +163,7 @@ public class Selenium_Engine {
 
 	public void selectDropDown(By element, String item) {
 		try {
+			moveScreen(element);
 			driver.findElement(element).click();
 			sleepSeconds(2);
 			Select selItem = new Select(driver.findElement(element));
@@ -173,6 +175,7 @@ public class Selenium_Engine {
 
 	public void setTextbox(By element, String text) {
 		try {
+			moveScreen(element);
 			driver.findElement(element).click();
 			driver.findElement(element).clear();
 //        waitElement(element);
@@ -277,4 +280,5 @@ public class Selenium_Engine {
 	public int getIntegerContent(By by) {		
 		return Integer.parseInt(driver.findElement(by).getText());
 	}
+
 }
