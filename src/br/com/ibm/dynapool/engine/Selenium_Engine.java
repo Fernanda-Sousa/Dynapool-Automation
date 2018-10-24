@@ -281,4 +281,7 @@ public class Selenium_Engine {
 		return Integer.parseInt(driver.findElement(by).getText());
 	}
 
+	public boolean compareTextPartial (By by, String text) {		
+		return driver.findElement(by).getText().contains(text);
+	}
 }
