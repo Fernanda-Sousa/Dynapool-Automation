@@ -17,9 +17,7 @@ import java.util.Properties;
 
 public class Properties_Engine {
 
-	
-
-	public String readPropertiesFile(String property) throws IOException{
+	public String readPropertiesFile(String property) throws IOException {
 		Properties prop = new Properties();
 		InputStream input = null;
 
@@ -29,15 +27,15 @@ public class Properties_Engine {
 			input = getClass().getClassLoader().getResourceAsStream(filename);
 			if (input == null) {
 				System.out.println("Sorry, unable to find " + filename);
-				
+
 			}
 
 			// load a properties file from class path, inside static method
 			prop.load(input);
 
-			// get the property value and print it out			
+			// get the property value and print it out
 			return prop.getProperty(property);
-			
+
 		} catch (IOException ex) {
 			System.out.println("Error on get file: " + ex);
 		} finally {
