@@ -35,7 +35,7 @@ public class Csv_Constructor {
 	private String alert_ServerCount;
 	@CsvBindByName(column = "Expected Savings")
 	private String expectedSavings;
-	@CsvBindByName(column = "costsAvoided")
+	@CsvBindByName(column = "Costs Avoided")
 	private String costsAvoided;
 
 	@CsvBindByName(column = "Class")
@@ -89,8 +89,8 @@ public class Csv_Constructor {
 	public String getSME_ClientContact() {
 		return SME_ClientContact;
 	}
-	public void setSME_ClientContact(String sME_ClientContact) {
-		SME_ClientContact = sME_ClientContact;
+	public void setSME_ClientContact(String SME_ClientContact) {
+		this.SME_ClientContact = SME_ClientContact;
 	}
 
 	public String getAutomataCategory() {
@@ -120,7 +120,6 @@ public class Csv_Constructor {
 	public void setCostsAvoided(String costsAvoided) {
 		this.costsAvoided = costsAvoided;
 	}
-	
 	
 	public String getClassField() {
 		return classField;
