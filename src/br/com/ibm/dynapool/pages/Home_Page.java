@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 10-oct-2018
 
-Last update date: 22-oct-2018
+Last update date: 25-oct-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -49,6 +49,18 @@ public class Home_Page {
 	By linksMnu = By.id("mnuLinks"); // Main Menu
 	By linksKanbanMnu = By.id("mnuLinksKanban");
 	By linksGAMPMnu = By.id("mnuLinksGAMP");
+	
+	By daynaNewsFrameLnk = By.linkText("javascript:showBlock('cardNews')");
+	By yourCurrentTasksFrameLnk = By.linkText("javascript:showBlock('cardYourTasks')");
+	By noAssigneesFrameLnk = By.linkText("javascript:showBlock('cardTasksNoAssignee')");
+	By openTasksFrameLnk = By.linkText("javascript:showBlock('cardTasks')");
+	By closedTasksFrameLnk = By.linkText("javascript:showBlock('cardTasksClosed')");
+	By draftsForApprovalFrameLnk = By.linkText("javascript:showBlock('cardRequests')");
+	By onHoldFrameLnk = By.linkText("javascript:showBlock('cardHold')");
+	By overdueFrameLnk = By.linkText("javascript:showBlock('cardOverdue')");
+	By stageApprovalsFrameLnk = By.linkText("javascript:showBlock('cardQA')");
+	By pendingExtensionsFrameLnk = By.linkText("javascript:showBlock('cardExt')");
+	By yourRequestsFrameLnk = By.linkText("javascript:showBlock('cardRequests')");
 
 	Selenium_Engine selEngine = new Selenium_Engine();
 
@@ -150,4 +162,50 @@ public class Home_Page {
 		selEngine.click(linksMnu);
 		selEngine.click(linksGAMPMnu);
 	}
+	
+	public void clickDaynaNewsFrame() {
+		selEngine.click(daynaNewsFrameLnk);
+	}
+	
+	public void clickYourCurrentTasksFrame() {
+		selEngine.click(yourCurrentTasksFrameLnk);
+	}
+	
+	public void clickNoAssigneesFrame() {
+		selEngine.click(noAssigneesFrameLnk);
+	}
+	
+	public void clickOpenTasksFrame() {
+		selEngine.click(openTasksFrameLnk);
+	}
+	
+	public void clickClosedTasksFrame() {
+		selEngine.click(closedTasksFrameLnk);
+	}
+	
+	public void clickDraftsForApprovalFrame() {
+		selEngine.click(draftsForApprovalFrameLnk);
+	}
+	
+	public void clickOnHoldFrame() {
+		selEngine.click(onHoldFrameLnk);
+	}
+	
+	public void clickOverdueFrame() {
+		selEngine.click(overdueFrameLnk);
+	}
+	
+	public void clickStageApprovalsFrame() {
+		selEngine.click(stageApprovalsFrameLnk);
+	}
+	
+	public void clickPendingExtensionsFrame() {
+		selEngine.click(pendingExtensionsFrameLnk);
+	}
+	
+	public void clickYourRequestsFrame() {
+		selEngine.click(yourRequestsFrameLnk);
+	}
+	
 }
+
