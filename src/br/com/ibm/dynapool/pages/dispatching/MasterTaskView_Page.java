@@ -66,7 +66,7 @@ public class MasterTaskView_Page extends Home_Page {
 	By fourthChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
 	By fifthChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
