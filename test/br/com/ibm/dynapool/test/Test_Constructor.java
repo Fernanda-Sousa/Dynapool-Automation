@@ -49,12 +49,12 @@ public class Test_Constructor {
 //		extent.endTest(logger);
 //	}
 	@AfterMethod
-	public void getResult(ITestResult result) throws IOException {
+	public void getResult(ITestResult result) throws Exception {
+		String screenshotPath = getScreenshot(result.getName());
 		if (result.getStatus() == ITestResult.FAILURE) {
 			logger.log(LogStatus.FAIL, "Test Case Failed is " + result.getName());
 			logger.log(LogStatus.FAIL, "Test Case Failed is " + result.getThrowable());
 			try {		
-				String screenshotPath = getScreenshot(result.getName());
 				logger.log(LogStatus.FAIL, logger.addScreenCapture(screenshotPath));
 			} catch (Exception e) {
 
@@ -62,6 +62,9 @@ public class Test_Constructor {
 			}	
 		} else if (result.getStatus() == ITestResult.SKIP) {
 			logger.log(LogStatus.SKIP, "Test Case Skipped is " + result.getName());
+			logger.log(LogStatus.SKIP, logger.addScreenCapture(screenshotPath));
+		}else if(result.getStatus() == ITestResult.SUCCESS) {
+			logger.log(LogStatus.PASS, logger.addScreenCapture(screenshotPath));
 		}
 	}
 
