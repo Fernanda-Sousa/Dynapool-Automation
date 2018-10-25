@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 15-oct-2018
 
-Last update date: 15-oct-2018
+Last update date: 25-oct-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -62,19 +62,22 @@ public class OpportunityView_Page extends Home_Page {
 	By fourthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
 	By fifthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
 	}
-	
 	
 	public void clickEditTab() {
 		selEngine.click(editLnk);
 	}
 
 	public int getIntegerId() {
-		return Integer.parseInt(driver.findElement(idTxt).getText());
+		return selEngine.getIntegerContent(idTxt);
+	}
+	
+	public String getId() {
+		return selEngine.getContent(idTxt);
 	}
 
 	public boolean compareId(String strId) {
