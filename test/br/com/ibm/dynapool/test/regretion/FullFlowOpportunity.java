@@ -33,8 +33,8 @@ import br.com.ibm.dynapool.test.Test_Constructor;
 
 public class FullFlowOpportunity extends Test_Constructor {
 
-	int id;
-	
+	String id;
+
 	Login_Page login = new Login_Page();
 	Home_Page home = new Home_Page();
 	OpportunityRequest_Page request = new OpportunityRequest_Page();
@@ -114,12 +114,13 @@ public class FullFlowOpportunity extends Test_Constructor {
 		logger = extent.startTest("Approve Request Opportunity");
 
 		// Read CSV
-		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("approveRequestOpportunity"));
+		logger.log(LogStatus.INFO,
+				"Reading from Spreadsheet: " + prop.readPropertiesFile("csv_approveRequestOpportunity"));
 		Csv_Engine csvEng = new Csv_Engine();
 		List<Csv_Constructor> Appr = new LinkedList<>();
 //		logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
 
-		Appr = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("approveRequestOpportunity"));
+		Appr = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_approveRequestOpportunity"));
 
 		// Approve
 		for (Csv_Constructor csv : Appr) {
@@ -128,7 +129,7 @@ public class FullFlowOpportunity extends Test_Constructor {
 			list.doubleClickIdFilter();
 			list.clickFirstItemLink();
 
-			id = view.getIntegerId();
+			id = view.getId();
 			view.clickEditTab();
 
 			edit.setSquad(csv.getSquad());
@@ -142,9 +143,13 @@ public class FullFlowOpportunity extends Test_Constructor {
 			edit.setTechnicalAppNotes(csv.getTechnicalAppNotes());
 			edit.clickSaveButton();
 		}
-		/////////////////////////////////////////////////////////////////////////////////////////not working
-		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved. ID: " + String.valueOf(id));
-		logger.log(LogStatus.PASS, "The Request Approval was done correctly");
 
+		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved. ID: " + id));
+		logger.log(LogStatus.PASS, "The Request Approval was done correctly");
+	}
+
+	@Test(priority = 3)
+	public void SOPDefinition() {
+		
 	}
 }
