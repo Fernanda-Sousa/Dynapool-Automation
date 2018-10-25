@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 10-oct-2018
 
-Last update date: 19-oct-2018
+Last update date: 25-oct-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -269,7 +269,7 @@ public class Selenium_Engine {
 		return driver.findElements(by);
 	}
 
-	String getAttribute(By by, String attribute) {
+	public String getAttribute(By by, String attribute) {
 		return driver.findElement(by).getAttribute(attribute);
 	}
 
@@ -283,6 +283,10 @@ public class Selenium_Engine {
 
 	public int getIntegerContent(By by) {
 		return Integer.parseInt(driver.findElement(by).getText());
+	}
+	
+	public String getContent(By by) {
+		return driver.findElement(by).getText();
 	}
 
 	public boolean compareTextPartial(By by, String text) {
