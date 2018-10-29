@@ -63,6 +63,14 @@ public class Csv_Constructor {
 	private String holdJustification;
 	@CsvBindByName(column = "Hold Action")
 	private String holdAction;
+	
+	@CsvBindByName(column = "Extension Reason")
+	private String extensionReason;
+	@CsvBindByName(column = "Extension Suggested Date")
+	private String extensionSuggestedDate;
+	
+	@CsvBindByName(column = "Extension Justification")
+	private String extensionJustification;
 		
 	public String getTargetCountry() {
 		return targetCountry;
@@ -223,6 +231,27 @@ public class Csv_Constructor {
 	}
 	public void setHoldAction(String holdAction) {
 		this.holdAction = holdAction;
+	}
+	
+	public String getExtensionReason() {
+		return extensionReason;
+	}
+	public void setExtensionReason(String extensionReason) {
+		this.extensionReason = extensionReason;
+	}
+	
+	public String getExtensionSuggestedDate() {
+		return extensionSuggestedDate;
+	}
+	public void setExtensionSuggestedDate(String extensionSuggestedDate) {
+		this.extensionSuggestedDate = extensionSuggestedDate;
+	}
+	
+	public String getExtensionJustification() {
+		return extensionJustification;
+	}
+	public void setExtensionJustification(String extensionJustification) {
+		this.extensionJustification = extensionJustification;
 	}
 
 	
