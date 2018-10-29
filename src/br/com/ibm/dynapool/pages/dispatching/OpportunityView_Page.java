@@ -37,6 +37,9 @@ public class OpportunityView_Page extends Home_Page {
 	By summaryTxt = By.name("txtSummary");
 	By descriptionTxa = By.name("txaDescription");
 //TODO	By SME_ClientContactTxt = By.name("txtAccountsme");
+	By linkToSOPTxa = By.name("txaSopurl");
+	By currentEffortTxt = By.name("txtReffort");
+	By percentagemCompletedTxt = By.name("txtPercompleted");
 
 	By automataCategoryDpx = By.name("selDefautomatacategory");
 	By alert_ServerCountTxt = By.name("txtAutomatacount");
@@ -123,6 +126,18 @@ public class OpportunityView_Page extends Home_Page {
 //TODO public boolean compareSME_ClientContact(String strSME_ClientContact) {
 //		return selEngine.compareText(SME_ClientContactTxt, strSME_ClientContact);
 //	}
+	
+	public void setLinkSOP(String strLinkSOP) {
+		selEngine.setTextbox(linkToSOPTxa, strLinkSOP);
+	}
+	
+	public void setCurrentEffort(String strCurrentEffort) {
+		selEngine.setTextbox(currentEffortTxt, strCurrentEffort);
+	}
+	
+	public void setPercentageCompleted(String strPercentageCompleted) {
+		selEngine.setTextbox(percentagemCompletedTxt, strPercentageCompleted);
+	}
 
 	public boolean compareAutomataCategory(String strAutomataCategory) {
 		return selEngine.compareText(automataCategoryDpx, strAutomataCategory);
