@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 22-oct-2018
 
-Last update date: 22-oct-2018
+Last update date: 29-oct-2018
 Last updated by: Fernanda Pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -26,7 +26,7 @@ public class ExtensionRequest_Page extends Home_Page {
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
 
-	Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
