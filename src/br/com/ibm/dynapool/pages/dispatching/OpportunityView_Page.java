@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 15-oct-2018
 
-Last update date: 25-oct-2018
+Last update date: 29-oct-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -56,11 +56,11 @@ public class OpportunityView_Page extends Home_Page {
 	By invalidateBtn = By.name("btnInvalidate");
 	By deleteBtn = By.name("btnDelete");
 
-	By firstChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[2]");
-	By secondChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[3]");
-	By thirdChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[4]");
-	By fourthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
-	By fifthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
+	By firstChildLnk = By.xpath("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[2]");
+	By secondChildLnk = By.xpath("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[3]");
+	By thirdChildLnk = By.xpath("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[4]");
+	By fourthChildLnk = By.xpath("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
+	By fifthChildLnk = By.xpath("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
 
 	Selenium_Engine selEngine = new Selenium_Engine();
 	
@@ -77,7 +77,7 @@ public class OpportunityView_Page extends Home_Page {
 	}
 	
 	public String getId() {
-		return selEngine.getContent(idTxt);
+		return selEngine.getAttribute(idTxt, "value");
 	}
 
 	public boolean compareId(String strId) {
