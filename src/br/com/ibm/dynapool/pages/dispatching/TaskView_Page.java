@@ -72,7 +72,7 @@ public class TaskView_Page extends Home_Page {
 	}
 	
 	public void setDiscussion(String strDiscussion) {
-		selEngine.setTextbox(descriptionTxa, strDiscussion);
+		selEngine.setTextbox(discussionTxa, strDiscussion);
 	}
 	
 	public void clickEditTab() {
