@@ -16,7 +16,7 @@ import org.openqa.selenium.By;
 import br.com.ibm.dynapool.engine.Selenium_Engine;
 
 public class Home_Page {
-
+	// Menus
 	By requestMnu = By.id("mnuRequest"); // Main Menu
 	By requestInternalMnu = By.id("mnuRequestInternal");
 	By requestMasterMnu = By.id("mnuRequestMaster");
@@ -50,6 +50,7 @@ public class Home_Page {
 	By linksKanbanMnu = By.id("mnuLinksKanban");
 	By linksGAMPMnu = By.id("mnuLinksGAMP");
 	
+	// Frames
 	By daynaNewsFrameLnk = By.linkText("javascript:showBlock('cardNews')");
 	By yourCurrentTasksFrameLnk = By.linkText("javascript:showBlock('cardYourTasks')");
 	By noAssigneesFrameLnk = By.linkText("javascript:showBlock('cardTasksNoAssignee')");
@@ -62,6 +63,17 @@ public class Home_Page {
 	By pendingExtensionsFrameLnk = By.linkText("javascript:showBlock('cardExt')");
 	By yourRequestsFrameLnk = By.linkText("javascript:showBlock('cardRequests')");
 
+	// Header
+	By logoLnk = By.linkText("navigateTo('https://dynapool.ipctrmx02.com/dynatest/home.jsp')");
+	By searchBarTxt = By.name("txtHomeSearch");
+	By magnifierBtn = By.linkText("javascript:submitHome();");
+	By changeThemeBtn = By.linkText("javascript:showDiv('themeSelector', false)");
+	By lightThemeBtn = By.linkText("javascript:changeTheme('standard')");
+	By darkThemeBtn = By.linkText("javascript:changeTheme('darks')");
+	By exitBtn = By.cssSelector("#header > div.hdrRightPanel > div:nth-child(2)");
+	By profileBtn = By.className("hdrUser");
+	
+	
 	Selenium_Engine selEngine = new Selenium_Engine();
 
 	public void clickRequestInternal() {
@@ -207,5 +219,34 @@ public class Home_Page {
 		selEngine.click(yourRequestsFrameLnk);
 	}
 	
+	public void clickLogo() {
+		selEngine.click(logoLnk);
+	}
+	
+	public void setSearchBar(String strSearchBar) {
+		selEngine.setTextbox(searchBarTxt, strSearchBar);
+	}
+	
+	public void clickMagnifierButton() {
+		selEngine.click(magnifierBtn);
+	}
+	
+	public void clickLightThemeButton() {
+		selEngine.click(changeThemeBtn);
+		selEngine.click(lightThemeBtn);
+	}
+	
+	public void clickDarkThemeButton() {
+		selEngine.click(changeThemeBtn);
+		selEngine.click(darkThemeBtn);
+	}
+	
+	public void clickExitButton() {
+		selEngine.click(exitBtn);
+	}
+	
+	public void clickProfileButton() {
+		selEngine.click(profileBtn);
+	}	
 }
 
