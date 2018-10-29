@@ -98,6 +98,10 @@ public class TaskView_Page extends Home_Page {
 	public int getIntegerIdMaster(By masterTaskId) {
 		return Integer.parseInt(driver.findElement(masterTaskId).getText());
 	}
+	
+	public String getId() {
+		return selEngine.getAttribute(idTxt, "value");
+	}
 
 	public boolean compareId(String strId) {
 		return selEngine.compareText(idTxt, strId);
