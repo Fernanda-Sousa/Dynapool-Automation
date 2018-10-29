@@ -43,10 +43,14 @@ public class ExtensionView_Page extends Home_Page {
 	By closeBtn = By.name("btnClose");
 	By deleteBtn = By.name("btnDelete");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
+	}
+	
+	public void setJustification(String strJustification) {
+		selEngine.setTextbox(justificationTxa, strJustification);
 	}
 	
 	public void clickEditTab() {
