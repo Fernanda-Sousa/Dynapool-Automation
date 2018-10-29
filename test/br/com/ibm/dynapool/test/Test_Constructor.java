@@ -1,3 +1,14 @@
+/*
+Created by: Fernanda Pereira (ferps@br.ibm.com)
+Date: 15-oct-2018
+
+Last update date: 29-oct-2018
+Last updated by: Fernanda Pereira (ferps@br.ibm.com)
+
+Version: 1.0.0.0
+Description: 
+*/
+
 package br.com.ibm.dynapool.test;
 
 import java.io.File;
@@ -25,7 +36,13 @@ import br.com.ibm.dynapool.csv.Csv_Constructor;
 import br.com.ibm.dynapool.engine.Csv_Engine;
 import br.com.ibm.dynapool.engine.Properties_Engine;
 import br.com.ibm.dynapool.engine.Selenium_Engine;
+import br.com.ibm.dynapool.pages.Home_Page;
+import br.com.ibm.dynapool.pages.dispatching.ExtensionEdit_Page;
+import br.com.ibm.dynapool.pages.dispatching.ExtensionFilter_Page;
+import br.com.ibm.dynapool.pages.dispatching.ExtensionList_Page;
+import br.com.ibm.dynapool.pages.dispatching.ExtensionView_Page;
 import br.com.ibm.dynapool.pages.dispatching.TaskView_Page;
+import br.com.ibm.dynapool.pages.dispatching.exception.ExtensionRequest_Page;
 import br.com.ibm.dynapool.pages.dispatching.exception.OnHold_Page;
 
 public class Test_Constructor {
@@ -33,9 +50,16 @@ public class Test_Constructor {
 	protected ExtentTest logger;
 	protected Properties_Engine prop = new Properties_Engine();
 	protected Selenium_Engine selEngine = new Selenium_Engine();
-	
+
 	OnHold_Page onHold = new OnHold_Page();
 	TaskView_Page taskView = new TaskView_Page();
+	ExtensionView_Page extView = new ExtensionView_Page();
+	ExtensionRequest_Page extReq = new ExtensionRequest_Page();
+	Home_Page home = new Home_Page();
+	ExtensionList_Page extList = new ExtensionList_Page();
+	ExtensionFilter_Page extFilter = new ExtensionFilter_Page();
+	
+	String taskId;
 
 	@BeforeTest
 	public void startReport() throws IOException {
@@ -99,12 +123,8 @@ public class Test_Constructor {
 	}
 
 	// On Hold
-	public void executeOnHold() throws IOException {
-		putOnHold();
-	}
-	
-	public void putOnHold() throws IOException {
-		
+	public void onHold() throws IOException {
+
 		logger = extent.startTest("On hold");
 
 		// Read CSV
@@ -115,9 +135,8 @@ public class Test_Constructor {
 
 		Hold = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_onHold"));
 
-		// Hold
 		for (Csv_Constructor csv : Hold) {
-
+			// Put on hold
 			taskView.clickOnHoldButton();
 
 			onHold.setAditionalEmail(csv.getHoldAditionalEmail());
@@ -129,9 +148,61 @@ public class Test_Constructor {
 			onHold.clickSaveButton();
 
 			selEngine.alertClick();
+
+			// Resume
+			taskView.clickResumeOnHoldButton();
+
+			onHold.clickResumeButton();
+
+			selEngine.alertClick();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
-		logger.log(LogStatus.PASS, "The task was put on hold correctly");
+		logger.log(LogStatus.PASS, "The On hold process was done correctly");
 	}
+
+	// Extension
+	public void extension() throws IOException {
+		logger = extent.startTest("Extension");
+
+		// Read CSV
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_Extension"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> Ext = new LinkedList<>();
+//		logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		Ext = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_Extension"));
+
+		
+		for (Csv_Constructor csv : Ext) {
+			// Request Extension
+			taskId = taskView.getId();
+			taskView.clickExtensionButton();
+						
+			extReq.setReason(csv.getExtensionReason());
+			extReq.setSuggestedDate(csv.getExtensionSuggestedDate());
+			selEngine.click(By.className("label"));			
+			
+			extReq.clickSaveButton();
+			
+			// Approve the extension
+			selEngine.changeUser("disp");
+			
+			home.clickDispatchExtension();
+			extList.clickMagnifierFilter();
+			extFilter.setTaskId(taskId);
+			extFilter.clickApply();
+			
+			extList.clickFirstItemLink();
+			
+			extView.setJustification(csv.getExtensionJustification());
+			
+			extView.clickApproveButton();
+			
+			selEngine.alertClick();
+		}
+		
+		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+		logger.log(LogStatus.PASS, "The Extension process was done correctly");
+	}	
 }
