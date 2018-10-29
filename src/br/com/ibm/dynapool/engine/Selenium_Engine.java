@@ -22,6 +22,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -32,6 +33,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
+import br.com.ibm.dynapool.pages.Home_Page;
+import br.com.ibm.dynapool.pages.Login_Page;
 
 public class Selenium_Engine {
 
@@ -284,8 +288,9 @@ public class Selenium_Engine {
 	public int getIntegerContent(By by) {
 		return Integer.parseInt(driver.findElement(by).getText());
 	}
-	
+
 	public String getContent(By by) {
+		moveScreen(by);
 		return driver.findElement(by).getText();
 	}
 
@@ -303,5 +308,34 @@ public class Selenium_Engine {
 		date = c.getTime();
 		String startDate = dateFormat.format(date);
 		setTextbox(by, startDate);
+	}
+
+	public void login(String role) throws IOException {
+		Login_Page login = new Login_Page();
+
+		login.setUserName(prop.readPropertiesFile(role + "_user"));
+		login.setUserPassword(prop.readPropertiesFile(role + "_pass"));
+		login.setGDPRcheckbox(true);
+		login.clickLoginButton();
+		waitForPageLoad();
+	}
+
+	public void changeUser(String newRole) throws IOException {
+		// Configuration
+		Login_Page login = new Login_Page();
+		Home_Page home = new Home_Page();
+
+		openURL(prop.readPropertiesFile("testwebsite"));
+		waitForPageLoad();
+
+		// Logout
+		home.clickExitButton();
+
+		// Login
+		login.setUserName(prop.readPropertiesFile(newRole + "_user"));
+		login.setUserPassword(prop.readPropertiesFile(newRole + "_pass"));
+		login.setGDPRcheckbox(true);
+		login.clickLoginButton();
+		waitForPageLoad();
 	}
 }
