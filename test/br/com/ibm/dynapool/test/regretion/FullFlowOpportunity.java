@@ -40,7 +40,7 @@ public class FullFlowOpportunity extends Test_Constructor {
 	Home_Page home = new Home_Page();
 	OpportunityRequest_Page request = new OpportunityRequest_Page();
 	OpportunityList_Page list = new OpportunityList_Page();
-	OpportunityView_Page viewOpp = new OpportunityView_Page();
+	OpportunityView_Page view = new OpportunityView_Page();
 	OpportunityEdit_Page edit = new OpportunityEdit_Page();
 	OpportunityFilter_Page filter = new OpportunityFilter_Page();
 	TaskView_Page viewTask = new TaskView_Page();
@@ -119,8 +119,8 @@ public class FullFlowOpportunity extends Test_Constructor {
 			list.doubleClickIdFilter();
 			list.clickFirstItemLink();
 
-			id = viewOpp.getId();
-			viewOpp.clickEditTab();
+			id = view.getId();
+			view.clickEditTab();
 
 			edit.setSquad(csv.getSquad());
 			edit.setOwner(csv.getOwner());
@@ -139,11 +139,11 @@ public class FullFlowOpportunity extends Test_Constructor {
 	}
 
 	@Test(priority = 3)
-	public void StartSOPDefinition() throws IOException {
+	public void startSOPDefinition() throws IOException {
 
 		selEngine.changeUser("dev");
 
-		logger = extent.startTest("SOP Defination");
+		logger = extent.startTest("Start SOP Defination");
 
 		// Read CSV
 		logger.log(LogStatus.INFO,
@@ -165,7 +165,7 @@ public class FullFlowOpportunity extends Test_Constructor {
 			list.clickFirstItemLink();
 			
 			selEngine.waitForPageLoad();
-			viewOpp.clickFirstChildLink();
+			view.clickFirstChildLink();
 			viewTask.setDiscussion(csv.getDiscussion());
 			viewTask.clickStartButton();
 			
@@ -175,13 +175,38 @@ public class FullFlowOpportunity extends Test_Constructor {
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The Task was start correctly");
 	}
-	
+	////////////////////////////////////////////////////////////////////////////////////////////Incompleto
 	@Test(priority = 4)
+	public void createSOP() throws IOException {
+		
+		logger = extent.startTest("Create a SOP");
+
+		// Read CSV
+		logger.log(LogStatus.INFO,
+				"Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunitySOPDefinition"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> Link = new LinkedList<>();
+//		logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		Link = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunitySOPDefinition"));
+
+		// Approve
+		for (Csv_Constructor csv : Link) {
+			view.setLinkSOP(csv.getSOPLink());
+			view.setCurrentEffort(csv.getCurrentEffort());
+			view.setPercentageCompleted(csv.getPercentageCompleted());
+		}
+		
+		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+		logger.log(LogStatus.PASS, "The Task was start correctly");
+	}
+	
+	@Test(priority = 5)
 	public void OnHoldProcess() throws IOException {
 		onHold();
 	}
 	
-	@Test(priority = 5)
+	@Test(priority = 6)
 	public void ExtensionProcess() throws IOException {
 		extension();
 	}
