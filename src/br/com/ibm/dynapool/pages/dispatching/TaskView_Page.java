@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 15-oct-2018
 
-Last update date: 15-oct-2018
+Last update date: 26-oct-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -69,6 +69,10 @@ public class TaskView_Page extends Home_Page {
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
+	}
+	
+	public void setDiscussion(String strDiscussion) {
+		selEngine.setTextbox(descriptionTxa, strDiscussion);
 	}
 	
 	public void clickEditTab() {
