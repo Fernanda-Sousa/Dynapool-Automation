@@ -52,9 +52,9 @@ public class Csv_Constructor {
 	private String technicalAppNotes;
 	@CsvBindByName(column = "Class")
 	private String classField;
-	
-
-	
+	@CsvBindByName(column = "Discussion")
+	private String discussion;
+		
 	public String getTargetCountry() {
 		return targetCountry;
 	}
@@ -179,6 +179,13 @@ public class Csv_Constructor {
 	}
 	public void setClassField(String classField) {
 		this.classField = classField;
+	}
+	
+	public String getDiscussion() {
+		return discussion;
+	}
+	public void setDiscussion(String discussion) {
+		this.discussion = discussion;
 	}
 
 }
