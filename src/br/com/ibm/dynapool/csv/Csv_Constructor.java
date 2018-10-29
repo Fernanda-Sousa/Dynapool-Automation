@@ -54,6 +54,15 @@ public class Csv_Constructor {
 	private String classField;
 	@CsvBindByName(column = "Discussion")
 	private String discussion;
+	
+	@CsvBindByName(column = "Hold Aditional E-mail")
+	private String holdAditionalEmail;
+	@CsvBindByName(column = "Hold Category")
+	private String holdCategory;
+	@CsvBindByName(column = "Hold Justification")
+	private String holdJustification;
+	@CsvBindByName(column = "Hold Action")
+	private String holdAction;
 		
 	public String getTargetCountry() {
 		return targetCountry;
@@ -187,5 +196,34 @@ public class Csv_Constructor {
 	public void setDiscussion(String discussion) {
 		this.discussion = discussion;
 	}
+	
+	public String getHoldAditionalEmail() {
+		return holdAditionalEmail;
+	}
+	public void setHoldAditionalEmail(String holdAditionalEmail) {
+		this.holdAditionalEmail = holdAditionalEmail;
+	}
+	
+	public String getHoldCategory() {
+		return holdCategory;
+	}
+	public void setHoldCategory(String holdCategory) {
+		this.holdCategory = holdCategory;
+	}
+	
+	public String getHoldJustification() {
+		return holdJustification;
+	}
+	public void setHoldJustification(String holdJustification) {
+		this.holdJustification = holdJustification;
+	}
+	
+	public String getHoldAction() {
+		return holdAction;
+	}
+	public void setHoldAction(String holdAction) {
+		this.holdAction = holdAction;
+	}
 
+	
 }
