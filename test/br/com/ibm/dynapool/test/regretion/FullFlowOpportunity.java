@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 19-oct-2018
 
-Last update date: 24-oct-2018
+Last update date: 29-oct-2018
 Last updated by: Fernanda Pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -17,6 +17,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.LogStatus;
@@ -24,10 +25,11 @@ import com.relevantcodes.extentreports.LogStatus;
 import br.com.ibm.dynapool.csv.Csv_Constructor;
 import br.com.ibm.dynapool.engine.Csv_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
-import br.com.ibm.dynapool.pages.Login_Page;
 import br.com.ibm.dynapool.pages.dispatching.OpportunityEdit_Page;
+import br.com.ibm.dynapool.pages.dispatching.OpportunityFilter_Page;
 import br.com.ibm.dynapool.pages.dispatching.OpportunityList_Page;
 import br.com.ibm.dynapool.pages.dispatching.OpportunityView_Page;
+import br.com.ibm.dynapool.pages.dispatching.TaskView_Page;
 import br.com.ibm.dynapool.pages.request.OpportunityRequest_Page;
 import br.com.ibm.dynapool.test.Test_Constructor;
 
@@ -35,47 +37,32 @@ public class FullFlowOpportunity extends Test_Constructor {
 
 	String id;
 
-	Login_Page login = new Login_Page();
 	Home_Page home = new Home_Page();
 	OpportunityRequest_Page request = new OpportunityRequest_Page();
 	OpportunityList_Page list = new OpportunityList_Page();
-	OpportunityView_Page view = new OpportunityView_Page();
+	OpportunityView_Page viewOpp = new OpportunityView_Page();
 	OpportunityEdit_Page edit = new OpportunityEdit_Page();
+	OpportunityFilter_Page filter = new OpportunityFilter_Page();
+	TaskView_Page viewTask = new TaskView_Page();
 
-	///////////////////////////////////////////////////////////////////////////////////////// TODO
-	///////////////////////////////////////////////////////////////////////////////////////// verify
-	///////////////////////////////////////////////////////////////////////////////////////// how
-	///////////////////////////////////////////////////////////////////////////////////////// to
-	///////////////////////////////////////////////////////////////////////////////////////// use
-	///////////////////////////////////////////////////////////////////////////////////////// login
-	///////////////////////////////////////////////////////////////////////////////////////// (on
-	///////////////////////////////////////////////////////////////////////////////////////// test
-	///////////////////////////////////////////////////////////////////////////////////////// page
-	///////////////////////////////////////////////////////////////////////////////////////// or
-	///////////////////////////////////////////////////////////////////////////////////////// engine)
+	@BeforeTest
+	private void openPage() throws IOException {
+		selEngine.openURL(prop.readPropertiesFile("testwebsite"));
+		selEngine.waitForPageLoad();
+	}
+
 	@Test(priority = 0)
 	public void executeLogin() throws IOException {
-		// Configuration
-		login.setSelEngine(selEngine);
-
 		logger = extent.startTest("Execute login");
 		logger.log(LogStatus.INFO, "Using URL: " + prop.readPropertiesFile("testwebsite"));
 
-		selEngine.openURL(prop.readPropertiesFile("testwebsite"));
-		selEngine.waitForPageLoad();
-
-		// Login
-		login.setUserName(prop.readPropertiesFile("adminuser"));
-		login.setUserPassword(prop.readPropertiesFile("adminuser"));
-		login.setGDPRcheckbox(true);
-		login.clickLoginButton();
-		selEngine.waitForPageLoad();
+		selEngine.login("dev");
 
 		Assert.assertTrue(selEngine.verifyTextOnFieldPartial("IBM Latin America - Dynamic Automation Team"));
 		logger.log(LogStatus.PASS, "Test Case Passed. Home Page loaded");
 	}
 
-	@Test(priority = 1) // dev
+	@Test(priority = 1)
 	public void requestOpportunity() throws IOException {
 		logger = extent.startTest("Request Opportunity");
 
@@ -111,6 +98,9 @@ public class FullFlowOpportunity extends Test_Constructor {
 
 	@Test(priority = 2) // adm
 	public void approveRequest() throws IOException {
+
+		selEngine.changeUser("admin");
+
 		logger = extent.startTest("Approve Request Opportunity");
 
 		// Read CSV
@@ -129,8 +119,8 @@ public class FullFlowOpportunity extends Test_Constructor {
 			list.doubleClickIdFilter();
 			list.clickFirstItemLink();
 
-			id = view.getId();
-			view.clickEditTab();
+			id = viewOpp.getId();
+			viewOpp.clickEditTab();
 
 			edit.setSquad(csv.getSquad());
 			edit.setOwner(csv.getOwner());
@@ -149,7 +139,42 @@ public class FullFlowOpportunity extends Test_Constructor {
 	}
 
 	@Test(priority = 3)
-	public void SOPDefinition() {
+	public void StartSOPDefinition() throws IOException {
+
+		selEngine.changeUser("dev");
+
+		logger = extent.startTest("SOP Defination");
+
+		// Read CSV
+		logger.log(LogStatus.INFO,
+				"Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunitySOPDefinition"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> Start = new LinkedList<>();
+//		logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		Start = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunitySOPDefinition"));
+
+		// Approve
+		for (Csv_Constructor csv : Start) {
+			home.clickDispatchOpportunity();
+
+			list.clickMagnifierFilter();
+			filter.setId(id);
+			filter.clickApplyButton();
+
+			list.clickFirstItemLink();
+			
+			selEngine.waitForPageLoad();
+			viewOpp.clickFirstChildLink();
+			viewTask.setDiscussion(csv.getDiscussion());
+			viewTask.clickStartButton();
+			
+			selEngine.alertClick();		
+		}
 		
+		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+		logger.log(LogStatus.PASS, "The Task was start correctly");
 	}
+	
+	
 }
