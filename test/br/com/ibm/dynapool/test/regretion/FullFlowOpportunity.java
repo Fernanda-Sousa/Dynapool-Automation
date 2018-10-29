@@ -32,7 +32,6 @@ import br.com.ibm.dynapool.pages.dispatching.OpportunityView_Page;
 import br.com.ibm.dynapool.pages.dispatching.TaskView_Page;
 import br.com.ibm.dynapool.pages.request.OpportunityRequest_Page;
 import br.com.ibm.dynapool.test.Test_Constructor;
-import br.com.ibm.dynapool.test.unit.OnHold;
 
 public class FullFlowOpportunity extends Test_Constructor {
 
@@ -45,7 +44,6 @@ public class FullFlowOpportunity extends Test_Constructor {
 	OpportunityEdit_Page edit = new OpportunityEdit_Page();
 	OpportunityFilter_Page filter = new OpportunityFilter_Page();
 	TaskView_Page viewTask = new TaskView_Page();
-	OnHold onHold = new OnHold();
 
 	@BeforeTest
 	private void openPage() throws IOException {
@@ -179,10 +177,14 @@ public class FullFlowOpportunity extends Test_Constructor {
 	}
 	
 	@Test(priority = 4)
-	public void OnHold() throws IOException {
-
-		onHold.putOnHold();
-		
+	public void OnHoldProcess() throws IOException {
+		onHold();
 	}
+	
+	@Test(priority = 5)
+	public void ExtensionProcess() throws IOException {
+		extension();
+	}
+	
 	
 }
