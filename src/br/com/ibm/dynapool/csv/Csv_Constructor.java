@@ -37,6 +37,12 @@ public class Csv_Constructor {
 	private String expectedSavings;
 	@CsvBindByName(column = "Costs Avoided")
 	private String costsAvoided;
+	@CsvBindByName(column = "SOP Link")
+	private String SOPLink;
+	@CsvBindByName(column = "Current Effort")
+	private String currentEffort;
+	@CsvBindByName(column = "Percentage Completed")
+	private String percentageCompleted;
 
 	@CsvBindByName(column = "Squad")
 	private String squad;
@@ -149,6 +155,27 @@ public class Csv_Constructor {
 		this.costsAvoided = costsAvoided;
 	}
 		
+	public String getSOPLink() {
+		return SOPLink;
+	}
+	public void setSOPLink(String sOPLink) {
+		SOPLink = sOPLink;
+	}
+	
+	public String getCurrentEffort() {
+		return currentEffort;
+	}
+	public void setCurrentEffort(String currentEffort) {
+		this.currentEffort = currentEffort;
+	}
+	
+	public String getPercentageCompleted() {
+		return percentageCompleted;
+	}
+	public void setPercentageCompleted(String percentageCompleted) {
+		this.percentageCompleted = percentageCompleted;
+	}
+	
 	public String getSquad() {
 		return squad;
 	}
