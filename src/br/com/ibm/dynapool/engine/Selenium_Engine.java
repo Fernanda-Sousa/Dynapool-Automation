@@ -189,7 +189,7 @@ public class Selenium_Engine {
 //        waitElement(element);
 			driver.findElement(element).sendKeys(text);
 		} catch (Exception e) {
-			System.out.println("Not able to edit Textbox, is it enabled?");
+			System.out.println("\nNot able to edit Textbox, is it enabled?");
 		}
 	}
 

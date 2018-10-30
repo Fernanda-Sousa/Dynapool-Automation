@@ -158,8 +158,7 @@ public class FullFlowOpportunity extends Test_Constructor {
 		logger = extent.startTest("Start SOP Defination");
 
 		// Read CSV
-		logger.log(LogStatus.INFO,
-				"Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunitySOPDefinition"));
+		logger.log(LogStatus.INFO,	"Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunitySOPDefinition"));
 		Csv_Engine csvEng = new Csv_Engine();
 		List<Csv_Constructor> Start = new LinkedList<>();
 //		logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
@@ -168,6 +167,7 @@ public class FullFlowOpportunity extends Test_Constructor {
 
 		// Approve
 		for (Csv_Constructor csv : Start) {
+			selEngine.waitForPageLoad();
 			home.clickDispatchOpportunity();
 
 			selEngine.waitForPageLoad();
@@ -205,12 +205,18 @@ public class FullFlowOpportunity extends Test_Constructor {
 		Link = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunitySOPDefinition"));
 
 		// Approve
-		for (Csv_Constructor csv : Link) {
-			viewTask.setLinkSOP(csv.getSOPLink());
-			viewTask.setCurrentEffort(csv.getCurrentEffort());
-			viewTask.setPercentageCompleted(csv.getPercentageCompleted());
-			viewTask.setDiscussion(csv.getDiscussion());
-			viewTask.clickUpdateButton();
+		try {
+			for (Csv_Constructor csv : Link) {
+				viewTask.setLinkSOP(csv.getSOPLink());
+				viewTask.setCurrentEffort(csv.getCurrentEffort());
+				viewTask.setPercentageCompleted(csv.getPercentageCompleted());
+				viewTask.setDiscussion(csv.getDiscussion());
+				viewTask.clickUpdateButton();
+			}
+
+		} catch (Exception e) {
+			Assert.assertTrue(false);
+			logger.log(LogStatus.FAIL, "The Task wasn't start correctly: " + e);
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -312,19 +318,19 @@ public class FullFlowOpportunity extends Test_Constructor {
 
 		// Approve
 		for (Csv_Constructor csv : Start) {
-
+			selEngine.waitForPageLoad();
 			viewTask.clickOpenOpportunity();
 			view.clickSecondChildLink();
-			
+
 			viewTask.setDiscussion(csv.getDiscussion());
 			viewTask.clickStartButton();
 			selEngine.alertClick();
 		}
-		
+
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The Implementation was started correctly");
 	}
-	
+
 	@Test(priority = 10)
 	public void resolveImplementation() throws IOException {
 		selEngine.sysOut("resolveImplementation");
@@ -345,16 +351,16 @@ public class FullFlowOpportunity extends Test_Constructor {
 
 			viewTask.clickOpenOpportunity();
 			view.clickSecondChildLink();
-			
+
 			viewTask.setCurrentEffort(csv.getCurrentEffort());
 			viewTask.setPercentageCompleted(csv.getPercentageCompleted());
 			viewTask.setDiscussion(csv.getDiscussion());
-			
+
 			viewTask.clickResolveButton();
 		}
-		
+
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The Implementation was resolved correctly");
 	}
-	
+
 }
