@@ -59,7 +59,7 @@ public class Home_Page {
 	By draftsForApprovalFrameLnk = By.cssSelector("div.smallCard:nth-child(6)");
 	By onHoldFrameLnk = By.cssSelector("div.smallCard:nth-child(7)");
 	By overdueFrameLnk = By.cssSelector("div.smallCard:nth-child(8)");
-	By stageApprovalsFrameLnk = By.cssSelector("div.smallCard:nth-child(9)");
+	By stageApprovalsFrameLnk = By.xpath("/html/body/div[1]/div[4]/div[8]");
 	By pendingExtensionsFrameLnk = By.cssSelector("div.smallCard:nth-child(10)");
 	By yourRequestsFrameLnk = By.cssSelector("div.smallCard:nth-child(5)");//
 
@@ -208,6 +208,7 @@ public class Home_Page {
 	}
 	
 	public void clickStageApprovalsFrame() {
+		selEngine.waitForPageLoad();
 		selEngine.click(stageApprovalsFrameLnk);
 	}
 	
