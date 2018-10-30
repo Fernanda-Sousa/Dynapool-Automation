@@ -56,12 +56,11 @@ public class TaskEdit_Page extends Home_Page {
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
 	}
-	
 	
 	public boolean compareId(String strId) {
 		return selEngine.compareText(idTxt, strId);
@@ -201,6 +200,14 @@ Selenium_Engine selEngine;
 
 	public void setDueDate(String strDueDate) {
 		selEngine.setTextbox(dueDateDtf, strDueDate);
+	}
+	
+	public void clickSOPApprovedNo() {
+		selEngine.click(SOPApprovedNoRdb);
+	}
+	
+	public void clickSOPApprovedYes() {
+		selEngine.click(SOPApprovedYesRdb);
 	}
 
 	public void clickSaveButton() {
