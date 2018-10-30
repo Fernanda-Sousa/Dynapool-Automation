@@ -51,17 +51,17 @@ public class Home_Page {
 	By linksGAMPMnu = By.id("mnuLinksGAMP");
 	
 	// Frames
-	By daynaNewsFrameLnk = By.linkText("javascript:showBlock('cardNews')");
-	By yourCurrentTasksFrameLnk = By.linkText("javascript:showBlock('cardYourTasks')");
-	By noAssigneesFrameLnk = By.linkText("javascript:showBlock('cardTasksNoAssignee')");
-	By openTasksFrameLnk = By.linkText("javascript:showBlock('cardTasks')");
-	By closedTasksFrameLnk = By.linkText("javascript:showBlock('cardTasksClosed')");
-	By draftsForApprovalFrameLnk = By.linkText("javascript:showBlock('cardRequests')");
-	By onHoldFrameLnk = By.linkText("javascript:showBlock('cardHold')");
-	By overdueFrameLnk = By.linkText("javascript:showBlock('cardOverdue')");
-	By stageApprovalsFrameLnk = By.linkText("javascript:showBlock('cardQA')");
-	By pendingExtensionsFrameLnk = By.linkText("javascript:showBlock('cardExt')");
-	By yourRequestsFrameLnk = By.linkText("javascript:showBlock('cardRequests')");
+	By daynaNewsFrameLnk = By.cssSelector("div.smallCard:nth-child(1)");
+	By yourCurrentTasksFrameLnk = By.cssSelector("div.smallCard:nth-child(2)");
+	By noAssigneesFrameLnk = By.cssSelector("div.smallCard:nth-child(3)");
+	By openTasksFrameLnk = By.cssSelector("div.smallCard:nth-child(4)");
+	By closedTasksFrameLnk = By.cssSelector("div.smallCard:nth-child(5)");//
+	By draftsForApprovalFrameLnk = By.cssSelector("div.smallCard:nth-child(6)");
+	By onHoldFrameLnk = By.cssSelector("div.smallCard:nth-child(7)");
+	By overdueFrameLnk = By.cssSelector("div.smallCard:nth-child(8)");
+	By stageApprovalsFrameLnk = By.cssSelector("div.smallCard:nth-child(9)");
+	By pendingExtensionsFrameLnk = By.cssSelector("div.smallCard:nth-child(10)");
+	By yourRequestsFrameLnk = By.cssSelector("div.smallCard:nth-child(5)");//
 
 	// Header
 	By logoLnk = By.linkText("navigateTo('https://dynapool.ipctrmx02.com/dynatest/home.jsp')");
@@ -247,6 +247,6 @@ public class Home_Page {
 	
 	public void clickProfileButton() {
 		selEngine.click(profileBtn);
-	}	
+	}
 }
 
