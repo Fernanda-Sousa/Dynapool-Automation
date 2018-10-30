@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 15-oct-2018
 
-Last update date: 26-oct-2018
+Last update date: 30-oct-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -45,6 +45,7 @@ public class TaskView_Page extends Home_Page {
 	By descriptionTxa = By.name("txaDescription");
 	By approvedRdb = By.name("rdoYnapproved");
 //TODO	By SOPApprovedRdb = By.name("rdoYnapproved"); 
+	By linkToSOPTxa = By.name("txaSopurl");
 
 	By currentStatusDpx = By.name("selDefstatus");
 	By sinceDtf = By.name("selDefstatus");
@@ -71,8 +72,20 @@ public class TaskView_Page extends Home_Page {
 		this.selEngine = selEngine;
 	}
 	
+	public void setLinkSOP(String strLinkSOP) {
+		selEngine.setTextbox(linkToSOPTxa, strLinkSOP);
+	}
+	
 	public void setDiscussion(String strDiscussion) {
 		selEngine.setTextbox(discussionTxa, strDiscussion);
+	}
+	
+	public void setCurrentEffort(String strCurrentEffort) {
+		selEngine.setTextbox(currentEffortTxt, strCurrentEffort);
+	}
+	
+	public void setPercentageCompleted(String strPercentageCompleted) {
+		selEngine.setTextbox(percentageCompletedTxt, strPercentageCompleted);
 	}
 	
 	public void clickEditTab() {
