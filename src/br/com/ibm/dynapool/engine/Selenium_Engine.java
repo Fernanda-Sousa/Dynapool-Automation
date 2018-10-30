@@ -83,8 +83,8 @@ public class Selenium_Engine {
 	public void waitForPageLoad() {
 		Wait<WebDriver> wait = new WebDriverWait(driver, 60);
 		wait.until((WebDriver driver1) -> {
-			sysOut("Current Window State       : "
-					+ String.valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState")));
+//			sysOut("Current Window State       : "
+//					+ String.valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState")));
 			return String.valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState"))
 					.equals("complete");
 		});
