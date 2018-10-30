@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 15-oct-2018
 
-Last update date: 29-oct-2018
+Last update date: 30-oct-2018
 Last updated by: Fernanda Pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -37,7 +37,6 @@ import br.com.ibm.dynapool.engine.Csv_Engine;
 import br.com.ibm.dynapool.engine.Properties_Engine;
 import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
-import br.com.ibm.dynapool.pages.dispatching.ExtensionEdit_Page;
 import br.com.ibm.dynapool.pages.dispatching.ExtensionFilter_Page;
 import br.com.ibm.dynapool.pages.dispatching.ExtensionList_Page;
 import br.com.ibm.dynapool.pages.dispatching.ExtensionView_Page;
@@ -171,7 +170,7 @@ public class Test_Constructor {
 		List<Csv_Constructor> Ext = new LinkedList<>();
 //		logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
 
-		Ext = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_Extension"));
+		Ext = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_extension"));
 
 		
 		for (Csv_Constructor csv : Ext) {
