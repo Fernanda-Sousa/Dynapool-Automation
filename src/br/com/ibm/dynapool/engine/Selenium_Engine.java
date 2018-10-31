@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 10-oct-2018
 
-Last update date: 25-oct-2018
+Last update date: 31-oct-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -94,6 +94,7 @@ public class Selenium_Engine {
 		waitForPageLoad();
 		moveScreen(by);
 		driver.findElement(by).click();
+		waitForPageLoad();
 	}
 
 	public void doubleClick(By by) {
@@ -101,6 +102,7 @@ public class Selenium_Engine {
 		driver.findElement(by).click();
 		waitForPageLoad();
 		driver.findElement(by).click();
+		waitForPageLoad();
 	}
 
 	/* Necessary driver on system/user path */
@@ -146,6 +148,7 @@ public class Selenium_Engine {
 			waitForPageLoad();
 			if (!driver.findElement(by).isSelected()) {
 				driver.findElement(by).click();
+				waitForPageLoad();
 			}
 		} catch (Exception e) {
 			System.out.println("Checkbox " + by.toString() + "is already selected");
@@ -157,6 +160,7 @@ public class Selenium_Engine {
 			waitForPageLoad();
 			if (driver.findElement(by).isSelected()) {
 				driver.findElement(by).click();
+				waitForPageLoad();
 			}
 		} catch (Exception e) {
 			System.out.println("Checkbox " + by.toString() + "is already unselected");
@@ -169,6 +173,7 @@ public class Selenium_Engine {
 
 		if (linkname.contains(" ")) {
 			linkname = linkname.split(" ")[0];
+			waitForPageLoad();
 		}
 		driver.findElement(By.partialLinkText(linkname)).click();
 	}
@@ -181,6 +186,7 @@ public class Selenium_Engine {
 			sleepSeconds(2);
 			Select selItem = new Select(driver.findElement(element));
 			selItem.selectByVisibleText(item);
+			waitForPageLoad();
 		} catch (Exception e) {
 			System.out.println("item " + item + " not found on dropdown");
 		}
@@ -194,6 +200,7 @@ public class Selenium_Engine {
 			driver.findElement(element).clear();
 //        waitElement(element);
 			driver.findElement(element).sendKeys(text);
+			waitForPageLoad();
 		} catch (Exception e) {
 			System.out.println("\nNot able to edit Textbox, is it enabled?");
 		}
@@ -227,7 +234,8 @@ public class Selenium_Engine {
 		try {
 			waitForPageLoad();
 			if (driver.getPageSource().contains(text)) {
-				return true;
+				waitForPageLoad();
+				return true;				
 			}
 		} catch (Exception e) {
 			System.out.println("No text found for string: " + text);
@@ -243,6 +251,7 @@ public class Selenium_Engine {
 			text1 = driver.findElement(By.linkText(text)).getText();
 			sysOut(text1);
 			if (text1.contains(text)) {
+				waitForPageLoad();
 				return true;
 			}
 		} catch (Exception e) {
@@ -256,6 +265,7 @@ public class Selenium_Engine {
 		JavascriptExecutor jse = (JavascriptExecutor) driver;
 		jse.executeScript("javascript:window.scrollBy(" + driver.findElement(by).getLocation().x + ","
 				+ driver.findElement(by).getLocation().y + ")");
+		waitForPageLoad();
 	}
 
 	public void waitElement(By by, int i) {
@@ -322,6 +332,7 @@ public class Selenium_Engine {
 		date = c.getTime();
 		String startDate = dateFormat.format(date);
 		setTextbox(by, startDate);
+		waitForPageLoad();
 	}
 
 	public void login(String role) throws IOException {
