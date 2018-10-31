@@ -41,7 +41,10 @@ public class TaskEdit_Page extends Home_Page {
 	By SOPApprovedNoRdb = By
 			.cssSelector(".frmLayout > tbody:nth-child(1) > tr:nth-child(18) > td:nth-child(2) > input:nth-child(1)");
 	By SOPApprovedYesRdb = By.cssSelector("input.enabled:nth-child(2)");
-
+	By deploymentApprovedNoRdb = By
+			.cssSelector("#panel > form > table > tbody > tr:nth-child(17) > td.field > input:nth-child(1)");
+	By deploymentApprovedYesRdb = By.cssSelector("#panel > form > table > tbody > tr:nth-child(17) > td.field > input:nth-child(2)");
+	
 	By currentStatusDpx = By.name("selDefstatus");
 	By previousStatusDpx = By.name("selLaststatus");
 	By currentEffortTxt = By.name("txtReffort");
@@ -208,6 +211,14 @@ public class TaskEdit_Page extends Home_Page {
 	
 	public void clickSOPApprovedYes() {
 		selEngine.click(SOPApprovedYesRdb);
+	}
+	
+	public void clickDeploymentApprovedNo() {
+		selEngine.click(deploymentApprovedNoRdb);
+	}
+	
+	public void clickDeploymentApprovedYes() {
+		selEngine.click(deploymentApprovedYesRdb);
 	}
 
 	public void clickSaveButton() {
