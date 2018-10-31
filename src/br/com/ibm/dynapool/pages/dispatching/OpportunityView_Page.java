@@ -187,6 +187,10 @@ public class OpportunityView_Page extends Home_Page {
 	public void clickThirdChildLink() {
 		selEngine.click(thirdChildLnk);
 	}
+	
+	public void clickFourthChildLnk() {
+		selEngine.click(fourthChildLnk);
+	}
 
 	public void clickFifthChildLink() {
 		selEngine.click(fifthChildLnk);
