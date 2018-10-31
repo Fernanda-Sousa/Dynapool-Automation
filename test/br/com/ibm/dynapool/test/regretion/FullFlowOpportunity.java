@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 19-oct-2018
 
-Last update date: 30-oct-2018
+Last update date: 31-oct-2018
 Last updated by: Fernanda Pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -83,7 +83,6 @@ public class FullFlowOpportunity extends Test_Constructor {
 
 		Req = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_requestOpportunity"));
 
-		// Request
 		for (Csv_Constructor csv : Req) {
 			home.clickRequestOpportunity();
 
@@ -122,7 +121,6 @@ public class FullFlowOpportunity extends Test_Constructor {
 
 		Appr = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_approveRequestOpportunity"));
 
-		// Approve
 		for (Csv_Constructor csv : Appr) {
 			home.clickDispatchOpportunity();
 
@@ -153,19 +151,20 @@ public class FullFlowOpportunity extends Test_Constructor {
 	public void startSOPDefinition() throws IOException {
 		selEngine.sysOut("startSOPDefinition");
 
+		selEngine.waitForPageLoad();
 		selEngine.changeUser("dev");
 
 		logger = extent.startTest("Start SOP Defination");
 
 		// Read CSV
-		logger.log(LogStatus.INFO,	"Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunitySOPDefinition"));
+		logger.log(LogStatus.INFO,
+				"Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunitySOPDefinition"));
 		Csv_Engine csvEng = new Csv_Engine();
 		List<Csv_Constructor> Start = new LinkedList<>();
 //		logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
 
 		Start = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunitySOPDefinition"));
 
-		// Approve
 		for (Csv_Constructor csv : Start) {
 			selEngine.waitForPageLoad();
 			home.clickDispatchOpportunity();
@@ -174,11 +173,13 @@ public class FullFlowOpportunity extends Test_Constructor {
 			list.clickMagnifierFilter();
 			filter.setId(id);
 			filter.clickApplyButton();
+			selEngine.waitForPageLoad();
 
 			list.clickFirstItemLink();
 
 			selEngine.waitForPageLoad();
 			view.clickFirstChildLink();
+			selEngine.waitForPageLoad();
 			viewTask.setDiscussion(csv.getDiscussion());
 			viewTask.clickStartButton();
 
@@ -204,13 +205,14 @@ public class FullFlowOpportunity extends Test_Constructor {
 
 		Link = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunitySOPDefinition"));
 
-		// Approve
 		try {
 			for (Csv_Constructor csv : Link) {
+				selEngine.waitForPageLoad();
 				viewTask.setLinkSOP(csv.getSOPLink());
 				viewTask.setCurrentEffort(csv.getCurrentEffort());
 				viewTask.setPercentageCompleted(csv.getPercentageCompleted());
 				viewTask.setDiscussion(csv.getDiscussion());
+
 				viewTask.clickUpdateButton();
 			}
 
@@ -274,11 +276,10 @@ public class FullFlowOpportunity extends Test_Constructor {
 
 		Resolve = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunitySOPDefinition"));
 
-		// Approve
 		for (Csv_Constructor csv : Resolve) {
 
 			selEngine.changeUser("dev");
-
+			selEngine.waitForPageLoad();
 			home.clickDispatchOpportunity();
 
 			selEngine.waitForPageLoad();
@@ -311,13 +312,12 @@ public class FullFlowOpportunity extends Test_Constructor {
 		logger.log(LogStatus.INFO,
 				"Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityImplementation"));
 		Csv_Engine csvEng = new Csv_Engine();
-		List<Csv_Constructor> Start = new LinkedList<>();
+		List<Csv_Constructor> StartImp = new LinkedList<>();
 //				logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
 
-		Start = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityImplementation"));
+		StartImp = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityImplementation"));
 
-		// Approve
-		for (Csv_Constructor csv : Start) {
+		for (Csv_Constructor csv : StartImp) {
 			selEngine.waitForPageLoad();
 			viewTask.clickOpenOpportunity();
 			view.clickSecondChildLink();
@@ -346,7 +346,6 @@ public class FullFlowOpportunity extends Test_Constructor {
 
 		Resolve = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityImplementation"));
 
-		// Approve
 		for (Csv_Constructor csv : Resolve) {
 
 			viewTask.clickOpenOpportunity();
@@ -357,10 +356,232 @@ public class FullFlowOpportunity extends Test_Constructor {
 			viewTask.setDiscussion(csv.getDiscussion());
 
 			viewTask.clickResolveButton();
+			selEngine.alertClick();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The Implementation was resolved correctly");
 	}
 
+// QA Review
+	@Test(priority = 11)
+	public void startQAReview() throws IOException {
+		selEngine.sysOut("startQAReview");
+
+		logger = extent.startTest("Start QAReview");
+
+		// Read CSV
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityQAReview"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> StartQAR = new LinkedList<>();
+//				logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		StartQAR = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityQAReview"));
+
+		for (Csv_Constructor csv : StartQAR) {
+			selEngine.changeUser("qatest");
+			selEngine.waitForPageLoad();
+
+			home.clickDispatchOpportunity();
+			selEngine.waitForPageLoad();
+
+			list.clickMagnifierFilter();
+			filter.setId(id);
+			filter.clickApplyButton();
+			selEngine.waitForPageLoad();
+
+			list.clickFirstItemLink();
+			selEngine.waitForPageLoad();
+
+			view.clickThirdChildLink();
+
+			viewTask.setDiscussion(csv.getDiscussion());
+			viewTask.clickStartButton();
+			selEngine.alertClick();
+		}
+
+		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+		logger.log(LogStatus.PASS, "The QA Review was started correctly");
+	}
+
+	@Test(priority = 12)
+	public void resolveQAReview() throws IOException {
+		selEngine.sysOut("resolveQAReview");
+
+		logger = extent.startTest("Resolve QAReview");
+
+		// Read CSV
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityQAReview"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> ResolveQAR = new LinkedList<>();
+//				logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		ResolveQAR = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityQAReview"));
+
+		for (Csv_Constructor csv : ResolveQAR) {
+			selEngine.waitForPageLoad();
+			viewTask.setCurrentEffort(csv.getCurrentEffort());
+			viewTask.setPercentageCompleted(csv.getPercentageCompleted());
+			viewTask.setDiscussion(csv.getDiscussion());
+
+			viewTask.clickResolveButton();
+			selEngine.alertClick();
+		}
+
+		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+		logger.log(LogStatus.PASS, "The QA Review was resolveed correctly");
+	}
+
+// QA Tests	
+	@Test(priority = 13)
+	public void skipQATests() throws IOException {
+		selEngine.sysOut("skipQATests");
+
+		logger = extent.startTest("Skip QA Tests");
+
+		// Read CSV
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityQAReview"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> SkipQAT = new LinkedList<>();
+//						logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		SkipQAT = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityQAReview"));
+
+		for (Csv_Constructor csv : SkipQAT) {
+
+			viewTask.clickOpenOpportunity();
+			view.clickFourthChildLnk();
+
+			viewTask.setDiscussion(csv.getDiscussion());
+
+			viewTask.clickSkipButton();
+			selEngine.alertClick();
+
+			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+			logger.log(LogStatus.PASS, "The QA Tests was skipped correctly");
+		}
+	}
+
+// Deployment
+	@Test(priority = 14)
+	public void startDeployment() throws IOException {
+		selEngine.sysOut("startDeployment");
+
+		logger = extent.startTest("Start Deployment");
+
+		// Read CSV
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityDeployment"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> StartDep = new LinkedList<>();
+//						logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		StartDep = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityDeployment"));
+
+		for (Csv_Constructor csv : StartDep) {
+			selEngine.changeUser("dev");
+			selEngine.waitForPageLoad();
+
+			home.clickDispatchOpportunity();
+			selEngine.waitForPageLoad();
+
+			list.clickMagnifierFilter();
+			filter.setId(id);
+			filter.clickApplyButton();
+			selEngine.waitForPageLoad();
+
+			list.clickFirstItemLink();
+			selEngine.waitForPageLoad();
+
+			view.clickFifthChildLink();
+			selEngine.waitForPageLoad();
+
+			viewTask.setDiscussion(csv.getDiscussion());
+			viewTask.clickStartButton();
+
+			selEngine.alertClick();
+			selEngine.waitForPageLoad();
+
+		}
+		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+		logger.log(LogStatus.PASS, "The Deployment was started correctly");
+	}
+
+	@Test(priority = 15)
+	public void approveDeployment() throws IOException {
+		selEngine.sysOut("approveDeploymen");
+
+		logger = extent.startTest("Approve Deployment");
+
+		selEngine.changeUser("qatest");
+		selEngine.waitForPageLoad();
+
+		home.clickDispatchOpportunity();
+		selEngine.waitForPageLoad();
+
+		list.clickMagnifierFilter();
+		filter.setId(id);
+		filter.clickApplyButton();
+		selEngine.waitForPageLoad();
+
+		list.clickFirstItemLink();
+		selEngine.waitForPageLoad();
+
+		view.clickFifthChildLink();
+		selEngine.waitForPageLoad();
+
+		viewTask.clickEditTab();
+		selEngine.waitForPageLoad();
+		editTask.clickDeploymentApprovedYes();
+		editTask.clickSaveButton();
+		selEngine.waitForPageLoad();
+		
+		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+		logger.log(LogStatus.PASS, "The Deployment was started correctly");
+	}
+	
+	@Test(priority = 16)
+	public void resolveDeployment() throws IOException {
+		selEngine.sysOut("resolveDeployment");
+
+		logger = extent.startTest("Resolve Deployment");
+
+		// Read CSV
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityDeployment"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> ResolveDep = new LinkedList<>();
+//						logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		ResolveDep = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityDeployment"));
+
+		for (Csv_Constructor csv : ResolveDep) {		
+			selEngine.waitForPageLoad();
+			selEngine.changeUser("dev");
+			selEngine.waitForPageLoad();
+
+			home.clickDispatchOpportunity();
+			selEngine.waitForPageLoad();
+
+			list.clickMagnifierFilter();
+			filter.setId(id);
+			filter.clickApplyButton();
+			selEngine.waitForPageLoad();
+
+			list.clickFirstItemLink();
+			selEngine.waitForPageLoad();
+
+			view.clickFifthChildLink();
+			selEngine.waitForPageLoad();
+
+			viewTask.setCurrentEffort(csv.getCurrentEffort());
+			viewTask.setPercentageCompleted(csv.getPercentageCompleted());
+			viewTask.setDiscussion(csv.getDiscussion());
+			viewTask.clickResolveButton();
+
+			selEngine.alertClick();
+			selEngine.waitForPageLoad();
+
+		}
+		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+		logger.log(LogStatus.PASS, "The Deployment was resolved correctly");
+	}
 }
