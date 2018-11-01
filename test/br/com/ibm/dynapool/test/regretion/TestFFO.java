@@ -39,9 +39,6 @@ public class TestFFO extends Test_Constructor {
 
 	String id;
 
-	Csv_Engine csvEng = new Csv_Engine();
-	List<Csv_Constructor> FileCSV = new LinkedList<>();
-
 	Home_Page home = new Home_Page();
 	OpportunityRequest_Page request = new OpportunityRequest_Page();
 	OpportunityList_Page list = new OpportunityList_Page();
@@ -53,11 +50,15 @@ public class TestFFO extends Test_Constructor {
 	StageApprovalsList_Page stageFrm = new StageApprovalsList_Page();
 
 	@BeforeTest
-	private void openPage() throws IOException {
+	private void openPage() {
 		selEngine.sysOut("openPage");
-		selEngine.openURL(prop.readPropertiesFile("testwebsite"));
-		selEngine.waitForPageLoad();
-		FileCSV = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowOpportunity"));
+		try {
+			selEngine.openURL(prop.readPropertiesFile("testwebsite"));
+			selEngine.waitForPageLoad();
+			FileCSV = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowOpportunity"));
+		} catch (IOException e) {
+			System.out.println("Error on openPage()" + e.getCause());
+		}
 	}
 
 	@Test(priority = 0)
@@ -80,6 +81,7 @@ public class TestFFO extends Test_Constructor {
 		logger = extent.startTest("Request Opportunity");
 
 		for (Csv_Constructor csv : FileCSV) {
+			selEngine.waitForPageLoad();
 			home.clickRequestOpportunity();
 
 			request.setCountry(csv.getTargetCountry());
@@ -95,6 +97,7 @@ public class TestFFO extends Test_Constructor {
 			request.setcostsAvoidedTxt(csv.getCostsAvoided());
 
 			request.clickSaveButton();
+			selEngine.waitForPageLoad();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -109,6 +112,7 @@ public class TestFFO extends Test_Constructor {
 		selEngine.changeUser("admin");
 
 		for (Csv_Constructor csv : FileCSV) {
+			selEngine.waitForPageLoad();
 			home.clickDispatchOpportunity();
 			selEngine.waitForPageLoad();
 			
@@ -140,12 +144,17 @@ public class TestFFO extends Test_Constructor {
 
 // SOP Definition
 	@Test(priority = 3)
-	public void startSOPDefinition() throws IOException {
+	public void startSOPDefinition() {
 		selEngine.sysOut("startSOPDefinition");
 		logger = extent.startTest("Start SOP Defination");
 
 		selEngine.waitForPageLoad();
-		selEngine.changeUser("dev");
+		try {
+			selEngine.changeUser("dev");
+		} catch (IOException e) {
+			System.out.println("Error on selEngine.changeUser(\"dev\");" + e.getCause());
+			e.printStackTrace();
+		}
 
 		for (Csv_Constructor csv : FileCSV) {
 			selEngine.waitForPageLoad();
@@ -165,7 +174,7 @@ public class TestFFO extends Test_Constructor {
 			selEngine.waitForPageLoad();
 			viewTask.setDiscussion(csv.getDiscussion());
 			viewTask.clickStartButton();
-
+			
 			selEngine.alertClick();
 			selEngine.waitForPageLoad();
 		}
@@ -219,9 +228,11 @@ public class TestFFO extends Test_Constructor {
 		selEngine.sysOut("ApproveSOP");
 		logger = extent.startTest("Approve SOP");
 
+		selEngine.waitForPageLoad();
 		selEngine.changeUser("qatest");
 
 		for (Csv_Constructor csv : FileCSV) {
+			selEngine.waitForPageLoad();
 			home.clickStageApprovalsFrame();
 			stageFrm.doubleClickIdFilter();
 			stageFrm.clickFirstItemFilter();
@@ -231,6 +242,7 @@ public class TestFFO extends Test_Constructor {
 			editTask.clickSOPApprovedYes();
 
 			editTask.clickSaveButton();
+			selEngine.waitForPageLoad();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -242,10 +254,10 @@ public class TestFFO extends Test_Constructor {
 		selEngine.sysOut("ResolveSOP");
 		logger = extent.startTest("Resolve SOP");
 
+		selEngine.changeUser("dev");
+		selEngine.waitForPageLoad();
+		
 		for (Csv_Constructor csv : FileCSV) {
-
-			selEngine.changeUser("dev");
-			selEngine.waitForPageLoad();
 			home.clickDispatchOpportunity();
 
 			selEngine.waitForPageLoad();
@@ -262,6 +274,7 @@ public class TestFFO extends Test_Constructor {
 			viewTask.clickResolveButton();
 
 			selEngine.alertClick();
+			selEngine.waitForPageLoad();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -284,6 +297,7 @@ public class TestFFO extends Test_Constructor {
 			viewTask.clickStartButton();
 
 			selEngine.alertClick();
+			selEngine.waitForPageLoad();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -296,6 +310,7 @@ public class TestFFO extends Test_Constructor {
 		logger = extent.startTest("Resolve Implementation");
 
 		for (Csv_Constructor csv : FileCSV) {
+			selEngine.waitForPageLoad();
 			viewTask.clickOpenOpportunity();
 			view.clickSecondChildLink();
 
@@ -305,6 +320,7 @@ public class TestFFO extends Test_Constructor {
 
 			viewTask.clickResolveButton();
 			selEngine.alertClick();
+			selEngine.waitForPageLoad();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -317,10 +333,10 @@ public class TestFFO extends Test_Constructor {
 		selEngine.sysOut("startQAReview");
 		logger = extent.startTest("Start QAReview");
 
+		selEngine.changeUser("qatest");
+		selEngine.waitForPageLoad();
+		
 		for (Csv_Constructor csv : FileCSV) {
-			selEngine.changeUser("qatest");
-			selEngine.waitForPageLoad();
-
 			home.clickDispatchOpportunity();
 			selEngine.waitForPageLoad();
 
@@ -338,6 +354,7 @@ public class TestFFO extends Test_Constructor {
 
 			viewTask.clickStartButton();
 			selEngine.alertClick();
+			selEngine.waitForPageLoad();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -357,6 +374,7 @@ public class TestFFO extends Test_Constructor {
 
 			viewTask.clickResolveButton();
 			selEngine.alertClick();
+			selEngine.waitForPageLoad();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -377,6 +395,7 @@ public class TestFFO extends Test_Constructor {
 
 			viewTask.clickSkipButton();
 			selEngine.alertClick();
+			selEngine.waitForPageLoad();
 		}
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The QA Tests was skipped correctly");
@@ -389,10 +408,10 @@ public class TestFFO extends Test_Constructor {
 		selEngine.sysOut("startDeployment");
 		logger = extent.startTest("Start Deployment");
 
+		selEngine.changeUser("dev");
+		selEngine.waitForPageLoad();
+		
 		for (Csv_Constructor csv : FileCSV) {
-			selEngine.changeUser("dev");
-			selEngine.waitForPageLoad();
-
 			home.clickDispatchOpportunity();
 			selEngine.waitForPageLoad();
 
@@ -457,11 +476,11 @@ public class TestFFO extends Test_Constructor {
 		selEngine.sysOut("resolveDeployment");
 		logger = extent.startTest("Resolve Deployment");
 
+		selEngine.waitForPageLoad();
+		selEngine.changeUser("dev");
+		selEngine.waitForPageLoad();
+		
 		for (Csv_Constructor csv : FileCSV) {
-			selEngine.waitForPageLoad();
-			selEngine.changeUser("dev");
-			selEngine.waitForPageLoad();
-
 			home.clickDispatchOpportunity();
 			selEngine.waitForPageLoad();
 
