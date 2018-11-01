@@ -77,7 +77,12 @@ public class Csv_Constructor {
 	
 	@CsvBindByName(column = "Extension Justification")
 	private String extensionJustification;
-		
+	
+	@CsvBindByName(column = "Defect Category")
+	private String defectCategory;
+	@CsvBindByName(column = "Task Source")
+	private String taskSource;
+	
 	public String getTargetCountry() {
 		return targetCountry;
 	}
@@ -280,6 +285,18 @@ public class Csv_Constructor {
 	public void setExtensionJustification(String extensionJustification) {
 		this.extensionJustification = extensionJustification;
 	}
-
 	
+	public String getDefectCategory() {
+		return defectCategory;
+	}
+	public void setDefectCategory(String defectCategory) {
+		this.defectCategory = defectCategory;
+	}
+	
+	public String getTaskSource() {
+		return taskSource;
+	}
+	public void setTaskSource(String taskSource) {
+		this.taskSource = taskSource;
+	}
 }
