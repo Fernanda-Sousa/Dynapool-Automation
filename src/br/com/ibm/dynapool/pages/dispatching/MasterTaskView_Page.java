@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 11-oct-2018
 
-Last update date: 15-oct-2018
+Last update date: 01-nov-2018
 Last updated by: Fernanda Pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -79,6 +79,10 @@ public class MasterTaskView_Page extends Home_Page {
 
 	public int getIntegerId(By idTxt) {
 		return Integer.parseInt(driver.findElement(idTxt).getText());
+	}
+	
+	public String getId() {
+		return selEngine.getAttribute(idTxt, "value");
 	}
 
 	public boolean compareId(String strId) {
@@ -204,6 +208,10 @@ public class MasterTaskView_Page extends Home_Page {
 
 	public void clickThirdChildLink() {
 		selEngine.click(thirdChildLnk);
+	}
+	
+	public void clickFourthChildLnk() {
+		selEngine.click(fourthChildLnk);
 	}
 
 	public void clickFifthChildLink() {
