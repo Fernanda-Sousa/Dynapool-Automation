@@ -58,12 +58,11 @@ public class MasterTaskEdit_Page extends Home_Page {
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
 	}
-	
 	
 	public boolean compareId(String strId) {
 		return selEngine.compareText(idTxt, strId);
