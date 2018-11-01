@@ -30,6 +30,7 @@ public class MasterTaskRequest_Page extends Home_Page{
 	By addAutomataCrl = By.cssSelector("input.crossListButton:nth-child(1)");
 	By removeAutomataCrl = By.cssSelector("input.crossListButton:nth-child(3)");
 	By automatasSelectedCrl = By.name("crlAutomataSelected");
+//	By firstOptionAutomata = org.openqa.selenium.By.xpath("/html/body/div[1]/div[2]/form/table/tbody/tr[9]/td[2]/div/div/div[1]/select/option");
 	By taskSourceDpx = By.name("selDeftasksource");
 	By automataCategoryDpx = By.name("selDefautomatacategory");
 	By alert_ServerCountTxt = By.name("txtAutomatacount");
@@ -38,7 +39,7 @@ public class MasterTaskRequest_Page extends Home_Page{
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
@@ -87,6 +88,10 @@ Selenium_Engine selEngine;
 		selEngine.click(By.partialLinkText(strAutomata));
 		selEngine.click(removeAutomataCrl);
 	}
+	
+//	public void clickFirstOptionAutomata() {
+//		selEngine.click(firstOptionAutomata);
+//	}
 	
 	public void setTaskSource(String strTaskSource) {
 		selEngine.selectDropDown(taskSourceDpx, strTaskSource);
