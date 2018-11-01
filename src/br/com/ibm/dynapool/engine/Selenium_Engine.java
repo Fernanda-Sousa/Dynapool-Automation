@@ -279,6 +279,7 @@ public class Selenium_Engine {
 			Alert alert = driver.switchTo().alert();
 			String text = alert.getText();
 			alert.accept();
+			alert.accept();
 			return text;
 		} catch (Exception e) {
 			sysOut("No Alert to close");
