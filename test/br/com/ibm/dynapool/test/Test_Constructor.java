@@ -58,11 +58,15 @@ public class Test_Constructor {
 	ExtensionList_Page extList = new ExtensionList_Page();
 	ExtensionFilter_Page extFilter = new ExtensionFilter_Page();
 	
+	protected Csv_Engine csvEng = new Csv_Engine();
+	protected List<Csv_Constructor> FileCSV = new LinkedList<>();
+	
 	String taskId;
 
 	@BeforeTest
 	public void startReport() throws IOException {
 
+		
 		selEngine.createDriver();
 		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/STMExtentReport.html", true);
 
