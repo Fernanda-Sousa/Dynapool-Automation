@@ -12,7 +12,6 @@ Description:
 package br.com.ibm.dynapool.engine;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
@@ -23,12 +22,16 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
@@ -41,11 +44,12 @@ public class Selenium_Engine {
 
 	public static WebDriver driver;
 	Properties_Engine prop = new Properties_Engine();
-	public final boolean CHROME = true;
+	public final boolean CHROME = false;
 
 	String parentWindowHandler = null; // Store your parent window (pop up)
 	String subWindowHandler = null;
-
+	
+	
 	final boolean DEBUG = true;
 
 	public WebDriver driver() {
@@ -75,16 +79,18 @@ public class Selenium_Engine {
 	}
 
 	public void waitElement(By by) {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 60000);
 		wait.pollingEvery(Duration.ofSeconds(2));
 		wait.until(ExpectedConditions.elementToBeClickable(by));
 	}
 
 	public void waitForPageLoad() {
-		Wait<WebDriver> wait = new WebDriverWait(driver, 60);
+		
+		Wait<WebDriver> wait = new WebDriverWait(driver, 60000);
 		wait.until((WebDriver driver1) -> {
-//			sysOut("Current Window State       : "
+//		sysOut("Current Window State       : "
 //					+ String.valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState")));
+//			
 			return String.valueOf(((JavascriptExecutor) driver1).executeScript("return document.readyState"))
 					.equals("complete");
 		});
@@ -106,13 +112,19 @@ public class Selenium_Engine {
 	}
 
 	/* Necessary driver on system/user path */
-	public void createDriver() throws IOException {
+	@SuppressWarnings("deprecation")
+	public void createDriver(){
+		
 		if (CHROME) {
+			DesiredCapabilities dc = new DesiredCapabilities();
+			dc.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);
 			System.setProperty("webdriver.chrome.driver", prop.readPropertiesFile("driverpath") + "chromedriver.exe");
-			driver = new ChromeDriver();
+			driver = new ChromeDriver(dc);
 		} else {
-			System.setProperty("webdriver.gecko.driver", prop.readPropertiesFile("driverpath") + "geckodriver.exe");
-			driver = new FirefoxDriver();
+//			DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+//			capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT_AND_NOTIFY);
+			System.setProperty("webdriver.gecko.driver", prop.readPropertiesFile("driverpath") + "MicrosoftWebDriver.exe");
+			driver = new EdgeDriver();
 		}
 
 		driver.manage().window().maximize();
@@ -274,17 +286,16 @@ public class Selenium_Engine {
 		wait.until(ExpectedConditions.elementToBeClickable(by));
 	}
 
-	public String alertClick() {
-		try {
-			Alert alert = driver.switchTo().alert();
-			String text = alert.getText();
-			alert.accept();
-			alert.accept();
-			return text;
+	public void alertClick() {
+		
+		try {	
+			driver.switchTo().alert().accept();
 		} catch (Exception e) {
-			sysOut("No Alert to close");
+			manipulatePopUp(true);
+			driver.switchTo().alert().accept();
+			manipulatePopUp(false);
 		}
-		return "No Alert to close";
+		
 	}
 
 	List<?> findElements(By by) {
@@ -336,7 +347,7 @@ public class Selenium_Engine {
 		waitForPageLoad();
 	}
 
-	public void login(String role) throws IOException {
+	public void login(String role){
 		waitForPageLoad();
 		Login_Page login = new Login_Page();
 
@@ -347,7 +358,7 @@ public class Selenium_Engine {
 		waitForPageLoad();
 	}
 
-	public void changeUser(String newRole) throws IOException {
+	public void changeUser(String newRole){
 		// Configuration
 		Login_Page login = new Login_Page();
 		Home_Page home = new Home_Page();

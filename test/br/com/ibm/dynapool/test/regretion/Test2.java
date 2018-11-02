@@ -17,7 +17,6 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.LogStatus;
@@ -35,7 +34,7 @@ import br.com.ibm.dynapool.pages.frames.StageApprovalsList_Page;
 import br.com.ibm.dynapool.pages.request.OpportunityRequest_Page;
 import br.com.ibm.dynapool.test.Test_Constructor;
 
-public class TestFFO extends Test_Constructor {
+public class Test2 extends Test_Constructor {
 
 	String id;
 
@@ -49,23 +48,16 @@ public class TestFFO extends Test_Constructor {
 	TaskEdit_Page editTask = new TaskEdit_Page();
 	StageApprovalsList_Page stageFrm = new StageApprovalsList_Page();
 
-	@BeforeTest
-	private void openPage() {
-		selEngine.sysOut("openPage");
-		try {
-			selEngine.openURL(prop.readPropertiesFile("testwebsite"));
-			selEngine.waitForPageLoad();
-			FileCSV = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowOpportunity"));
-		} catch (IOException e) {
-			System.out.println("Error on openPage()" + e.getCause());
-		}
-	}
-
+	
 	@Test(priority = 0)
-	public void executeLogin() throws IOException {
+	public void executeLogin()  {
+		selEngine.sysOut("openPage");
+		selEngine.openURL(prop.readPropertiesFile("testwebsite"));
+		selEngine.waitForPageLoad();
+		
 		selEngine.sysOut("executeLogin");
-		logger = extent.startTest("Execute login");
 
+		logger = extent.startTest("Execute login");
 		logger.log(LogStatus.INFO, "Using URL: " + prop.readPropertiesFile("testwebsite"));
 
 		selEngine.login("dev");
@@ -74,14 +66,15 @@ public class TestFFO extends Test_Constructor {
 		logger.log(LogStatus.PASS, "Test Case Passed. Home Page loaded");
 	}
 
-// Request
 	@Test(priority = 1)
-	public void requestOpportunity() throws IOException {
+	public void requestOpportunity() {
 		selEngine.sysOut("requestOpportunity");
+
 		logger = extent.startTest("Request Opportunity");
 
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_requestOpportunity"));
+		
 		for (Csv_Constructor csv : FileCSV) {
-			selEngine.waitForPageLoad();
 			home.clickRequestOpportunity();
 
 			request.setCountry(csv.getTargetCountry());
@@ -95,35 +88,30 @@ public class TestFFO extends Test_Constructor {
 			request.setAlert_ServerCount(csv.getAlert_ServerCount());
 			request.setExpectedSavings(csv.getExpectedSavings());
 			request.setcostsAvoidedTxt(csv.getCostsAvoided());
-
 			request.clickSaveButton();
-			selEngine.waitForPageLoad();
+			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+			logger.log(LogStatus.INFO, "The Opportunity Request was done correctly");
 		}
-
-		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
-		logger.log(LogStatus.PASS, "The Opportunity Request was done correctly");
+		logger.log(LogStatus.PASS, "The Opportunity Request test was executed correctly");
 	}
 
-	@Test(priority = 2)
-	public void approveRequest() throws IOException {
+	@Test(priority = 2) // adm
+	public void approveRequest() {
 		selEngine.sysOut("approveRequest");
-		logger = extent.startTest("Approve Request Opportunity");
 
 		selEngine.changeUser("admin");
 
+		logger = extent.startTest("Approve Request Opportunity");
+
 		for (Csv_Constructor csv : FileCSV) {
-			selEngine.waitForPageLoad();
 			home.clickDispatchOpportunity();
-			selEngine.waitForPageLoad();
-			
+
 			list.doubleClickIdFilter();
 			list.clickFirstItemLink();
-			selEngine.waitForPageLoad();
-			
+
 			id = view.getId();
 			view.clickEditTab();
 
-			selEngine.waitForPageLoad();
 			edit.setSquad(csv.getSquad());
 			edit.setOwner(csv.getOwner());
 			edit.setComplexity(csv.getComplexity());
@@ -133,36 +121,30 @@ public class TestFFO extends Test_Constructor {
 			edit.setBusinessAppNotes(csv.getBusinessAppNotes());
 			edit.clickTechnicalApprovedYes();
 			edit.setTechnicalAppNotes(csv.getTechnicalAppNotes());
-
 			edit.clickSaveButton();
-			selEngine.waitForPageLoad();
+			
+			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved. ID: " + id));
+			logger.log(LogStatus.INFO, "The Request Approval was done correctly");
 		}
 
-		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved. ID: " + id));
 		logger.log(LogStatus.PASS, "The Request Approval was done correctly");
 	}
 
-// SOP Definition
 	@Test(priority = 3)
-	public void startSOPDefinition() {
+	public void startSOPDefinition(){
 		selEngine.sysOut("startSOPDefinition");
-		logger = extent.startTest("Start SOP Defination");
 
 		selEngine.waitForPageLoad();
-		try {
-			selEngine.changeUser("dev");
-		} catch (IOException e) {
-			System.out.println("Error on selEngine.changeUser(\"dev\");" + e.getCause());
-			e.printStackTrace();
-		}
+		selEngine.changeUser("dev");
+
+		logger = extent.startTest("Start SOP Defination");
 
 		for (Csv_Constructor csv : FileCSV) {
 			selEngine.waitForPageLoad();
-			home.clickDispatchOpportunity();
+			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/opportunityList.jsp");
 
 			selEngine.waitForPageLoad();
 			list.clickMagnifierFilter();
-			selEngine.waitForPageLoad();
 			filter.setId(id);
 			filter.clickApplyButton();
 			selEngine.waitForPageLoad();
@@ -174,21 +156,25 @@ public class TestFFO extends Test_Constructor {
 			selEngine.waitForPageLoad();
 			viewTask.setDiscussion(csv.getDiscussion());
 			viewTask.clickStartButton();
-			
-			selEngine.alertClick();
 			selEngine.waitForPageLoad();
+			selEngine.alertClick();
+			
+			
+			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+		
+			
 		}
 
-		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
-		logger.log(LogStatus.PASS, "The Task was start correctly");
+		
+		logger.log(LogStatus.PASS, "The Task Test was executed correctly");
 	}
 
 	@Test(priority = 4)
-	public void createSOP() throws IOException {
+	public void createSOP() {
 		selEngine.sysOut("createSOP");
+
 		logger = extent.startTest("Create a SOP");
 
-		try {
 			for (Csv_Constructor csv : FileCSV) {
 				selEngine.waitForPageLoad();
 				viewTask.setLinkSOP(csv.getSOPLink());
@@ -198,66 +184,62 @@ public class TestFFO extends Test_Constructor {
 
 				viewTask.clickUpdateButton();
 				selEngine.waitForPageLoad();
+				
+				Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+				logger.log(LogStatus.INFO, "The Task was start correctly");
 			}
-
-		} catch (Exception e) {
-			Assert.assertTrue(false);
-			logger.log(LogStatus.FAIL, "The Task wasn't start correctly: " + e);
-		}
-
+		
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
-		logger.log(LogStatus.PASS, "The Task was start correctly");
+		logger.log(LogStatus.PASS, "The Create SOP Test executed correctly");
 	}
 
 	@Test(priority = 5)
-	public void OnHoldProcess() throws IOException {
+	public void OnHoldProcess()  {
 		selEngine.sysOut("OnHoldProcess");
 
 		onHold();
 	}
 
 	@Test(priority = 6)
-	public void ExtensionProcess() throws IOException {
+	public void ExtensionProcess(){
 		selEngine.sysOut("ExtensionProcess");
 
 		extension();
 	}
 
 	@Test(priority = 7)
-	public void ApproveSOP() throws IOException {
+	public void ApproveSOP(){
 		selEngine.sysOut("ApproveSOP");
+
 		logger = extent.startTest("Approve SOP");
 
-		selEngine.waitForPageLoad();
 		selEngine.changeUser("qatest");
 
-		
-			selEngine.waitForPageLoad();
-			home.clickStageApprovalsFrame();
-			stageFrm.doubleClickIdFilter();
-			stageFrm.clickFirstItemFilter();
+		home.clickStageApprovalsFrame();
+		stageFrm.doubleClickIdFilter();
+		stageFrm.clickFirstItemFilter();
 
-			viewTask.clickEditTab();
+		viewTask.clickEditTab();
 
-			editTask.clickSOPApprovedYes();
+		editTask.clickSOPApprovedYes();
 
-			editTask.clickSaveButton();
-			selEngine.waitForPageLoad();
-		
+		editTask.clickSaveButton();
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The SOP link was approved correctly");
 	}
 
 	@Test(priority = 8)
-	public void ResolveSOP() throws IOException {
+	public void ResolveSOP()  {
 		selEngine.sysOut("ResolveSOP");
+
 		logger = extent.startTest("Resolve SOP");
 
-		selEngine.changeUser("dev");
-		selEngine.waitForPageLoad();
-		
+
 		for (Csv_Constructor csv : FileCSV) {
+
+			selEngine.changeUser("dev");
+			selEngine.waitForPageLoad();
 			home.clickDispatchOpportunity();
 
 			selEngine.waitForPageLoad();
@@ -275,29 +257,38 @@ public class TestFFO extends Test_Constructor {
 
 			selEngine.alertClick();
 			selEngine.waitForPageLoad();
+			
+			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+			logger.log(LogStatus.INFO, "The SOP was resolved correctly");
 		}
 
-		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
-		logger.log(LogStatus.PASS, "The SOP was resolved correctly");
+		logger.log(LogStatus.PASS, "The SOP Test was resolved correctly");
 	}
 
 // Implementation
 	@Test(priority = 9)
 	public void startImplementation() throws IOException {
 		selEngine.sysOut("startImplementation");
+
 		logger = extent.startTest("Start Implementation");
 
-		for (Csv_Constructor csv : FileCSV) {
+		// Read CSV
+		logger.log(LogStatus.INFO,
+				"Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityImplementation"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> StartImp = new LinkedList<>();
+//				logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		StartImp = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityImplementation"));
+
+		for (Csv_Constructor csv : StartImp) {
 			selEngine.waitForPageLoad();
 			viewTask.clickOpenOpportunity();
 			view.clickSecondChildLink();
 
 			viewTask.setDiscussion(csv.getDiscussion());
-
 			viewTask.clickStartButton();
-
 			selEngine.alertClick();
-			selEngine.waitForPageLoad();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -307,10 +298,20 @@ public class TestFFO extends Test_Constructor {
 	@Test(priority = 10)
 	public void resolveImplementation() throws IOException {
 		selEngine.sysOut("resolveImplementation");
+
 		logger = extent.startTest("Resolve Implementation");
 
-		for (Csv_Constructor csv : FileCSV) {
-			selEngine.waitForPageLoad();
+		// Read CSV
+		logger.log(LogStatus.INFO,
+				"Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityImplementation"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> Resolve = new LinkedList<>();
+//				logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		Resolve = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityImplementation"));
+
+		for (Csv_Constructor csv : Resolve) {
+
 			viewTask.clickOpenOpportunity();
 			view.clickSecondChildLink();
 
@@ -320,7 +321,6 @@ public class TestFFO extends Test_Constructor {
 
 			viewTask.clickResolveButton();
 			selEngine.alertClick();
-			selEngine.waitForPageLoad();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -331,12 +331,21 @@ public class TestFFO extends Test_Constructor {
 	@Test(priority = 11)
 	public void startQAReview() throws IOException {
 		selEngine.sysOut("startQAReview");
+
 		logger = extent.startTest("Start QAReview");
 
-		selEngine.changeUser("qatest");
-		selEngine.waitForPageLoad();
-		
-		for (Csv_Constructor csv : FileCSV) {
+		// Read CSV
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityQAReview"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> StartQAR = new LinkedList<>();
+//				logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		StartQAR = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityQAReview"));
+
+		for (Csv_Constructor csv : StartQAR) {
+			selEngine.changeUser("qatest");
+			selEngine.waitForPageLoad();
+
 			home.clickDispatchOpportunity();
 			selEngine.waitForPageLoad();
 
@@ -351,10 +360,8 @@ public class TestFFO extends Test_Constructor {
 			view.clickThirdChildLink();
 
 			viewTask.setDiscussion(csv.getDiscussion());
-
 			viewTask.clickStartButton();
 			selEngine.alertClick();
-			selEngine.waitForPageLoad();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -364,9 +371,18 @@ public class TestFFO extends Test_Constructor {
 	@Test(priority = 12)
 	public void resolveQAReview() throws IOException {
 		selEngine.sysOut("resolveQAReview");
+
 		logger = extent.startTest("Resolve QAReview");
 
-		for (Csv_Constructor csv : FileCSV) {
+		// Read CSV
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityQAReview"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> ResolveQAR = new LinkedList<>();
+//				logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		ResolveQAR = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityQAReview"));
+
+		for (Csv_Constructor csv : ResolveQAR) {
 			selEngine.waitForPageLoad();
 			viewTask.setCurrentEffort(csv.getCurrentEffort());
 			viewTask.setPercentageCompleted(csv.getPercentageCompleted());
@@ -374,7 +390,6 @@ public class TestFFO extends Test_Constructor {
 
 			viewTask.clickResolveButton();
 			selEngine.alertClick();
-			selEngine.waitForPageLoad();
 		}
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
@@ -385,9 +400,19 @@ public class TestFFO extends Test_Constructor {
 	@Test(priority = 13)
 	public void skipQATests() throws IOException {
 		selEngine.sysOut("skipQATests");
+
 		logger = extent.startTest("Skip QA Tests");
 
-		for (Csv_Constructor csv : FileCSV) {
+		// Read CSV
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityQAReview"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> SkipQAT = new LinkedList<>();
+//						logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		SkipQAT = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityQAReview"));
+
+		for (Csv_Constructor csv : SkipQAT) {
+
 			viewTask.clickOpenOpportunity();
 			view.clickFourthChildLnk();
 
@@ -395,23 +420,31 @@ public class TestFFO extends Test_Constructor {
 
 			viewTask.clickSkipButton();
 			selEngine.alertClick();
-			selEngine.waitForPageLoad();
-		}
-		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
-		logger.log(LogStatus.PASS, "The QA Tests was skipped correctly");
 
+			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+			logger.log(LogStatus.PASS, "The QA Tests was skipped correctly");
+		}
 	}
 
 // Deployment
 	@Test(priority = 14)
 	public void startDeployment() throws IOException {
 		selEngine.sysOut("startDeployment");
+
 		logger = extent.startTest("Start Deployment");
 
-		selEngine.changeUser("dev");
-		selEngine.waitForPageLoad();
-		
-		for (Csv_Constructor csv : FileCSV) {
+		// Read CSV
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityDeployment"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> StartDep = new LinkedList<>();
+//						logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		StartDep = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityDeployment"));
+
+		for (Csv_Constructor csv : StartDep) {
+			selEngine.changeUser("dev");
+			selEngine.waitForPageLoad();
+
 			home.clickDispatchOpportunity();
 			selEngine.waitForPageLoad();
 
@@ -431,8 +464,8 @@ public class TestFFO extends Test_Constructor {
 
 			selEngine.alertClick();
 			selEngine.waitForPageLoad();
-		}
 
+		}
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The Deployment was started correctly");
 	}
@@ -440,47 +473,55 @@ public class TestFFO extends Test_Constructor {
 	@Test(priority = 15)
 	public void approveDeployment() throws IOException {
 		selEngine.sysOut("approveDeploymen");
+
 		logger = extent.startTest("Approve Deployment");
 
 		selEngine.changeUser("qatest");
 		selEngine.waitForPageLoad();
 
-		for (Csv_Constructor csv : FileCSV) {
-			home.clickDispatchOpportunity();
-			selEngine.waitForPageLoad();
+		home.clickDispatchOpportunity();
+		selEngine.waitForPageLoad();
 
-			list.clickMagnifierFilter();
-			filter.setId(id);
-			filter.clickApplyButton();
-			selEngine.waitForPageLoad();
+		list.clickMagnifierFilter();
+		filter.setId(id);
+		filter.clickApplyButton();
+		selEngine.waitForPageLoad();
 
-			list.clickFirstItemLink();
-			selEngine.waitForPageLoad();
+		list.clickFirstItemLink();
+		selEngine.waitForPageLoad();
 
-			view.clickFifthChildLink();
-			selEngine.waitForPageLoad();
+		view.clickFifthChildLink();
+		selEngine.waitForPageLoad();
 
-			viewTask.clickEditTab();
-			selEngine.waitForPageLoad();
-			editTask.clickDeploymentApprovedYes();
-			editTask.clickSaveButton();
-			selEngine.waitForPageLoad();
-		}
-
+		viewTask.clickEditTab();
+		selEngine.waitForPageLoad();
+		editTask.clickDeploymentApprovedYes();
+		editTask.clickSaveButton();
+		selEngine.waitForPageLoad();
+		
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The Deployment was started correctly");
 	}
-
+	
 	@Test(priority = 16)
 	public void resolveDeployment() throws IOException {
 		selEngine.sysOut("resolveDeployment");
+
 		logger = extent.startTest("Resolve Deployment");
 
-		selEngine.waitForPageLoad();
-		selEngine.changeUser("dev");
-		selEngine.waitForPageLoad();
-		
-		for (Csv_Constructor csv : FileCSV) {
+		// Read CSV
+		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_opportunityDeployment"));
+		Csv_Engine csvEng = new Csv_Engine();
+		List<Csv_Constructor> ResolveDep = new LinkedList<>();
+//						logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
+
+		ResolveDep = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_opportunityDeployment"));
+
+		for (Csv_Constructor csv : ResolveDep) {		
+			selEngine.waitForPageLoad();
+			selEngine.changeUser("dev");
+			selEngine.waitForPageLoad();
+
 			home.clickDispatchOpportunity();
 			selEngine.waitForPageLoad();
 
@@ -502,8 +543,8 @@ public class TestFFO extends Test_Constructor {
 
 			selEngine.alertClick();
 			selEngine.waitForPageLoad();
-		}
 
+		}
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The Deployment was resolved correctly");
 	}

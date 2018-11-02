@@ -12,7 +12,6 @@ Description:
 package br.com.ibm.dynapool.test;
 
 import java.io.File;
-import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -58,16 +57,18 @@ public class Test_Constructor {
 	ExtensionList_Page extList = new ExtensionList_Page();
 	ExtensionFilter_Page extFilter = new ExtensionFilter_Page();
 	
-	protected Csv_Engine csvEng = new Csv_Engine();
+	
 	protected List<Csv_Constructor> FileCSV = new LinkedList<>();
+	
 	
 	String taskId;
 
 	@BeforeTest
-	public void startReport() throws IOException {
-
-		
+	public void startReport() {
 		selEngine.createDriver();
+		Csv_Engine csvEng = new Csv_Engine();
+		FileCSV = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowOpportunity"));
+		
 		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/STMExtentReport.html", true);
 
 		extent.addSystemInfo("Host Name", prop.readPropertiesFile("host"))
@@ -87,7 +88,8 @@ public class Test_Constructor {
 //		extent.endTest(logger);
 //	}
 	@AfterMethod
-	public void getResult(ITestResult result) throws Exception {
+	public void getResult(ITestResult result) throws Exception{
+	
 		String screenshotPath = getScreenshot(result.getName());
 		if (result.getStatus() == ITestResult.FAILURE) {
 			logger.log(LogStatus.FAIL, "Test Case Failed is " + result.getName());
@@ -116,7 +118,7 @@ public class Test_Constructor {
 
 	public String getScreenshot(String screenshotName) throws Exception {
 		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
-		TakesScreenshot ts = (TakesScreenshot) selEngine.driver;
+		TakesScreenshot ts = (TakesScreenshot) selEngine.driver();
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		String destination = System.getProperty("user.dir") + "/FailedTestsScreenshots/" + screenshotName + dateName
 				+ ".png";
@@ -126,19 +128,11 @@ public class Test_Constructor {
 	}
 
 	// On Hold
-	public void onHold() throws IOException {
+	public void onHold() {
 
 		logger = extent.startTest("On hold");
 
-		// Read CSV
-		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_onHold"));
-		Csv_Engine csvEng = new Csv_Engine();
-		List<Csv_Constructor> Hold = new LinkedList<>();
-//		logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
-
-		Hold = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_onHold"));
-
-		for (Csv_Constructor csv : Hold) {
+		for (Csv_Constructor csv : FileCSV) {
 			// Put on hold
 			taskView.clickOnHoldButton();
 
@@ -158,26 +152,21 @@ public class Test_Constructor {
 			onHold.clickResumeButton();
 
 			selEngine.alertClick();
+			selEngine.waitForPageLoad();
+			
+			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+			logger.log(LogStatus.INFO, "The On hold process was executed correctly");
 		}
 
-		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
-		logger.log(LogStatus.PASS, "The On hold process was done correctly");
+		
+		logger.log(LogStatus.PASS, "The On hold Test was done correctly");
 	}
 
 	// Extension
-	public void extension() throws IOException {
+	public void extension(){
 		logger = extent.startTest("Extension");
 
-		// Read CSV
-		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_Extension"));
-		Csv_Engine csvEng = new Csv_Engine();
-		List<Csv_Constructor> Ext = new LinkedList<>();
-//		logger.log(LogStatus.INFO, "Test found: " + Req.size() + " rows into file test");// is not working
-
-		Ext = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_extension"));
-
-		
-		for (Csv_Constructor csv : Ext) {
+		for (Csv_Constructor csv : FileCSV) {
 			// Request Extension
 			taskId = taskView.getId();
 			taskView.clickExtensionButton();
@@ -203,9 +192,12 @@ public class Test_Constructor {
 			extView.clickApproveButton();
 			
 			selEngine.alertClick();
+			
+			selEngine.waitForPageLoad();
+			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+			logger.log(LogStatus.INFO, "The Extension process was done correctly");
 		}
 		
-		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
-		logger.log(LogStatus.PASS, "The Extension process was done correctly");
+		logger.log(LogStatus.PASS, "The Extension Test was done correctly");
 	}	
 }

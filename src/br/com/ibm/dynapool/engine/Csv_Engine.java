@@ -19,7 +19,7 @@ public class Csv_Engine {
 
         try (Reader reader = Files.newBufferedReader(Paths.get(FilePath), Charset.defaultCharset())) {
 
-            CsvToBean<Csv_Constructor> csvToBean = new CsvToBeanBuilder(reader)
+            CsvToBean<Csv_Constructor> csvToBean = new CsvToBeanBuilder<Csv_Constructor>(reader)
                     .withType(Csv_Constructor.class)
                     .withIgnoreLeadingWhiteSpace(true)
                     .build();

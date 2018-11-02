@@ -17,7 +17,7 @@ import java.util.Properties;
 
 public class Properties_Engine {
 
-	public String readPropertiesFile(String property) throws IOException {
+	public String readPropertiesFile(String property) {
 		Properties prop = new Properties();
 		InputStream input = null;
 
