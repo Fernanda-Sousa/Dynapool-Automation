@@ -66,7 +66,7 @@ public class Home_Page {
 	// Header
 	By logoLnk = By.linkText("navigateTo('https://dynapool.ipctrmx02.com/dynatest/home.jsp')");
 	By searchBarTxt = By.name("txtHomeSearch");
-	By magnifierBtn = By.linkText("javascript:submitHome();");
+	By magnifierBtn = By.className("bigCardTitle");
 	By changeThemeBtn = By.linkText("javascript:showDiv('themeSelector', false)");
 	By lightThemeBtn = By.linkText("javascript:changeTheme('standard')");
 	By darkThemeBtn = By.linkText("javascript:changeTheme('darks')");
