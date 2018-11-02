@@ -12,6 +12,7 @@ Description:
 package br.com.ibm.dynapool.test;
 
 import java.io.File;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.LinkedList;
@@ -88,9 +89,14 @@ public class Test_Constructor {
 //		extent.endTest(logger);
 //	}
 	@AfterMethod
-	public void getResult(ITestResult result) throws Exception{
+	public void getResult(ITestResult result){
 	
-		String screenshotPath = getScreenshot(result.getName());
+		String screenshotPath = null;
+		try {
+			screenshotPath = getScreenshot(result.getName());
+		} catch (Exception e1) {
+			System.out.println(e1);
+		}
 		if (result.getStatus() == ITestResult.FAILURE) {
 			logger.log(LogStatus.FAIL, "Test Case Failed is " + result.getName());
 			logger.log(LogStatus.FAIL, "Test Case Failed is " + result.getThrowable());
@@ -116,14 +122,18 @@ public class Test_Constructor {
 		selEngine.shutdownDriver();
 	}
 
-	public String getScreenshot(String screenshotName) throws Exception {
+	public String getScreenshot(String screenshotName) {
 		String dateName = new SimpleDateFormat("yyyyMMddhhmmss").format(new Date());
 		TakesScreenshot ts = (TakesScreenshot) selEngine.driver();
 		File source = ts.getScreenshotAs(OutputType.FILE);
 		String destination = System.getProperty("user.dir") + "/FailedTestsScreenshots/" + screenshotName + dateName
 				+ ".png";
 		File finalDestination = new File(destination);
-		FileUtils.copyFile(source, finalDestination);
+		try {
+			FileUtils.copyFile(source, finalDestination);
+		} catch (IOException e) {
+			System.out.println(e);
+		}
 		return destination;
 	}
 
