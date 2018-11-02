@@ -71,11 +71,10 @@ public class Test2 extends Test_Constructor {
 		selEngine.sysOut("requestOpportunity");
 
 		logger = extent.startTest("Request Opportunity");
-
-		logger.log(LogStatus.INFO, "Reading from Spreadsheet: " + prop.readPropertiesFile("csv_requestOpportunity"));
 		
 		for (Csv_Constructor csv : FileCSV) {
 			home.clickRequestOpportunity();
+			selEngine.waitForPageLoad();
 
 			request.setCountry(csv.getTargetCountry());
 			request.setAccount(csv.getTargetAccount());
@@ -98,13 +97,14 @@ public class Test2 extends Test_Constructor {
 	@Test(priority = 2) // adm
 	public void approveRequest() {
 		selEngine.sysOut("approveRequest");
-
 		selEngine.changeUser("admin");
+		selEngine.waitForPageLoad();
 
 		logger = extent.startTest("Approve Request Opportunity");
 
 		for (Csv_Constructor csv : FileCSV) {
 			home.clickDispatchOpportunity();
+			selEngine.waitForPageLoad();
 
 			list.doubleClickIdFilter();
 			list.clickFirstItemLink();
@@ -122,6 +122,7 @@ public class Test2 extends Test_Constructor {
 			edit.clickTechnicalApprovedYes();
 			edit.setTechnicalAppNotes(csv.getTechnicalAppNotes());
 			edit.clickSaveButton();
+			selEngine.waitForPageLoad();
 			
 			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved. ID: " + id));
 			logger.log(LogStatus.INFO, "The Request Approval was done correctly");
@@ -131,43 +132,74 @@ public class Test2 extends Test_Constructor {
 	}
 
 	@Test(priority = 3)
-	public void startSOPDefinition(){
-		selEngine.sysOut("startSOPDefinition");
-
-		selEngine.waitForPageLoad();
-		selEngine.changeUser("dev");
-
-		logger = extent.startTest("Start SOP Defination");
-
-		for (Csv_Constructor csv : FileCSV) {
+	public void SOPStart() {
+			selEngine.changeUser("dev");
 			selEngine.waitForPageLoad();
+		
 			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/opportunityList.jsp");
-
 			selEngine.waitForPageLoad();
-			list.clickMagnifierFilter();
+			
+			list.clickMagnifierButton();
+			selEngine.waitForPageLoad();
 			filter.setId(id);
 			filter.clickApplyButton();
 			selEngine.waitForPageLoad();
-
-			list.clickFirstItemLink();
-
-			selEngine.waitForPageLoad();
+			
+			list.clickFirstItemLink();	
 			view.clickFirstChildLink();
-			selEngine.waitForPageLoad();
-			viewTask.setDiscussion(csv.getDiscussion());
-			viewTask.clickStartButton();
-			selEngine.waitForPageLoad();
-			selEngine.alertClick();
-			
-			
-			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
-		
-			
-		}
 
-		
-		logger.log(LogStatus.PASS, "The Task Test was executed correctly");
+			viewTask.setDiscussion(FileCSV.get(0).getDiscussion());
+			viewTask.clickStartButton();
+			
+			selEngine.alertClick();
+			selEngine.waitForPageLoad();
+			
+			
+			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));	
+			logger.log(LogStatus.PASS, "The Task Test was executed correctly");
 	}
+	
+	
+//	public void startSOPDefinition(){
+//		selEngine.sysOut("startSOPDefinition");
+//
+//		selEngine.waitForPageLoad();
+//		selEngine.changeUser("dev");
+//
+//		logger = extent.startTest("Start SOP Defination");
+//
+//		for (Csv_Constructor csv : FileCSV) {
+//			selEngine.waitForPageLoad();
+//			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/opportunityList.jsp");
+//
+//			selEngine.waitForPageLoad();
+//			list.clickMagnifierFilter();
+//			filter.setId(id);
+//			filter.clickApplyButton();
+//			selEngine.waitForPageLoad();
+//
+//			list.clickFirstItemLink();
+//
+//			selEngine.waitForPageLoad();
+//			view.clickFirstChildLink();
+//			selEngine.waitForPageLoad();
+//			viewTask.setDiscussion(csv.getDiscussion());
+//			viewTask.clickStartButton();
+//			try {
+//				System.out.println("Waiting before click");
+//				Thread.sleep(10000);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//			selEngine.alertClick();
+//			
+//			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
+//		
+//		}
+//
+//		
+//		logger.log(LogStatus.PASS, "The Task Test was executed correctly");
+//	}
 
 	@Test(priority = 4)
 	public void createSOP() {
