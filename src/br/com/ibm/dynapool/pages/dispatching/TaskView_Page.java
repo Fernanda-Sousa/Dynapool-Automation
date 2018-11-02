@@ -12,14 +12,11 @@ Description:
 package br.com.ibm.dynapool.pages.dispatching;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
 
 public class TaskView_Page extends Home_Page {
-
-	WebDriver driver;
 
 	By editLnk = By.name("tabEdit");
 
@@ -101,18 +98,6 @@ public class TaskView_Page extends Home_Page {
 		selEngine.click(openMasterTask);
 	}
 
-	public int getIntegerId(By idTxt) {
-		return Integer.parseInt(driver.findElement(idTxt).getText());
-	}
-
-	public int getIntegerIdOpportunity(By opportunityId) {
-		return Integer.parseInt(driver.findElement(opportunityId).getText());
-	}
-
-	public int getIntegerIdMaster(By masterTaskId) {
-		return Integer.parseInt(driver.findElement(masterTaskId).getText());
-	}
-	
 	public String getId() {
 		return selEngine.getAttribute(idTxt, "value");
 	}
