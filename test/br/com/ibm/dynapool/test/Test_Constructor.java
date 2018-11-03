@@ -105,16 +105,16 @@ public class Test_Constructor {
 			logger.log(LogStatus.FAIL, "Test Case Failed is " + result.getName());
 			logger.log(LogStatus.FAIL, "Test Case Failed is " + result.getThrowable());
 			try {
-				logger.log(LogStatus.FAIL, logger.addScreenCapture(screenshotPath));
+				logger.log(LogStatus.INFO, logger.addScreenCapture(screenshotPath));
 			} catch (Exception e) {
 
 				selEngine.sysOut("Error on get screenshot: " + e);
 			}
 		} else if (result.getStatus() == ITestResult.SKIP) {
 			logger.log(LogStatus.SKIP, "Test Case Skipped is " + result.getName());
-			logger.log(LogStatus.SKIP, logger.addScreenCapture(screenshotPath));
+			logger.log(LogStatus.INFO, logger.addScreenCapture(screenshotPath));
 		} else if (result.getStatus() == ITestResult.SUCCESS) {
-			logger.log(LogStatus.PASS, logger.addScreenCapture(screenshotPath));
+			logger.log(LogStatus.INFO, logger.addScreenCapture(screenshotPath));
 		}
 	}
 
