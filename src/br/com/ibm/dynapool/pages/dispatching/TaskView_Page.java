@@ -18,7 +18,7 @@ import br.com.ibm.dynapool.pages.Home_Page;
 
 public class TaskView_Page extends Home_Page {
 
-	By editLnk = By.name("tabEdit");
+	By editLnk = By.xpath("//*[@id=\"requestContent\"]/div[1]/input[2]");
 
 	By idTxt = By.name("txtId");
 	By opportunityId = By.name("txtIdopportunity");

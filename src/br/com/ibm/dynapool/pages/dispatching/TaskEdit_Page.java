@@ -43,7 +43,7 @@ public class TaskEdit_Page extends Home_Page {
 	By SOPApprovedYesRdb = By.cssSelector("input.enabled:nth-child(2)");
 	By deploymentApprovedNoRdb = By
 			.cssSelector("#panel > form > table > tbody > tr:nth-child(17) > td.field > input:nth-child(1)");
-	By deploymentApprovedYesRdb = By.cssSelector("#panel > form > table > tbody > tr:nth-child(17) > td.field > input:nth-child(2)");
+	By deploymentApprovedYesRdb = By.xpath("//*[@id=\"panel\"]/form/table/tbody/tr[17]/td[2]/input[2]");
 	
 	By currentStatusDpx = By.name("selDefstatus");
 	By previousStatusDpx = By.name("selLaststatus");
