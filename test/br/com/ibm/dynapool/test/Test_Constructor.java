@@ -57,18 +57,22 @@ public class Test_Constructor {
 	Home_Page home = new Home_Page();
 	ExtensionList_Page extList = new ExtensionList_Page();
 	ExtensionFilter_Page extFilter = new ExtensionFilter_Page();
-	
-	
-	protected List<Csv_Constructor> FileCSV = new LinkedList<>();
-	
-	
+		
+	protected List<Csv_Constructor> FileCSVOpp = new LinkedList<>();
+	protected List<Csv_Constructor> FileCSVMas = new LinkedList<>();
+	protected List<Csv_Constructor> FileCSVHol = new LinkedList<>();
+	protected List<Csv_Constructor> FileCSVExt = new LinkedList<>();
+		
 	String taskId;
 
 	@BeforeTest
 	public void startReport() {
 		selEngine.createDriver();
 		Csv_Engine csvEng = new Csv_Engine();
-		FileCSV = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowOpportunity"));
+		FileCSVOpp = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowOpportunity"));
+		FileCSVMas = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowOpportunity"));
+		FileCSVHol = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_onHold"));
+		FileCSVExt = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_extension"));
 		
 		extent = new ExtentReports(System.getProperty("user.dir") + "/test-output/STMExtentReport.html", true);
 
@@ -142,7 +146,7 @@ public class Test_Constructor {
 
 		logger = extent.startTest("On hold");
 
-		for (Csv_Constructor csv : FileCSV) {
+		for (Csv_Constructor csv : FileCSVHol) {
 			// Put on hold
 			taskView.clickOnHoldButton();
 
@@ -176,7 +180,7 @@ public class Test_Constructor {
 	public void extension(){
 		logger = extent.startTest("Extension");
 
-		for (Csv_Constructor csv : FileCSV) {
+		for (Csv_Constructor csv : FileCSVExt) {
 			// Request Extension
 			taskId = taskView.getId();
 			taskView.clickExtensionButton();
