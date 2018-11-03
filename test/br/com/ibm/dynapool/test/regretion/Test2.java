@@ -11,8 +11,6 @@ Description:
 
 package br.com.ibm.dynapool.test.regretion;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -159,47 +157,6 @@ public class Test2 extends Test_Constructor {
 		logger.log(LogStatus.PASS, "The SOP Start test was executed correctly");
 	}
 
-//	public void startSOPDefinition(){
-//		selEngine.sysOut("startSOPDefinition");
-//
-//		selEngine.waitForPageLoad();
-//		selEngine.changeUser("dev");
-//
-//		logger = extent.startTest("Start SOP Defination");
-//
-//		for (Csv_Constructor csv : FileCSVOpp) {
-//			selEngine.waitForPageLoad();
-//			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/opportunityList.jsp");
-//
-//			selEngine.waitForPageLoad();
-//			list.clickMagnifierFilter();
-//			filter.setId(id);
-//			filter.clickApplyButton();
-//			selEngine.waitForPageLoad();
-//
-//			list.clickFirstItemLink();
-//
-//			selEngine.waitForPageLoad();
-//			view.clickFirstChildLink();
-//			selEngine.waitForPageLoad();
-//			viewTask.setDiscussion(csv.getDiscussion());
-//			viewTask.clickStartButton();
-//			try {
-//				System.out.println("Waiting before click");
-//				Thread.sleep(10000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//			selEngine.alertClick();
-//			
-//			Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
-//		
-//		}
-//
-//		
-//		logger.log(LogStatus.PASS, "The Task Test was executed correctly");
-//	}
-
 	@Test(priority = 4)
 	public void createSOP() {
 		selEngine.sysOut("createSOP\n");
@@ -219,7 +176,6 @@ public class Test2 extends Test_Constructor {
 			logger.log(LogStatus.INFO, "The SOP was created correctly");
 		}
 
-		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The Create SOP Test executed correctly");
 	}
 
@@ -289,7 +245,7 @@ public class Test2 extends Test_Constructor {
 			logger.log(LogStatus.INFO, "The SOP was resolved correctly");
 		}
 
-		logger.log(LogStatus.PASS, "The SOP Test was resolved correctly");
+		logger.log(LogStatus.PASS, "The SOP Resolve test was executed correctly");
 	}
 
 // Implementation
@@ -311,7 +267,7 @@ public class Test2 extends Test_Constructor {
 			logger.log(LogStatus.INFO, "The Implementation was started correctly");
 		}
 
-		logger.log(LogStatus.PASS, "The Implementation Test was started correctly");
+		logger.log(LogStatus.PASS, "The Implementation Test was executed correctly");
 	}
 
 	@Test(priority = 10)
@@ -389,7 +345,7 @@ public class Test2 extends Test_Constructor {
 			logger.log(LogStatus.INFO, "The QA Review was resolveed correctly");
 		}
 
-		logger.log(LogStatus.PASS, "The QA Revie resolve test was executed correctly");
+		logger.log(LogStatus.PASS, "The QA Review resolve test was executed correctly");
 	}
 
 // QA Tests	
@@ -483,11 +439,10 @@ public class Test2 extends Test_Constructor {
 	}
 
 	@Test(priority = 16)
-	public void resolveDeployment() throws IOException {
+	public void resolveDeployment() {
 		selEngine.sysOut("resolveDeployment\n");
 		logger = extent.startTest("Resolve Deployment");
 
-		selEngine.waitForPageLoad();
 		selEngine.changeUser("dev");
 		selEngine.waitForPageLoad();
 
@@ -519,6 +474,5 @@ public class Test2 extends Test_Constructor {
 		}
 
 		logger.log(LogStatus.PASS, "The Deployment resolve test was executed correctly");
-
 	}
 }
