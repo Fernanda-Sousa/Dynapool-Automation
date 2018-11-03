@@ -98,7 +98,7 @@ public class Test2 extends Test_Constructor {
 		selEngine.waitForPageLoad();
 
 		for (Csv_Constructor csv : FileCSVOpp) {
-			home.clickDispatchOpportunity();
+			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/opportunityList.jsp");
 			selEngine.waitForPageLoad();
 
 			list.doubleClickIdFilter();
@@ -199,6 +199,7 @@ public class Test2 extends Test_Constructor {
 		logger = extent.startTest("Approve SOP");
 
 		selEngine.changeUser("qatest");
+		selEngine.waitForPageLoad();
 
 		home.clickStageApprovalsFrame();
 		stageFrm.doubleClickIdFilter();
@@ -223,7 +224,7 @@ public class Test2 extends Test_Constructor {
 		selEngine.waitForPageLoad();
 
 		for (Csv_Constructor csv : FileCSVOpp) {
-			home.clickDispatchOpportunity();
+			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/opportunityList.jsp");
 
 			selEngine.waitForPageLoad();
 			list.clickMagnifierFilter();
@@ -303,7 +304,7 @@ public class Test2 extends Test_Constructor {
 		selEngine.waitForPageLoad();
 
 		for (Csv_Constructor csv : FileCSVOpp) {
-			home.clickDispatchOpportunity();
+			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/opportunityList.jsp");
 			selEngine.waitForPageLoad();
 
 			list.clickMagnifierFilter();
@@ -407,14 +408,14 @@ public class Test2 extends Test_Constructor {
 	}
 
 	@Test(priority = 15)
-	public void approveDeployment() {
+	public void approveDeployment() throws InterruptedException {
 		selEngine.sysOut("approveDeploymen\n");
 		logger = extent.startTest("Approve Deployment");
 
 		selEngine.changeUser("qatest");
 		selEngine.waitForPageLoad();
 
-		home.clickDispatchOpportunity();
+		selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/opportunityList.jsp");
 		selEngine.waitForPageLoad();
 
 		list.clickMagnifierFilter();
@@ -428,12 +429,14 @@ public class Test2 extends Test_Constructor {
 		view.clickFifthChildLink();
 		selEngine.waitForPageLoad();
 
+		Thread.sleep(3000);
 		viewTask.clickEditTab();
 		selEngine.waitForPageLoad();
+		
 		editTask.clickDeploymentApprovedYes();
-		editTask.clickSaveButton();
 		selEngine.waitForPageLoad();
-
+		editTask.clickSaveButton();
+		
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The Deployment was started correctly");
 	}
@@ -447,7 +450,7 @@ public class Test2 extends Test_Constructor {
 		selEngine.waitForPageLoad();
 
 		for (Csv_Constructor csv : FileCSVOpp) {
-			home.clickDispatchOpportunity();
+			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/opportunityList.jsp");
 			selEngine.waitForPageLoad();
 
 			list.clickMagnifierFilter();
