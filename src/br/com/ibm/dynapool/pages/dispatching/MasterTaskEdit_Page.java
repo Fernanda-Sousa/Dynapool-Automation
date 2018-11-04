@@ -36,6 +36,8 @@ public class MasterTaskEdit_Page extends Home_Page {
 	By automataDpx = By.name("selAutomata");
 	By summaryTxt = By.name("txtSummary");
 	By descriptionTxa = By.name("txaDescription");
+	By deploymentApprovedNoRdb = By.xpath("//*[@id=\"panel\"]/form/table/tbody/tr[17]/td[2]/input[1]");
+	By deploymentApprovedYesRdb = By.xpath("//*[@id=\"panel\"]/form/table/tbody/tr[17]/td[2]/input[2]");
 
 	By taskSourceDpx = By.name("selDeftasksource");
 	By automataCategoryDpx = By.name("selDefautomatacategory");
@@ -134,6 +136,14 @@ public class MasterTaskEdit_Page extends Home_Page {
 
 	public void clickApproveYes() {
 		selEngine.click(approvedYesRdb);
+	}
+	
+	public void clickDeploymentApprovedNo() {
+		selEngine.click(deploymentApprovedNoRdb);
+	}
+	
+	public void clickDeploymentApprovedYes() {
+		selEngine.click(deploymentApprovedYesRdb);
 	}
 	
 	public boolean compareCurrentStage(String strCurrentStage) {
