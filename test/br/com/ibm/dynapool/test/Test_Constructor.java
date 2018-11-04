@@ -60,6 +60,7 @@ public class Test_Constructor {
 		
 	protected List<Csv_Constructor> FileCSVOpp = new LinkedList<>();
 	protected List<Csv_Constructor> FileCSVMas = new LinkedList<>();
+	protected List<Csv_Constructor> FileCSVInt = new LinkedList<>();
 	protected List<Csv_Constructor> FileCSVHol = new LinkedList<>();
 	protected List<Csv_Constructor> FileCSVExt = new LinkedList<>();
 		
@@ -71,6 +72,7 @@ public class Test_Constructor {
 		Csv_Engine csvEng = new Csv_Engine();
 		FileCSVOpp = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowOpportunity"));
 		FileCSVMas = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowMasterTask"));
+		FileCSVInt = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowInternalTask"));
 		FileCSVHol = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_onHold"));
 		FileCSVExt = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_extension"));
 		
