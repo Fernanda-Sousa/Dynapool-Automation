@@ -78,6 +78,7 @@ public class Home_Page {
 
 	public void clickRequestInternal() {
 		selEngine.click(requestMnu);
+		selEngine.waitForPageLoad();
 		selEngine.click(requestInternalMnu);
 	}
 
