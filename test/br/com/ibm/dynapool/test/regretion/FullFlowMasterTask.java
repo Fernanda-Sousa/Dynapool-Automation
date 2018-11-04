@@ -11,8 +11,6 @@ Description:
 
 package br.com.ibm.dynapool.test.regretion;
 
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -46,7 +44,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 	StageApprovalsList_Page stageFrm = new StageApprovalsList_Page();
 
 	@Test(priority = 0)
-	public void executeLogin() throws IOException {
+	public void executeLogin() {
 		selEngine.sysOut("openPage\n");
 		selEngine.openURL(prop.readPropertiesFile("testwebsite"));
 		selEngine.waitForPageLoad();
@@ -62,7 +60,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 	}
 
 	@Test(priority = 1)
-	public void requestMasterTask() throws IOException {
+	public void requestMasterTask() {
 		selEngine.sysOut("requestMasterTask\n");
 		logger = extent.startTest("Request Master Task");
 
@@ -93,7 +91,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 	}
 
 	@Test(priority = 2)
-	public void approveRequest() throws IOException {
+	public void approveRequest() throws InterruptedException {
 		selEngine.sysOut("approveRequest\n");
 		logger = extent.startTest("Approve Master Task Request");
 
@@ -101,7 +99,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 		selEngine.waitForPageLoad();
 
 		for (Csv_Constructor csv : FileCSVMas) {
-			home.clickDispatchMaster();
+			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/mastertaskList.jsp");
 			selEngine.waitForPageLoad();
 
 			list.doubleClickIdFilter();
@@ -114,6 +112,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 
 			edit.setSquad(csv.getSquad());
 			edit.setOwner(csv.getOwner());
+			Thread.sleep(3000);
 			edit.clickApproveYes();
 
 			edit.clickSaveButton();
@@ -128,7 +127,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 
 // SOP Definition
 	@Test(priority = 3)
-	public void startSOPDefinition() throws IOException {
+	public void startSOPDefinition() {
 		selEngine.sysOut("startSOPDefinition\n");
 		logger = extent.startTest("Start SOP Defination");
 
@@ -145,25 +144,25 @@ public class FullFlowMasterTask extends Test_Constructor {
 		selEngine.waitForPageLoad();
 
 		list.clickFirstItemLink();
+		selEngine.waitForPageLoad();
 		view.clickFirstChildLink();
+		selEngine.waitForPageLoad();
 
 		viewTask.setDiscussion(FileCSVMas.get(0).getDiscussion());
 		viewTask.clickStartButton();
 
 		selEngine.alertClick();
-		selEngine.waitForPageLoad();
 
 		Assert.assertTrue(selEngine.compareTextPartial(By.id("message"), "Item successfully saved."));
 		logger.log(LogStatus.PASS, "The SOP Start test was executed correctly");
 	}
 
 	@Test(priority = 4)
-	public void createSOP() throws IOException {
+	public void createSOP() {
 		selEngine.sysOut("createSOP\n");
 		logger = extent.startTest("Create a SOP");
 
 		for (Csv_Constructor csv : FileCSVMas) {
-			selEngine.waitForPageLoad();
 			viewTask.setLinkSOP(csv.getSOPLink());
 			viewTask.setCurrentEffort(csv.getCurrentEffort());
 			viewTask.setPercentageCompleted(csv.getPercentageCompleted());
@@ -180,25 +179,26 @@ public class FullFlowMasterTask extends Test_Constructor {
 	}
 
 	@Test(priority = 5)
-	public void OnHoldProcess() throws IOException {
+	public void OnHoldProcess() {
 		selEngine.sysOut("OnHoldProcess\n");
 
 		onHold();
 	}
 
 	@Test(priority = 6)
-	public void ExtensionProcess() throws IOException {
+	public void ExtensionProcess() {
 		selEngine.sysOut("ExtensionProcess\n");
 
 		extension();
 	}
 
 	@Test(priority = 7)
-	public void ApproveSOP() throws IOException {
+	public void ApproveSOP() {
 		selEngine.sysOut("ApproveSOP\n");
 		logger = extent.startTest("Approve SOP");
 
 		selEngine.changeUser("qatest");
+		selEngine.waitForPageLoad();
 
 		home.clickStageApprovalsFrame();
 		stageFrm.doubleClickIdFilter();
@@ -216,7 +216,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 	}
 
 	@Test(priority = 8)
-	public void ResolveSOP() throws IOException {
+	public void ResolveSOP() {
 		selEngine.sysOut("ResolveSOP\n");
 		logger = extent.startTest("Resolve SOP");
 
@@ -224,7 +224,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 		selEngine.waitForPageLoad();
 
 		for (Csv_Constructor csv : FileCSVMas) {
-			home.clickDispatchMaster();
+			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/mastertaskList.jsp");
 
 			selEngine.waitForPageLoad();
 			list.clickMagnifierFilter();
@@ -252,7 +252,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 
 // Implementation
 	@Test(priority = 9)
-	public void startImplementation() throws IOException {
+	public void startImplementation() {
 		selEngine.sysOut("startImplementation\n");
 		logger = extent.startTest("Start Implementation");
 
@@ -273,7 +273,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 	}
 
 	@Test(priority = 10)
-	public void resolveImplementation() throws IOException {
+	public void resolveImplementation() {
 		selEngine.sysOut("resolveImplementation\n");
 		logger = extent.startTest("Resolve Implementation");
 
@@ -297,7 +297,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 
 // QA Review
 	@Test(priority = 11)
-	public void startQAReview() throws IOException {
+	public void startQAReview() {
 		selEngine.sysOut("startQAReview\n");
 		logger = extent.startTest("Start QAReview");
 
@@ -305,7 +305,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 		selEngine.waitForPageLoad();
 
 		for (Csv_Constructor csv : FileCSVMas) {
-			home.clickDispatchMaster();
+			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/mastertaskList.jsp");
 			selEngine.waitForPageLoad();
 
 			list.clickMagnifierFilter();
@@ -330,7 +330,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 	}
 
 	@Test(priority = 12)
-	public void resolveQAReview() throws IOException {
+	public void resolveQAReview() {
 		selEngine.sysOut("resolveQAReview\n");
 		logger = extent.startTest("Resolve QAReview");
 
@@ -352,7 +352,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 
 // QA Tests	
 	@Test(priority = 13)
-	public void skipQATests() throws IOException {
+	public void skipQATests() {
 		selEngine.sysOut("skipQATests\n");
 		logger = extent.startTest("Skip QA Tests");
 
@@ -374,7 +374,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 
 // Deployment
 	@Test(priority = 14)
-	public void startDeployment() throws IOException {
+	public void startDeployment() {
 		selEngine.sysOut("startDeployment\n");
 		logger = extent.startTest("Start Deployment");
 
@@ -409,14 +409,14 @@ public class FullFlowMasterTask extends Test_Constructor {
 	}
 
 	@Test(priority = 15)
-	public void approveDeployment() throws IOException {
+	public void approveDeployment() {
 		selEngine.sysOut("approveDeploymen\n");
 		logger = extent.startTest("Approve Deployment");
 
 		selEngine.changeUser("qatest");
 		selEngine.waitForPageLoad();
 
-		home.clickDispatchMaster();
+		selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/mastertaskList.jsp");
 		selEngine.waitForPageLoad();
 
 		list.clickMagnifierFilter();
@@ -441,7 +441,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 	}
 
 	@Test(priority = 16)
-	public void resolveDeployment() throws IOException {
+	public void resolveDeployment() {
 		selEngine.sysOut("resolveDeployment\n");
 		logger = extent.startTest("Resolve Deployment");
 
@@ -450,7 +450,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 		selEngine.waitForPageLoad();
 
 		for (Csv_Constructor csv : FileCSVMas) {
-			home.clickDispatchMaster();
+			selEngine.driver().get("https://dynapool.ipctrmx02.com/dynatest/dispatch/mastertaskList.jsp");
 			selEngine.waitForPageLoad();
 
 			list.clickMagnifierFilter();
