@@ -91,7 +91,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 	}
 
 	@Test(priority = 2)
-	public void approveRequest() throws InterruptedException {
+	public void approveRequest() {
 		selEngine.sysOut("approveRequest\n");
 		logger = extent.startTest("Approve Master Task Request");
 
@@ -112,7 +112,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 
 			edit.setSquad(csv.getSquad());
 			edit.setOwner(csv.getOwner());
-			Thread.sleep(3000);
+			selEngine.sleepSeconds(3);
 			edit.clickApproveYes();
 
 			edit.clickSaveButton();
@@ -426,12 +426,13 @@ public class FullFlowMasterTask extends Test_Constructor {
 
 		list.clickFirstItemLink();
 		selEngine.waitForPageLoad();
-
 		view.clickFifthChildLink();
 		selEngine.waitForPageLoad();
 
+		selEngine.sleepSeconds(3);
 		viewTask.clickEditTab();
 		selEngine.waitForPageLoad();
+		selEngine.sleepSeconds(3);
 		editTask.clickDeploymentApprovedYes();
 		editTask.clickSaveButton();
 		selEngine.waitForPageLoad();
