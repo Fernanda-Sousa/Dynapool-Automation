@@ -83,6 +83,9 @@ public class Csv_Constructor {
 	@CsvBindByName(column = "Task Source")
 	private String taskSource;
 	
+	@CsvBindByName(column = "Activity")
+	private String activity;
+	
 	public String getTargetCountry() {
 		return targetCountry;
 	}
@@ -299,4 +302,13 @@ public class Csv_Constructor {
 	public void setTaskSource(String taskSource) {
 		this.taskSource = taskSource;
 	}
+	
+	public String getActivity() {
+		return activity;
+	}
+	public void setActivity(String activity) {
+		this.activity = activity;
+	}
+	
+	
 }
