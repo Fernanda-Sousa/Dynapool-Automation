@@ -179,21 +179,21 @@ public class FullFlowMasterTask extends Test_Constructor {
 	}
 
 	@Test(priority = 5)
-	public void OnHoldProcess() {
+	public void onHoldProcess() {
 		selEngine.sysOut("OnHoldProcess\n");
 
 		onHold();
 	}
 
 	@Test(priority = 6)
-	public void ExtensionProcess() {
+	public void extensionProcess() {
 		selEngine.sysOut("ExtensionProcess\n");
 
 		extension();
 	}
 
 	@Test(priority = 7)
-	public void ApproveSOP() {
+	public void approveSOP() {
 		selEngine.sysOut("ApproveSOP\n");
 		logger = extent.startTest("Approve SOP");
 
@@ -216,7 +216,7 @@ public class FullFlowMasterTask extends Test_Constructor {
 	}
 
 	@Test(priority = 8)
-	public void ResolveSOP() {
+	public void resolveSOP() {
 		selEngine.sysOut("ResolveSOP\n");
 		logger = extent.startTest("Resolve SOP");
 
