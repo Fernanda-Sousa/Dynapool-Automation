@@ -60,11 +60,11 @@ public class MasterTaskView_Page extends Home_Page {
 	By invalidateBtn = By.name("btnInvalidate");
 	By deleteBtn = By.name("btnDelete");
 
-	By firstChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[2]");
-	By secondChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[3]");
-	By thirdChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[4]");
-	By fourthChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
-	By fifthChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
+	By firstChildLnk = By.xpath("//*[@id=\"panel\"]/div/table/tbody/tr[2]");
+	By secondChildLnk = By.xpath("//*[@id=\"panel\"]/div/table/tbody/tr[3]");
+	By thirdChildLnk = By.xpath("//*[@id=\"panel\"]/div/table/tbody/tr[4]");
+	By fourthChildLnk = By.xpath("//*[@id=\"panel\"]/div/table/tbody/tr[5]");
+	By fifthChildLnk = By.xpath("//*[@id=\"panel\"]/div/table/tbody/tr[6]");
 
 	Selenium_Engine selEngine = new Selenium_Engine();
 	
