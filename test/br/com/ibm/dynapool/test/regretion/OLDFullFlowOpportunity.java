@@ -35,7 +35,7 @@ import br.com.ibm.dynapool.pages.frames.StageApprovalsList_Page;
 import br.com.ibm.dynapool.pages.request.OpportunityRequest_Page;
 import br.com.ibm.dynapool.test.Test_Constructor;
 
-public class FullFlowOpportunity extends Test_Constructor {
+public class OLDFullFlowOpportunity extends Test_Constructor {
 
 	String id;
 
