@@ -44,7 +44,7 @@ public class MasterTaskEdit_Page extends Home_Page {
 
 	By approvedNoRdb = By
 			.cssSelector(".frmLayout > tbody:nth-child(1) > tr:nth-child(22) > td:nth-child(2) > input:nth-child(1)");
-	By approvedYesRdb = By.cssSelector("input.disabled:nth-child(2)");
+	By approvedYesRdb = By.xpath("//*[@id=\"panel\"]/form/table/tbody/tr[22]/td[2]/input[2]");
 	By currentStageDpx = By.name("selDefstage");
 
 	By statusDpx = By.name("selDefstatus");
