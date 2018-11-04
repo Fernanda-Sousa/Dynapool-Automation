@@ -70,7 +70,7 @@ public class Test_Constructor {
 		selEngine.createDriver();
 		Csv_Engine csvEng = new Csv_Engine();
 		FileCSVOpp = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowOpportunity"));
-		FileCSVMas = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowOpportunity"));
+		FileCSVMas = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_fullFlowMasterTask"));
 		FileCSVHol = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_onHold"));
 		FileCSVExt = csvEng.readSpreadsheetCSV(prop.readPropertiesFile("csv_extension"));
 		
