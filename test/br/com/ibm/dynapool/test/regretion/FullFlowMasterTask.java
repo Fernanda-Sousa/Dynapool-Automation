@@ -479,4 +479,35 @@ public class FullFlowMasterTask extends Test_Constructor {
 
 		logger.log(LogStatus.PASS, "The Deployment resolve test was executed correctly");
 	}
+
+// Verifications
+	@Test(priority = 17)
+	public void verifyDate() {
+		selEngine.sysOut("verifyDate\n");
+		logger = extent.startTest("Verify Date");
+		
+		String closedDateLastChild = viewTask.getClosedDate();
+		
+		viewTask.clickOpenMasterTask();
+		selEngine.waitForPageLoad();
+		
+		String approvedDateMaster = view.getApprovedDate();
+		String closedDateMaster = view.getClosedDate();
+		
+		view.clickFirstChildLink();
+		selEngine.waitForPageLoad();
+		
+		String createdDateFirstChild = viewTask.getCreatedDate();
+				
+		selEngine.sysOut("closed child: " + closedDateLastChild + "; closed master: " + closedDateMaster + "; created child: " + createdDateFirstChild + "; created master: " + approvedDateMaster);
+		
+//		Assert.assertEquals(approvedDateMaster.substring(1,(closedDateLastChild.length()-3)), createdDateFirstChild.substring(1,(closedDateLastChild.length()-3)));
+//		Assert.assertEquals(closedDateMaster.substring(1,(closedDateLastChild.length()-3)), closedDateLastChild.substring(1,(closedDateLastChild.length()-3)));
+		
+		Assert.assertEquals(approvedDateMaster, createdDateFirstChild);
+		Assert.assertEquals(closedDateMaster, closedDateLastChild);
+		
+		logger.log(LogStatus.INFO, "The dates are the same");
+	}
+
 }
