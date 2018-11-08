@@ -53,6 +53,7 @@ public class MasterTaskView_Page extends Home_Page {
 	By approvedDft = By.name("txtDateapproval");
 	By plannedStartDateDtf = By.name("txtDatePlanning");
 	By startedDtf = By.name("txtDatestarted");
+	By closedDtf = By.name("txtDateclosed");
 
 	By justificationTxa = By.name("txaJustification");
 
@@ -83,6 +84,22 @@ public class MasterTaskView_Page extends Home_Page {
 	
 	public String getId() {
 		return selEngine.getAttribute(idTxt, "value");
+	}
+	
+	public String getCreatedDate() {
+		return selEngine.getAttribute(createdDtf, "value");
+	}
+	
+	public String getApprovedDate() {
+		return selEngine.getAttribute(approvedDft, "value");
+	}
+	
+	public String getStartedDate() {
+		return selEngine.getAttribute(startedDtf, "value");
+	}
+	
+	public String getClosedDate() {
+		return selEngine.getAttribute(closedDtf, "value");
 	}
 
 	public boolean compareId(String strId) {
