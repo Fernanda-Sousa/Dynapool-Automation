@@ -45,7 +45,7 @@ public class Selenium_Engine {
 	String parentWindowHandler = null; // Store your parent window (pop up)
 	String subWindowHandler = null;
 
-	final boolean DEBUG = true;
+	final boolean DEBUG = false;
 
 	public WebDriver driver() {
 		return driver;
@@ -298,6 +298,11 @@ public class Selenium_Engine {
 
 		return driver.findElement(by).getText().equals(text);
 	}
+	
+//	public boolean compareStrings(String text1, String text2) {
+//
+//		return text1.equals(text2);
+//	}
 
 	public boolean compareAttribute(By by, String attribute, String text) {
 
