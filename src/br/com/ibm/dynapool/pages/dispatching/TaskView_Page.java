@@ -53,6 +53,7 @@ public class TaskView_Page extends Home_Page {
 
 	By createdDtf = By.name("txtDatecreation");
 	By approvedDft = By.name("txtDateapproval");
+	By closedDft = By.name("txtDateclosed");
 	By discussionTxa = By.name("txaReason");
 
 	By updateBtn = By.name("btnSave");
@@ -100,6 +101,18 @@ public class TaskView_Page extends Home_Page {
 
 	public String getId() {
 		return selEngine.getAttribute(idTxt, "value");
+	}
+	
+	public String getCreatedDate() {
+		return selEngine.getAttribute(createdDtf, "value");
+	}
+	
+	public String getApprovedDate() {
+		return selEngine.getAttribute(approvedDft, "value");
+	}
+	
+	public String getClosedDate() {
+		return selEngine.getAttribute(closedDft, "value");
 	}
 
 	public boolean compareId(String strId) {
