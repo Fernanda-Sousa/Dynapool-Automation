@@ -24,14 +24,14 @@ public class TaskRequest_Page extends Home_Page{
 	By classDpx = By.name("selDeftype");
 	By activityDpx = By.name("selDefactivity");
 	By priorityDpx = By.name("selDefpriority");
-	By complexityDpx = By.name("selDefcomplexity");
+	By complexityDpx = By.name("selDcomplexity");
 	By summaryTxt = By.name("txtSummary");
 	By descriptionTxa = By.name("txaDescription");
 	By saveBtn = By.name("btnSubmit");
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;

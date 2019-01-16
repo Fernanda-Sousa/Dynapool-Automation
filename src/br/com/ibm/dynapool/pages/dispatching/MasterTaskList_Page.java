@@ -19,11 +19,11 @@ import br.com.ibm.dynapool.pages.Home_Page;
 
 public class MasterTaskList_Page extends Home_Page{
 
-	By magnifierFlt = By.className("bigCardTitle");
+	By magnifierFlt = By.xpath("//*[@id=\"contentList\"]/div/div[1]/img");
 	By previousBtn = By.name("btnPrevious page");
 	By closeBtn = By.name("btnClose");
 	By nextBtn = By.name("btnNext page");
-	By idFlt = By.linkText("id");
+	By idFlt = By.cssSelector("#contentList > div > div.bigCardContent > div.table > table > tbody > tr:nth-child(1) > th:nth-child(1) > a");
 	By contryFlt = By.linkText("contry");
 	By accountFlt = By.linkText("account");
 	By typeFlt = By.linkText("type");
@@ -38,7 +38,7 @@ public class MasterTaskList_Page extends Home_Page{
 	By exportExcelBtn = By.linkText("export excel");
 	By firstItemLnk = By.xpath("/html/body/div[1]/div[3]/div/div[3]/div[2]/table/tbody/tr[2]");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;

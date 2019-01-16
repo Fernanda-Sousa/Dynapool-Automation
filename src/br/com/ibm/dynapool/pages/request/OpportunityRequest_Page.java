@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 10-oct-2018
 
-Last update date: 10-oct-2018
+Last update date: 26-nov-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -34,7 +34,7 @@ public class OpportunityRequest_Page extends Home_Page{
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
@@ -86,6 +86,14 @@ Selenium_Engine selEngine;
 
 	public void setcostsAvoidedTxt(String strcostsAvoidedTxt) {
 		selEngine.setTextbox(costsAvoidedTxt, strcostsAvoidedTxt);
+	}
+	
+	public String getCountry() {
+		return selEngine.getAttribute(targetCountryDpx, "value");
+	}
+
+	public String getAccount() {
+		return selEngine.getAttribute(targetAccountDpx, "value");
 	}
 
 	public void clickSaveButton() {

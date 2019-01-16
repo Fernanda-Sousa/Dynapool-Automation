@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 11-oct-2018
 
-Last update date: 15-oct-2018
+Last update date: 01-nov-2018
 Last updated by: Fernanda Pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -53,6 +53,7 @@ public class MasterTaskView_Page extends Home_Page {
 	By approvedDft = By.name("txtDateapproval");
 	By plannedStartDateDtf = By.name("txtDatePlanning");
 	By startedDtf = By.name("txtDatestarted");
+	By closedDtf = By.name("txtDateclosed");
 
 	By justificationTxa = By.name("txaJustification");
 
@@ -60,13 +61,13 @@ public class MasterTaskView_Page extends Home_Page {
 	By invalidateBtn = By.name("btnInvalidate");
 	By deleteBtn = By.name("btnDelete");
 
-	By firstChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[2]");
-	By secondChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[3]");
-	By thirdChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[4]");
-	By fourthChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
-	By fifthChildLnk = By.cssSelector("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
+	By firstChildLnk = By.xpath("//*[@id=\"panel\"]/div/table/tbody/tr[2]");
+	By secondChildLnk = By.xpath("//*[@id=\"panel\"]/div/table/tbody/tr[3]");
+	By thirdChildLnk = By.xpath("//*[@id=\"panel\"]/div/table/tbody/tr[4]");
+	By fourthChildLnk = By.xpath("//*[@id=\"panel\"]/div/table/tbody/tr[5]");
+	By fifthChildLnk = By.xpath("//*[@id=\"panel\"]/div/table/tbody/tr[6]");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
@@ -79,6 +80,26 @@ Selenium_Engine selEngine;
 
 	public int getIntegerId(By idTxt) {
 		return Integer.parseInt(driver.findElement(idTxt).getText());
+	}
+	
+	public String getId() {
+		return selEngine.getAttribute(idTxt, "value");
+	}
+	
+	public String getCreatedDate() {
+		return selEngine.getAttribute(createdDtf, "value");
+	}
+	
+	public String getApprovedDate() {
+		return selEngine.getAttribute(approvedDft, "value");
+	}
+	
+	public String getStartedDate() {
+		return selEngine.getAttribute(startedDtf, "value");
+	}
+	
+	public String getClosedDate() {
+		return selEngine.getAttribute(closedDtf, "value");
 	}
 
 	public boolean compareId(String strId) {
@@ -204,6 +225,10 @@ Selenium_Engine selEngine;
 
 	public void clickThirdChildLink() {
 		selEngine.click(thirdChildLnk);
+	}
+	
+	public void clickFourthChildLnk() {
+		selEngine.click(fourthChildLnk);
 	}
 
 	public void clickFifthChildLink() {

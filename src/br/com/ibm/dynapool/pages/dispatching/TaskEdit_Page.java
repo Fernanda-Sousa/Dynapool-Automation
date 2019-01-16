@@ -41,7 +41,10 @@ public class TaskEdit_Page extends Home_Page {
 	By SOPApprovedNoRdb = By
 			.cssSelector(".frmLayout > tbody:nth-child(1) > tr:nth-child(18) > td:nth-child(2) > input:nth-child(1)");
 	By SOPApprovedYesRdb = By.cssSelector("input.enabled:nth-child(2)");
-
+	By deploymentApprovedNoRdb = By
+			.cssSelector("#panel > form > table > tbody > tr:nth-child(17) > td.field > input:nth-child(1)");
+	By deploymentApprovedYesRdb = By.xpath("//*[@id=\"panel\"]/form/table/tbody/tr[17]/td[2]/input[2]");
+	
 	By currentStatusDpx = By.name("selDefstatus");
 	By previousStatusDpx = By.name("selLaststatus");
 	By currentEffortTxt = By.name("txtReffort");
@@ -56,12 +59,11 @@ public class TaskEdit_Page extends Home_Page {
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
 	}
-	
 	
 	public boolean compareId(String strId) {
 		return selEngine.compareText(idTxt, strId);
@@ -201,6 +203,22 @@ Selenium_Engine selEngine;
 
 	public void setDueDate(String strDueDate) {
 		selEngine.setTextbox(dueDateDtf, strDueDate);
+	}
+	
+	public void clickSOPApprovedNo() {
+		selEngine.click(SOPApprovedNoRdb);
+	}
+	
+	public void clickSOPApprovedYes() {
+		selEngine.click(SOPApprovedYesRdb);
+	}
+	
+	public void clickDeploymentApprovedNo() {
+		selEngine.click(deploymentApprovedNoRdb);
+	}
+	
+	public void clickDeploymentApprovedYes() {
+		selEngine.click(deploymentApprovedYesRdb);
 	}
 
 	public void clickSaveButton() {

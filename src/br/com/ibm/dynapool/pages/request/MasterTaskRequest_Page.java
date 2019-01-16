@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 10-oct-2018
 
-Last update date: 10-oct-2018
+Last update date: 28-nov-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -12,6 +12,7 @@ Description:
 package br.com.ibm.dynapool.pages.request;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
 import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
@@ -30,6 +31,8 @@ public class MasterTaskRequest_Page extends Home_Page{
 	By addAutomataCrl = By.cssSelector("input.crossListButton:nth-child(1)");
 	By removeAutomataCrl = By.cssSelector("input.crossListButton:nth-child(3)");
 	By automatasSelectedCrl = By.name("crlAutomataSelected");
+	By automataAvailableCrl = By.name("crlAutomataAvailable");
+	public By firstOptionAutomata = org.openqa.selenium.By.xpath("/html/body/div[1]/div[2]/form/table/tbody/tr[9]/td[2]/div/div/div[1]/select/option");
 	By taskSourceDpx = By.name("selDeftasksource");
 	By automataCategoryDpx = By.name("selDefautomatacategory");
 	By alert_ServerCountTxt = By.name("txtAutomatacount");
@@ -37,8 +40,17 @@ public class MasterTaskRequest_Page extends Home_Page{
 	By saveBtn = By.name("btnSubmit");
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
+	
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
+	
+	public void setAutomataAvailable(String strAutomataAvailable) {
+		selEngine.selectDropDown(automataAvailableCrl, strAutomataAvailable);
+	}
+	
+	public WebElement getAutomataAvailable() {
+		return selEngine.driver().findElement(automataAvailableCrl);
+	}
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
@@ -88,6 +100,10 @@ Selenium_Engine selEngine;
 		selEngine.click(removeAutomataCrl);
 	}
 	
+//	public void clickFirstOptionAutomata() {
+//		selEngine.click(firstOptionAutomata);
+//	}
+	
 	public void setTaskSource(String strTaskSource) {
 		selEngine.selectDropDown(taskSourceDpx, strTaskSource);
 	}
@@ -102,6 +118,18 @@ Selenium_Engine selEngine;
 
 	public void setDefectCategory(String strDefectCategory) {
 		selEngine.selectDropDown(defectCategoryDpx, strDefectCategory);
+	}
+	
+	public String getCountry() {
+		return selEngine.getAttribute(targetCountryDpx, "value");
+	}
+
+	public String getAccount() {
+		return selEngine.getAttribute(targetAccountDpx, "value");
+	}
+	
+	public String getFirstOptionAutomata() {
+		return selEngine.getAttribute(firstOptionAutomata, "value");
 	}
 
 	public void clickSaveButton() {

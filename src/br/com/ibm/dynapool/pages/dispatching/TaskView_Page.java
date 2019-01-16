@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 15-oct-2018
 
-Last update date: 15-oct-2018
+Last update date: 13-nov-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -12,16 +12,13 @@ Description:
 package br.com.ibm.dynapool.pages.dispatching;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import br.com.ibm.dynapool.engine.Selenium_Engine;
 import br.com.ibm.dynapool.pages.Home_Page;
 
 public class TaskView_Page extends Home_Page {
 
-	WebDriver driver;
-
-	By editLnk = By.name("tabEdit");
+	By editLnk = By.xpath("//*[@id=\"requestContent\"]/div[1]/input[2]");
 
 	By idTxt = By.name("txtId");
 	By opportunityId = By.name("txtIdopportunity");
@@ -39,12 +36,13 @@ public class TaskView_Page extends Home_Page {
 	By environmentDpx = By.name("selDefenvironment");
 	By stageDpx = By.name("selDefstage");
 	By priorityDpx = By.name("selDefpriority");
-	By complexityDpx = By.name("selDefcomplexity");
+	By complexityDpx = By.name("selDcomplexity");
 	By previewedEffortTxt = By.name("txtEffort");
 	By summaryTxt = By.name("txtSummary");
 	By descriptionTxa = By.name("txaDescription");
 	By approvedRdb = By.name("rdoYnapproved");
 //TODO	By SOPApprovedRdb = By.name("rdoYnapproved"); 
+	By linkToSOPTxa = By.name("txaSopurl");
 
 	By currentStatusDpx = By.name("selDefstatus");
 	By sinceDtf = By.name("selDefstatus");
@@ -55,20 +53,38 @@ public class TaskView_Page extends Home_Page {
 
 	By createdDtf = By.name("txtDatecreation");
 	By approvedDft = By.name("txtDateapproval");
+	By closedDft = By.name("txtDateclosed");
 	By discussionTxa = By.name("txaReason");
 
 	By updateBtn = By.name("btnSave");
 	By skipBtn = By.name("btnSkip");
 	By startBtn = By.name("btnStart");
 	By extensionBtn = By.name("btnExtension");
+	By resolveBtn = By.name("btnResolve");
 	By closeBtn = By.name("btnClose");
 	By onHoldBtn = By.name("btnHold");
 	By resumeOnHoldBtn = By.name("btnHold");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
+	}
+	
+	public void setLinkSOP(String strLinkSOP) {
+		selEngine.setTextbox(linkToSOPTxa, strLinkSOP);
+	}
+	
+	public void setDiscussion(String strDiscussion) {
+		selEngine.setTextbox(discussionTxa, strDiscussion);
+	}
+	
+	public void setCurrentEffort(String strCurrentEffort) {
+		selEngine.setTextbox(currentEffortTxt, strCurrentEffort);
+	}
+	
+	public void setPercentageCompleted(String strPercentageCompleted) {
+		selEngine.setTextbox(percentageCompletedTxt, strPercentageCompleted);
 	}
 	
 	public void clickEditTab() {
@@ -83,16 +99,24 @@ Selenium_Engine selEngine;
 		selEngine.click(openMasterTask);
 	}
 
-	public int getIntegerId(By idTxt) {
-		return Integer.parseInt(driver.findElement(idTxt).getText());
+	public String getId() {
+		return selEngine.getAttribute(idTxt, "value");
 	}
-
-	public int getIntegerIdOpportunity(By opportunityId) {
-		return Integer.parseInt(driver.findElement(opportunityId).getText());
+	
+	public String getCreatedDate() {
+		return selEngine.getAttribute(createdDtf, "value");
 	}
-
-	public int getIntegerIdMaster(By masterTaskId) {
-		return Integer.parseInt(driver.findElement(masterTaskId).getText());
+	
+	public String getApprovedDate() {
+		return selEngine.getAttribute(approvedDft, "value");
+	}
+	
+	public String getClosedDate() {
+		return selEngine.getAttribute(closedDft, "value");
+	}
+	
+	public By getCurrentEffort() {
+		return currentEffortTxt;
 	}
 
 	public boolean compareId(String strId) {
@@ -143,6 +167,10 @@ Selenium_Engine selEngine;
 		return selEngine.compareText(complexityDpx, strComplexity);
 	}
 
+	public boolean compareLinkToSOP(String strLinkToSOP) {
+		return selEngine.compareText(linkToSOPTxa, strLinkToSOP);
+	}
+	
 	public boolean comparePreviewedEffort(String strPreviewedEffort) {
 		return selEngine.compareText(previewedEffortTxt, strPreviewedEffort);
 	}
@@ -214,6 +242,10 @@ Selenium_Engine selEngine;
 
 	public void clickExtensionButton() {
 		selEngine.click(extensionBtn);
+	}
+	
+	public void clickResolveButton() {
+		selEngine.click(resolveBtn);
 	}
 	
 	public void clickCloseButton() {

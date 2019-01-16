@@ -2,7 +2,7 @@
 Created by: Fernanda Pereira (ferps@br.ibm.com)
 Date: 15-oct-2018
 
-Last update date: 15-oct-2018
+Last update date: 30-oct-2018
 Last updated by: Fernanda pereira (ferps@br.ibm.com)
 
 Version: 1.0.0.0
@@ -49,6 +49,8 @@ public class OpportunityView_Page extends Home_Page {
 
 	By createdDtf = By.name("txtDatecreation");
 	By approvedDft = By.name("txtDateapproval");
+	By startedDtf = By.name("txtDatestarted");
+	By closedDtf = By.name("txtDateclosed");
 
 	By justificationTxa = By.name("txaJustification");
 
@@ -56,25 +58,44 @@ public class OpportunityView_Page extends Home_Page {
 	By invalidateBtn = By.name("btnInvalidate");
 	By deleteBtn = By.name("btnDelete");
 
-	By firstChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[2]");
-	By secondChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[3]");
-	By thirdChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[4]");
-	By fourthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
-	By fifthChildLnk = By.name("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
+	By firstChildLnk = By.xpath("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[2]");
+	By secondChildLnk = By.xpath("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[3]");
+	By thirdChildLnk = By.xpath("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[4]");
+	By fourthChildLnk = By.xpath("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[5]");
+	By fifthChildLnk = By.xpath("/html/body/div[1]/div[2]/div[2]/div/table/tbody/tr[6]");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
 	}
 	
-	
 	public void clickEditTab() {
 		selEngine.click(editLnk);
 	}
 
-	public int getIntegerId(By by) {
-		return Integer.parseInt(driver.findElement(by).getText());
+	public int getIntegerId() {
+		return selEngine.getIntegerContent(idTxt);
+	}
+	
+	public String getId() {
+		return selEngine.getAttribute(idTxt, "value");
+	}
+	
+	public String getCreatedDate() {
+		return selEngine.getAttribute(createdDtf, "value");
+	}
+	
+	public String getApprovedDate() {
+		return selEngine.getAttribute(approvedDft, "value");
+	}
+	
+	public String getStartedDate() {
+		return selEngine.getAttribute(startedDtf, "value");
+	}
+	
+	public String getClosedDate() {
+		return selEngine.getAttribute(closedDtf, "value");
 	}
 
 	public boolean compareId(String strId) {
@@ -120,7 +141,7 @@ Selenium_Engine selEngine;
 //TODO public boolean compareSME_ClientContact(String strSME_ClientContact) {
 //		return selEngine.compareText(SME_ClientContactTxt, strSME_ClientContact);
 //	}
-
+	
 	public boolean compareAutomataCategory(String strAutomataCategory) {
 		return selEngine.compareText(automataCategoryDpx, strAutomataCategory);
 	}
@@ -183,6 +204,10 @@ Selenium_Engine selEngine;
 
 	public void clickThirdChildLink() {
 		selEngine.click(thirdChildLnk);
+	}
+	
+	public void clickFourthChildLnk() {
+		selEngine.click(fourthChildLnk);
 	}
 
 	public void clickFifthChildLink() {

@@ -36,6 +36,8 @@ public class MasterTaskEdit_Page extends Home_Page {
 	By automataDpx = By.name("selAutomata");
 	By summaryTxt = By.name("txtSummary");
 	By descriptionTxa = By.name("txaDescription");
+	By deploymentApprovedNoRdb = By.xpath("//*[@id=\"panel\"]/form/table/tbody/tr[17]/td[2]/input[1]");
+	By deploymentApprovedYesRdb = By.xpath("//*[@id=\"panel\"]/form/table/tbody/tr[17]/td[2]/input[2]");
 
 	By taskSourceDpx = By.name("selDeftasksource");
 	By automataCategoryDpx = By.name("selDefautomatacategory");
@@ -44,7 +46,7 @@ public class MasterTaskEdit_Page extends Home_Page {
 
 	By approvedNoRdb = By
 			.cssSelector(".frmLayout > tbody:nth-child(1) > tr:nth-child(22) > td:nth-child(2) > input:nth-child(1)");
-	By approvedYesRdb = By.cssSelector("input.disabled:nth-child(2)");
+	By approvedYesRdb = By.xpath("//*[@id=\"panel\"]/form/table/tbody/tr[22]/td[2]/input[2]");
 	By currentStageDpx = By.name("selDefstage");
 
 	By statusDpx = By.name("selDefstatus");
@@ -58,12 +60,11 @@ public class MasterTaskEdit_Page extends Home_Page {
 	By clearBtn = By.name("btnReset");
 	By cancelBtn = By.name("btnCancel");
 
-Selenium_Engine selEngine;
+	Selenium_Engine selEngine = new Selenium_Engine();
 	
 	public void setSelEngine(Selenium_Engine selEngine) {
 		this.selEngine = selEngine;
 	}
-	
 	
 	public boolean compareId(String strId) {
 		return selEngine.compareText(idTxt, strId);
@@ -135,6 +136,14 @@ Selenium_Engine selEngine;
 
 	public void clickApproveYes() {
 		selEngine.click(approvedYesRdb);
+	}
+	
+	public void clickDeploymentApprovedNo() {
+		selEngine.click(deploymentApprovedNoRdb);
+	}
+	
+	public void clickDeploymentApprovedYes() {
+		selEngine.click(deploymentApprovedYesRdb);
 	}
 	
 	public boolean compareCurrentStage(String strCurrentStage) {
